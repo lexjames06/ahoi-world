@@ -32,7 +32,7 @@ export default function ShareIcon({ platform, title }: Props) {
 				}&hashtags=AHouseOfIdeas`;
 			case "facebook":
 				return `https://www.facebook.com/sharer/sharer.php?u=${location?.href}`;
-			case "linkedin":
+			case "linkedIn":
 				return `https://www.linkedin.com/sharing/share-offsite/?url=${location?.href}`;
 			default:
 				return "";
