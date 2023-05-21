@@ -1,5 +1,4 @@
 .item {
-	/* background-color: red; */
 	border-bottom: 0.0625rem solid var(--border);
 	display: grid;
 	grid-template-columns: auto 6.25rem;
@@ -18,7 +17,6 @@
 }
 
 .coverImage {
-	/* width: 6.25rem; */
 	height: 5rem;
 	aspect-ratio: 5 / 4;
 	display: block;
@@ -40,13 +38,11 @@
 		row-gap: 0.5rem;
 		justify-items: start;
 		text-align: left;
-		/* height: 23rem; */
 	}
 
 	.coverImage {
 		grid-row: 1;
 		height: 15rem;
-		/* width:  */
 	}
 
 	.details {

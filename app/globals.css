@@ -57,18 +57,6 @@
   --footer-subheader: #2fe282;
 }
 
-@media (prefers-color-scheme: dark) {
-  /* :root {
-		--inactive-text: #e3e3e3;
-		--text: #ffffff;
-		--background: #111111;
-		--accent: #ffffff;
-		--border: #414941;
-		--highlight-background: #2fe282;
-		--highlight-text: #111111;
-	} */
-}
-
 * {
 	box-sizing: border-box;
 	padding: 0;
@@ -125,9 +113,3 @@ button {
 	background-color: transparent;
 	border: none;
 }
-
-/* @media (prefers-color-scheme: dark) {
-  html {
-
-  }
-} */

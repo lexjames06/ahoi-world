@@ -1,14 +1,12 @@
 import React from "react";
 import { notFound } from "next/navigation";
-import { getPostData, getSortedPostsData } from "@/lib/posts";
-import getFormattedDate from "@/lib/getFormattedDate";
 import Image from "next/image";
-import styles from "./page.module.css";
-import Navbar from "@/app/components/Navbar";
-import Link from "next/link";
-import ShareIcon, { SocialPlatform } from "@/app/components/blog/ShareIcon";
 import BackButton from "@/app/components/blog/BackButton";
+import ShareIcon, { SocialPlatform } from "@/app/components/blog/ShareIcon";
 import Page from "@/app/components/Page";
+import getFormattedDate from "@/lib/getFormattedDate";
+import { getPostData, getSortedPostsData } from "@/lib/posts";
+import styles from "./page.module.css";
 
 export function generateStaticParams() {
 	const { posts } = getSortedPostsData();

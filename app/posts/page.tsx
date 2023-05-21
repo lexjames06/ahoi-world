@@ -1,10 +1,10 @@
 import { getSortedPostsData } from "@/lib/posts";
-import styles from "./page.module.css";
-import SmallListItems from "./SmallListItems";
-import LargeListItem from "../components/blog/LargeListItem";
 import Link from "next/link";
 import Page from "../components/Page";
 import CategoriesSlider from "../components/blog/CategoriesSlider";
+import LargeListItem from "../components/blog/LargeListItem";
+import SmallListItems from "./SmallListItems";
+import styles from "./page.module.css";
 
 interface Props {
 	searchParams?: Record<'category', string>;

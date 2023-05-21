@@ -1,5 +1,4 @@
 .item {
-	/* background-color: red; */
 	display: grid;
 	column-gap: 0.5rem;
 	margin-bottom: 0.5rem;

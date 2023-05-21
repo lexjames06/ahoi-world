@@ -1,9 +1,9 @@
 "use client";
-import { useOnScroll } from "@/app/hooks/use-on-scroll";
 import React, { useEffect, useState } from 'react'
 import { MdArrowBack } from "react-icons/md";
-import styles from "./BackButton.module.css"
 import { useRouter } from "next/navigation";
+import { useOnScroll } from "@/app/hooks/use-on-scroll";
+import styles from "./BackButton.module.css"
 
 type Props = {}
 
@@ -36,7 +36,6 @@ export default function BackButton({}: Props) {
             a 15.9155 15.9155 0 0 1 0 31.831
             a 15.9155 15.9155 0 0 1 0 -31.831"
         />
-        {/* <circle cx="28" cy="28" r="26" strokeDasharray={`${progressBarWidth} 100`} /> */}
       </svg>
     </button>
   )

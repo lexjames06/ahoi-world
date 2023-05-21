@@ -1,9 +1,9 @@
 "use client";
 import React, { useState } from 'react';
 import { MdMenu } from 'react-icons/md';
-import styles from "./Navbar.module.css";
 import Link from "next/link";
 import Menu from "./Menu";
+import styles from "./Navbar.module.css";
 
 export default function Navbar() {
   const [menuOpen, toggleMenu] = useState(false);
@@ -38,12 +38,6 @@ export default function Navbar() {
 
       <div className={styles.container}>
         <Link href="/" className={styles.logo}>
-          {/* <p>
-            ahoi.
-          </p>
-          <p>
-            world
-          </p> */}
           <p>
             a house
           </p>

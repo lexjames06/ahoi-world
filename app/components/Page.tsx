@@ -1,8 +1,8 @@
 import React, { ReactNode } from 'react'
-import styles from "./Page.module.css";
-import Link from "next/link";
 import { TiSocialTwitter, TiSocialLinkedin } from "react-icons/ti";
+import Link from "next/link";
 import { navOptions } from "./constants";
+import styles from "./Page.module.css";
 
 type Props = {
   children: ReactNode;

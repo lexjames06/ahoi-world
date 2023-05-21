@@ -1,8 +1,8 @@
 "use client";
-import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from 'react';
 import { AiFillTwitterSquare, AiFillFacebook, AiFillLinkedin } from "react-icons/ai";
 import { MdShare } from "react-icons/md";
+import { useRouter } from "next/navigation";
 
 export type SocialPlatform = "twitter" | "facebook" | "linkedIn" | "share";
 

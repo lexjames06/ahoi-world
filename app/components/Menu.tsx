@@ -1,11 +1,10 @@
 "use client";
 import React, { SetStateAction } from "react";
-import styles from "./Menu.module.css";
-import type { IconType } from "react-icons";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Option, navOptions } from "./constants";
 import { useTheme } from "next-themes";
+import { Option, navOptions } from "./constants";
+import styles from "./Menu.module.css";
 
 type Props = {
 	show: boolean;

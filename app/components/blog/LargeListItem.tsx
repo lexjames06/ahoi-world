@@ -1,7 +1,7 @@
-import getFormattedDate from "@/lib/getFormattedDate";
 import React from 'react';
-import styles from "./LargeListItem.module.css";
 import Image from "next/image";
+import getFormattedDate from "@/lib/getFormattedDate";
+import styles from "./LargeListItem.module.css";
 
 type Props = {
   post: BlogPost;
