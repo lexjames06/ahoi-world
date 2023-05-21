@@ -1,0 +1,64 @@
+import React, { ReactNode } from 'react'
+import styles from "./Page.module.css";
+import Link from "next/link";
+import { TiSocialTwitter, TiSocialLinkedin } from "react-icons/ti";
+import { navOptions } from "./constants";
+
+type Props = {
+  children: ReactNode;
+  className?: string;
+};
+
+export default function Page({ children, className }: Props) {
+  const props = { className };
+
+  const social = [
+    {
+      name: 'twitter',
+      link: 'https://www.twitter.com/seaj_ctc',
+      icon: TiSocialTwitter,
+      target: '_blank',
+    },
+    {
+      name: 'linkedin',
+      link: 'https://www.linkedin.com/in/alexander-j-stewart/',
+      icon: TiSocialLinkedin,
+      target: '_blank',
+    },
+  ];
+
+  return (
+    <>
+      <main {...props}>
+        {children}
+      </main>
+
+      <footer>
+        <div className={styles.sections}>
+          <div className={`${styles.section} ${styles.brand}`}>
+            <span>A HOUSE</span>
+            <span>OF IDEAS</span>
+          </div>
+          <div className={styles.section}>
+            <h3>Pages</h3>
+            {navOptions.map((option) => (
+              <Link key={option?.label} href={option?.link} target={option?.target}>
+                {option.label}
+              </Link>
+            ))}
+          </div>
+          <div className={`${styles.section} ${styles.socialIcons}`}>
+            {social.map((platform) => (
+              <Link key={platform.name} href={platform.link} target={platform.target}>
+                <platform.icon />
+              </Link>
+            ))}
+          </div>
+        </div>
+        <span className={styles.copyright}>
+          &#169; {new Date().getFullYear()} ahoi.world All rights reserved
+        </span>
+      </footer>
+    </>
+  );
+}

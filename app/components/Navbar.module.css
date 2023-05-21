@@ -1,0 +1,54 @@
+.container {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	max-width: 60rem;
+	width: 100%;
+	height: 100%;
+	margin: auto;
+	padding: 0 1.5rem;
+	background-color: var(--nav-background);
+	color: var(--nav-text);
+}
+
+.menuButton svg {
+	height: 1.25rem;
+	width: 1.25rem;
+	fill: var(--nav-text);
+}
+
+.menuButton {
+	display: flex;
+	padding: 0.3125rem 0.625rem;
+	background-color: var(--nav-background);
+	border-radius: 0.3125rem;
+	z-index: 20;
+}
+
+.container a {
+	font-size: 1rem;
+	font-weight: bold;
+	text-transform: uppercase;
+}
+
+.desktopMenu {
+	display: none;
+}
+
+.mobileMenu {
+	display: block;
+}
+
+@media (min-width: 769px) {
+	.menuButton {
+		display: none;
+	}
+
+	.desktopMenu {
+		display: block;
+	}
+
+	.mobileMenu {
+		display: none;
+	}
+}

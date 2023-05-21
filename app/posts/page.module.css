@@ -1,0 +1,8 @@
+.listEnd {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding: 4rem 0 2rem;
+	color: var(--inactive-text);
+	font-weight: 600;
+}
