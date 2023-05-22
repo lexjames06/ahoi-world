@@ -6,7 +6,7 @@ import Image from "next/image";
 export const runtime = "edge";
 
 // Image metadata
-export const alt = "About Acme";
+export const alt = "A House Of Ideas";
 export const size = {
 	width: 1200,
 	height: 630,
