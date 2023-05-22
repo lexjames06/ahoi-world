@@ -15,7 +15,7 @@ export const contentType = "image/png";
 
 // Image generation
 export default async function handler({ params: { postId } }: { params: { postId: string } }) {
-	const { image, title } = await getPostData(postId);
+	const { image, title } = await fetch(`https://ahoi.world/posts/${postId}/get-post`).then((res) => res.json());
 
 	return new ImageResponse(
 		(

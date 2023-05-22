@@ -12,15 +12,15 @@ type MetadataParams = {
 	params: { id: string };
 };
 
-export async function generateMetadata({ params }: MetadataParams) {
-	const post = await getPostData(params.id);
-	return {
-		title: post.title,
-		applicationName: "A House Of Ideas",
-		authors: { name: "AJ Stewart", url: "https://www.ahoi.world" },
-    creator: 'AJ Stewart',
-	};
-}
+// export async function generateMetadata({ params }: MetadataParams) {
+// 	const post = await getPostData(params.id);
+// 	return {
+// 		title: post.title,
+// 		applicationName: "A House Of Ideas",
+// 		authors: { name: "AJ Stewart", url: "https://www.ahoi.world" },
+//     creator: 'AJ Stewart',
+// 	};
+// }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
 	return (
