@@ -10,51 +10,53 @@
 	--highlight-background: #111111;
 	--highlight-text: #ffffff;
 
-  --toggle-inactive: #e3e3e3;
-  --toggle-active: #2fe282;
-  --toggle-thumb: #414941;
+	--toggle-inactive: #e3e3e3;
+	--toggle-active: #2fe282;
+	--toggle-thumb: #414941;
 
-  --menu-background: #ffffff;
-  --menu-text: #111111;
-  --menu-divider: #e3e3e3;
-  --menu-active-background: #111111;
-  --menu-active-text: #ffffff;
-  
-  --nav-background: #ffffff;
-  --nav-text: #111111;
-  --nav-highlight: #2fe282;
+	--menu-background: #ffffff;
+	--menu-text: #111111;
+	--menu-divider: #e3e3e3;
+	--menu-active-background: #111111;
+	--menu-active-text: #ffffff;
 
-  --footer-background: #111111;
-  --footer-text: #ffffff;
-  --footer-subheader: #2fe282;
+	--nav-background: #ffffff;
+	--nav-text: #111111;
+	--nav-highlight: #2fe282;
+
+	--footer-background: #111111;
+	--footer-text: #ffffff;
+	--footer-subheader: #2fe282;
 }
 
 [data-theme="dark"] {
-  --inactive-text: #e3e3e3;
-  --text: #ffffff;
-  --background: #111111;
-  --accent: #2fe282;
-  --border: #414941;
-  --highlight-background: #2fe282;
-  --highlight-text: #111111;
+	--inactive-text: #e3e3e3;
+	--text: #ffffff;
+	--background: #111111;
+	--accent: #2fe282;
+	--border: #222222;
+	--highlight-background: #2fe282;
+	--highlight-text: #111111;
 
-  --toggle-inactive: #e3e3e3;
-  --toggle-active: #2fe282;
-  --toggle-thumb: #414941;
+	--toggle-inactive: #e3e3e3;
+	--toggle-active: #2fe282;
+	--toggle-thumb: #222222;
 
-  --menu-background: #323932;
-  --menu-text: #ffffff;
-  --menu-divider: #414941;
-  --menu-active-background: #ffffff;
-  --menu-active-text: #111111;
+	--menu-background-old: #383838;
+	--menu-background: #4e4e4e;
+	--menu-text: #ffffff;
+	--menu-divider-old: #222222;
+	--menu-divider: #404040;
+	--menu-active-background: #ffffff;
+	--menu-active-text: #111111;
 
-  --nav-background: #414941;
-  --nav-text: #ffffff;
-  --nav-highlight: #2fe282;
+	--nav-background: #222222;
+	--nav-text: #ffffff;
+	--nav-highlight: #2fe282;
 
-  --footer-background: #414941;
-  --footer-text: #ffffff;
-  --footer-subheader: #2fe282;
+	--footer-background: #222222;
+	--footer-text: #ffffff;
+	--footer-subheader: #2fe282;
 }
 
 * {
@@ -70,7 +72,7 @@ body {
 	overflow-x: hidden;
 	position: relative;
 	background-color: var(--background);
-  color: var(--text);
+	color: var(--text);
 }
 
 nav {
@@ -84,7 +86,7 @@ nav {
 	overflow: hidden;
 	box-shadow: 0 0.0125rem 0.125rem rgba(0, 0, 0, 0.25);
 	transition: top 0.3s;
-  background-color: var(--nav-background);
+	background-color: var(--nav-background);
 }
 
 main {
