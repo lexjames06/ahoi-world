@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import { useRouter, useSearchParams } from "next/navigation";
-import styles from "./CategoriesSlider.module.css";
+import styles from "./CategoriesSlider.module.scss";
 
 type Props = {
 	categories: string[];

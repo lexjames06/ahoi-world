@@ -1,19 +1,23 @@
 .item {
-	border-bottom: 0.0625rem solid var(--border);
+	border-bottom: 0.0625rem solid var(--global-border);
 	display: grid;
 	grid-template-columns: auto 6.25rem;
 	column-gap: 0.5rem;
 	padding: 1.5rem 0.5rem;
+	border-radius: 0.5rem;
+	transition-property: background-color;
+	transition-duration: 0.1s;
+	transition-timing-function: ease-in-out;
 }
 
 .details {
 	display: grid;
 	grid-template-rows: auto 1.5rem;
-}
 
-.details p {
-	color: var(--inactive-text);
-	font-size: 0.875rem;
+	p {
+		color: var(--global-inactive-text);
+		font-size: 0.875rem;
+	}
 }
 
 .coverImage {
@@ -23,10 +27,10 @@
 	position: relative;
 	overflow: hidden;
 	border-radius: 0.375rem;
-}
 
-.coverImage img {
-	object-fit: cover;
+	img {
+		object-fit: cover;
+	}
 }
 
 @media (min-width: 720px) {
@@ -38,11 +42,23 @@
 		row-gap: 0.5rem;
 		justify-items: start;
 		text-align: left;
+
+		&:hover {
+			background-color: var(--global-border);
+
+			.coverImage {
+				filter: brightness(0.9);
+			}
+		}
 	}
 
 	.coverImage {
 		grid-row: 1;
-		height: 15rem;
+		width: 100%;
+		height: auto;
+		transition-property: filter;
+		transition-duration: 0.1s;
+		transition-timing-function: ease-in-out;
 	}
 
 	.details {
@@ -50,9 +66,9 @@
 		align-content: flex-start;
 		padding: 0.25rem 0.75rem;
 		row-gap: 0.5rem;
-	}
 
-	.details p {
-		grid-row: 1;
+		p {
+			grid-row: 1;
+		}
 	}
 }

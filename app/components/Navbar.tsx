@@ -3,13 +3,13 @@ import React, { useState } from 'react';
 import { MdMenu } from 'react-icons/md';
 import Link from "next/link";
 import Menu from "./Menu";
-import styles from "./Navbar.module.css";
+import styles from "./Navbar.module.scss";
 
 export default function Navbar() {
   const [menuOpen, toggleMenu] = useState(false);
 
   if (typeof window !== "undefined") {
-    let prevScrollpos = window.pageYOffset;
+    let prevScrollpos = window.scrollY;
     
     window.onscroll = function() {
       const windowWith = window.innerWidth;
@@ -19,7 +19,7 @@ export default function Navbar() {
       }
 
       if (!menuOpen) {
-        const currentScrollPos = window.pageYOffset;
+        const currentScrollPos = window.scrollY;
 
         if (prevScrollpos > currentScrollPos || currentScrollPos < 50) {
           document.getElementsByTagName("nav")[0].style.top = "0";

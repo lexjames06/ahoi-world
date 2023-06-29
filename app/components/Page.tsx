@@ -2,7 +2,7 @@ import React, { ReactNode } from 'react'
 import { TiSocialTwitter, TiSocialLinkedin } from "react-icons/ti";
 import Link from "next/link";
 import { navOptions } from "./constants";
-import styles from "./Page.module.css";
+import styles from "./Page.module.scss";
 
 type Props = {
   children: ReactNode;

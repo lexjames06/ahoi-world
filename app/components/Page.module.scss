@@ -11,10 +11,10 @@
 	flex-direction: column;
 	gap: 1rem;
 	align-items: center;
-}
 
-.section h3 {
-	color: var(--footer-subheader);
+	h3 {
+		color: var(--footer-subheader);
+	}
 }
 
 .brand {
@@ -26,12 +26,12 @@
 
 .socialIcons {
 	flex-direction: row;
-}
 
-.socialIcons svg {
-	height: 2rem;
-	width: auto;
-	cursor: pointer;
+	svg {
+		height: 2rem;
+		width: auto;
+		cursor: pointer;
+	}
 }
 
 .copyright {

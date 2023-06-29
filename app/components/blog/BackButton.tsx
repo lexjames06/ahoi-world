@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react'
 import { MdArrowBack } from "react-icons/md";
 import { useRouter } from "next/navigation";
 import { useOnScroll } from "@/app/hooks/use-on-scroll";
-import styles from "./BackButton.module.css"
+import styles from "./BackButton.module.scss"
 
 type Props = {}
 

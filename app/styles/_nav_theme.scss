@@ -1,0 +1,13 @@
+@import "./theme";
+
+$nav-theme-light: (
+  'background': $white,
+  'text': $black-1,
+  'highlight': $green,
+);
+
+$nav-theme-dark: (
+  'background': $black-2,
+  'text': $white,
+  'highlight': $green,
+);

@@ -6,7 +6,7 @@ import ShareIcon, { SocialPlatform } from "@/app/components/blog/ShareIcon";
 import Page from "@/app/components/Page";
 import getFormattedDate from "@/lib/getFormattedDate";
 import { getPostData, getSortedPostsData } from "@/lib/posts";
-import styles from "./page.module.css";
+import styles from "./page.module.scss";
 
 export function generateStaticParams() {
 	const { posts } = getSortedPostsData();

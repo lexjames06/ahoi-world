@@ -1,0 +1,13 @@
+@import "./theme";
+
+$footer-theme-light: (
+  'background': $black-1,
+  'text': $white,
+  'subheader': $green,
+);
+
+$footer-theme-dark: (
+  'background': $black-2,
+  'text': $white,
+  'subheader': $green,
+);

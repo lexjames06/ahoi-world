@@ -2,7 +2,7 @@ import React from "react";
 import Page from "../components/Page";
 import { getSortedProjectsData } from "@/lib/projects";
 import Image from "next/image";
-import styles from "./page.module.css";
+import styles from "./page.module.scss";
 
 export default function About() {
 	const { projects, bio, name, job, image, } = getSortedProjectsData();

@@ -4,7 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useTheme } from "next-themes";
 import { Option, navOptions } from "./constants";
-import styles from "./Menu.module.css";
+import styles from "./Menu.module.scss";
 
 type Props = {
 	show: boolean;

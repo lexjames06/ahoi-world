@@ -1,7 +1,7 @@
 import { getPostData } from "@/lib/posts";
 import Ahoi from "./ahoi";
 import Navbar from "./components/Navbar";
-import "./globals.css";
+import "./styles/styles.scss";
 
 export const metadata = {
 	title: "Ahoi World",

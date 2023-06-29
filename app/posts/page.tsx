@@ -4,7 +4,7 @@ import Page from "../components/Page";
 import CategoriesSlider from "../components/blog/CategoriesSlider";
 import LargeListItem from "../components/blog/LargeListItem";
 import SmallListItems from "./SmallListItems";
-import styles from "./page.module.css";
+import styles from "./page.module.scss";
 
 interface Props {
 	searchParams?: Record<'category', string>;

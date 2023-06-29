@@ -1,7 +1,7 @@
 import React from 'react'
 import Link from "next/link";
 import SmallListItem from "../components/blog/SmallListItem";
-import styles from "./SmallListItems.module.css";
+import styles from "./SmallListItems.module.scss";
 
 type Props = {
   posts: BlogPost[];

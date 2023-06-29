@@ -6,64 +6,64 @@
   overflow: hidden;
   border-radius: 1.25rem;
   margin-bottom: 1rem;
-}
 
-.coverImage img {
-  object-fit: cover;
+  img {
+    object-fit: cover;
+  }
 }
 
 .articleHeader {
   display: block;
   margin: 0 1rem;
-}
-
-.articleHeader h2 {
-  margin-bottom: 0.25rem;
-}
-
-.articleHeader {
   margin-bottom: 2rem;
-}
 
-.articleHeader p {
-  margin-bottom: 1rem;
+  h2 {
+    margin-bottom: 0.25rem;
+  }
+
+  p {
+    margin-bottom: 1rem;
+  }
 }
 
 .shareIcons {
   display: block;
-}
 
-.shareIcons svg {
-  height: 2rem;
-  width: 2rem;
-  margin-right: 0.5rem;
-}
-
-.blog p:first-of-type {
-  font-weight: 600;
-}
-
-.blog p {
-  text-align: justify;
-}
-
-.blog img {
-  height: 15rem;
-  width: 100%;
-  object-fit: cover;
-  border-radius: 0.3125rem;
-}
-
-.blog p, .blog h3, .blog ol {
-  margin: 0 1rem 1rem;
-}
-
-.blog h3 {
-  margin-top: 2rem;
+  svg {
+    height: 2rem;
+    width: 2rem;
+    margin-right: 0.5rem;
+  }
 }
 
 .blog {
   margin-bottom: 2rem;
+
+  p {
+    text-align: justify;
+    line-height: 1.75rem;
+
+    &:first-of-type {
+      font-weight: 600;
+    }
+  }
+
+  p, h3, ol {
+    margin: 0 1rem 1rem;
+  }
+
+  h3 {
+    margin-top: 3rem;
+    margin-bottom: 1.5rem;
+    font-size: 1.5rem;
+  }
+
+  img {
+    height: 15rem;
+    width: 100%;
+    object-fit: cover;
+    border-radius: 0.3125rem;
+  }
 }
 
 .articleFooter .shareIcons {

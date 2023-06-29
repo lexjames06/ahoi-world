@@ -9,12 +9,12 @@
 	padding: 0 1.5rem;
 	background-color: var(--nav-background);
 	color: var(--nav-text);
-}
 
-.menuButton svg {
-	height: 1.25rem;
-	width: 1.25rem;
-	fill: var(--nav-text);
+	a {
+		font-size: 1rem;
+		font-weight: bold;
+		text-transform: uppercase;
+	}
 }
 
 .menuButton {
@@ -23,12 +23,12 @@
 	background-color: var(--nav-background);
 	border-radius: 0.3125rem;
 	z-index: 20;
-}
 
-.container a {
-	font-size: 1rem;
-	font-weight: bold;
-	text-transform: uppercase;
+	svg {
+		height: 1.25rem;
+		width: 1.25rem;
+		fill: var(--nav-text);
+	}
 }
 
 .desktopMenu {

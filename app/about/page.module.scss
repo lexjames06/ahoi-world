@@ -11,12 +11,12 @@
 	overflow: hidden;
 	border-radius: 1.25rem;
 	margin-bottom: 1rem;
-}
 
-.image img {
-	object-fit: cover;
-	object-position: top;
-	object-position: center;
+	img {
+		object-fit: cover;
+		object-position: top;
+		object-position: center;
+	}
 }
 
 .name {
@@ -30,8 +30,8 @@
 	width: fit-content;
 	font-size: 1.25rem;
 	font-weight: 600;
-	background-color: var(--highlight-background);
-	color: var(--highlight-text);
+	background-color: var(--global-highlight-background);
+	color: var(--global-highlight-text);
 	border-radius: 0.3125rem;
 	padding: 0.3125rem 0.625rem;
 	margin-bottom: 2rem;
@@ -43,28 +43,35 @@
 	margin-bottom: 1rem;
 }
 
-.bio,
-.project {
+%project-standard {
 	font-size: 1rem;
 	font-weight: 400;
 	margin-left: 1rem;
 	margin-bottom: 2rem;
 }
 
-.project h3 {
-	font-size: 1rem;
-	font-weight: 600;
+.bio {
+	@extend %project-standard;
 }
 
-.project p {
-	margin-bottom: 0.25rem;
+.project {
+	@extend %project-standard;
+
+	h3 {
+		font-size: 1rem;
+		font-weight: 600;
+	}
+
+	p {
+		margin-bottom: 0.25rem;
+	}
 }
 
 .company {
 	display: flex;
 	width: fit-content;
-	background-color: var(--highlight-background);
-	color: var(--highlight-text);
+	background-color: var(--global-highlight-background);
+	color: var(--global-highlight-text);
 	border-radius: 0.3125rem;
 	padding: 0.3125rem 0.625rem;
 	margin-bottom: 0.5rem;
@@ -74,14 +81,14 @@
 	display: flex;
 	gap: 0.5rem;
 	flex-wrap: wrap;
-}
 
-.technologies span {
-	display: flex;
-	width: fit-content;
-	border-radius: 0.3125rem;
-	padding: 0.3125rem 0.625rem;
-	border: 0.0625rem solid var(--text);
+	span {
+		display: flex;
+		width: fit-content;
+		border-radius: 0.3125rem;
+		padding: 0.3125rem 0.625rem;
+		border: 0.0625rem solid var(--global-text);
+	}
 }
 
 @media (min-width: 720px) {
