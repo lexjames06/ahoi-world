@@ -1,0 +1,18 @@
+.skeleton {
+  opacity: 0.25;
+  animation-name: skeleton;
+  animation-duration: 2s;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+  animation-fill-mode: both;
+}
+
+@keyframes skeleton {
+  50% {
+    opacity: 0.4;
+  }
+  0%,
+  100% {
+    opacity: 0.25;
+  }
+}

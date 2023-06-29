@@ -5,9 +5,20 @@ import styles from "./SmallListItems.module.scss";
 
 type Props = {
   posts: BlogPost[];
+  loading?: boolean;
 }
 
-export default function SmallListItems({ posts }: Props) {
+export default function SmallListItems({ posts, loading = false }: Props) {
+  if (loading) {
+    return (
+      <section className={styles.list}>
+        {Array.from(Array(9)).map((_, index) => (
+          <SmallListItem key={index} post={posts[0]} loading={true} />
+        ))}
+      </section>
+    );
+  }
+
   return (
     <section className={styles.list}>
       {posts.map((post) => (

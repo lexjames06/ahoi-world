@@ -5,9 +5,10 @@ import styles from "./SmallListItem.module.scss";
 
 type Props = {
   post: BlogPost;
+  loading?: boolean;
 }
 
-export default function SmallListItem({ post }: Props) {
+export default function SmallListItem({ post, loading = false }: Props) {
   const {
     title,
     date: dateString,
@@ -15,6 +16,19 @@ export default function SmallListItem({ post }: Props) {
     length,
   } = post;
   const date = getFormattedDate(dateString);
+
+  if (loading) {
+    return (
+      <div className={styles.skeleton_item}>
+        <div className={styles.skeleton_details}>
+          <h3 />
+          <h3 />
+          <p />
+        </div>
+        <span className={styles.skeleton_coverImage} />
+      </div>
+    );
+  }
 
   return (
     <div className={styles.item}>

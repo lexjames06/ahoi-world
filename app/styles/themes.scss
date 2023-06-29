@@ -6,22 +6,25 @@
 @import "./global_theme";
 @import "./menu_theme";
 @import "./nav_theme";
+@import "./skeleton_theme";
 @import "./toggle_theme";
 
 $light-theme: (
-  'footer': $footer-theme-light,
-  'global': $global-theme-light,
-  'menu': $menu-theme-light,
-  'nav': $nav-theme-light,
-  'toggle': $toggle-theme-light,
+	"footer": $footer-theme-light,
+	"global": $global-theme-light,
+	"menu": $menu-theme-light,
+	"nav": $nav-theme-light,
+	"skeleton": $skeleton-theme-light,
+	"toggle": $toggle-theme-light,
 );
 
 $dark-theme: (
-  'footer': $footer-theme-dark,
-  'global': $global-theme-dark,
-  'menu': $menu-theme-dark,
-  'nav': $nav-theme-dark,
-  'toggle': $toggle-theme-dark,
+	"footer": $footer-theme-dark,
+	"global": $global-theme-dark,
+	"menu": $menu-theme-dark,
+	"nav": $nav-theme-dark,
+	"skeleton": $skeleton-theme-dark,
+	"toggle": $toggle-theme-dark,
 );
 
 $active-theme: $light-theme;

@@ -1,0 +1,106 @@
+@import "./page.module.scss";
+
+.skeleton_body {
+	@extend .body;
+}
+
+.skeleton_image {
+	@extend .image;
+
+	background-color: var(--skeleton-background);
+}
+
+.skeleton_name {
+	@extend .name;
+
+	height: 2.5rem;
+	width: 15rem;
+	border-radius: 0.5rem;
+	margin-bottom: 1rem;
+	background-color: var(--skeleton-background);
+}
+
+.skeleton_job {
+	@extend .job;
+
+	height: 2rem;
+	width: 13rem;
+	border-radius: 0.5rem;
+	background-color: var(--skeleton-background);
+}
+
+.skeleton_subheader {
+	@extend .subheader;
+
+	height: 2rem;
+	width: 8rem;
+	border-radius: 0.5rem;
+	background-color: var(--skeleton-background);
+}
+
+.skeleton_bio {
+	@extend .bio;
+
+	height: 2rem;
+	width: 100%;
+	border-radius: 0.5rem;
+	background-color: var(--skeleton-background);
+
+	&:first-of-type {
+		margin-bottom: 0.5rem;
+	}
+}
+
+.skeleton_project {
+	@extend .project;
+
+	h3 {
+		height: 1.5rem;
+		width: 8rem;
+		border-radius: 0.5rem;
+		background-color: var(--skeleton-background);
+		margin-bottom: 0.5rem;
+	}
+
+	p {
+		height: 1.5rem;
+		width: 8rem;
+		border-radius: 0.5rem;
+		background-color: var(--skeleton-background);
+		margin-bottom: 0.5rem;
+	}
+}
+
+.skeleton_company {
+	@extend .company;
+
+	height: 1.5rem;
+	width: 8rem;
+	border-radius: 0.5rem;
+	background-color: var(--skeleton-background);
+}
+
+.skeleton_technologies {
+	@extend .technologies;
+
+	span {
+		height: 2rem;
+		width: 5rem;
+		border-radius: 0.5rem;
+		border: 0.0625rem solid var(--skeleton-background);
+	}
+}
+
+@media (min-width: 720px) {
+	.skeleton_image {
+		height: 35rem;
+
+		background-color: var(--skeleton-background);
+	}
+
+	.skeleton_bio {
+		&:first-of-type {
+			display: none;
+		}
+	}
+}

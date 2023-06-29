@@ -1,17 +1,17 @@
 @import "./theme";
 
 $menu-theme-light: (
-  'background': $white,
-  'text': $black-1,
-  'divider': $grey-3,
-  'option-active-background': $black-1,
-  'option-active-text': $white,
+	"background": $white,
+	"text": $black-1,
+	"divider": $grey-3,
+	"option-active-background": $black-1,
+	"option-active-text": $white,
 );
 
 $menu-theme-dark: (
-  'background': $grey-1,
-  'text': $white,
-  'divider': $grey-2,
-  'option-active-background': $white,
-  'option-active-text': $black-1,
+	"background": $grey-1,
+	"text": $white,
+	"divider": $grey-2,
+	"option-active-background": $white,
+	"option-active-text": $black-1,
 );

@@ -1,13 +1,13 @@
 @import "./theme";
 
 $toggle-theme-light: (
-  'inactive': $grey-3,
-  'active': $green,
-  'thumb': $khaki,
+	"inactive": $grey-3,
+	"active": $green,
+	"thumb": $khaki,
 );
 
 $toggle-theme-dark: (
-  'inactive': $grey-3,
-  'active': $green,
-  'thumb': $black-2,
+	"inactive": $grey-3,
+	"active": $green,
+	"thumb": $black-2,
 );

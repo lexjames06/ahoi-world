@@ -1,21 +1,21 @@
 @import "./theme";
 
 $global-theme-light: (
-  'inactive-text': $khaki,
-  'text': $black-1,
-  'background': $white,
-  'accent': $green,
-  'border': $grey-3,
-  'highlight-background': $black-1,
-  'highlight-text': $white,
+	"inactive-text": $khaki,
+	"text": $black-1,
+	"background": $white,
+	"accent": $green,
+	"border": $grey-3,
+	"highlight-background": $black-1,
+	"highlight-text": $white,
 );
 
 $global-theme-dark: (
-  'inactive-text': $grey-3,
-  'text': $white,
-  'background': $black-1,
-  'accent': $green,
-  'border': $black-2,
-  'highlight-background': $green,
-  'highlight-text': $black-1,
+	"inactive-text": $grey-3,
+	"text": $white,
+	"background": $black-1,
+	"accent": $green,
+	"border": $black-2,
+	"highlight-background": $green,
+	"highlight-text": $black-1,
 );

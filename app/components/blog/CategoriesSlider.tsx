@@ -5,13 +5,14 @@ import styles from "./CategoriesSlider.module.scss";
 
 type Props = {
 	categories: string[];
+  loading?: boolean;
 };
 
 const convertCategoryName = (category: string): string => {
 	return category.replace(/_/g, " ");
 };
 
-export default function CategoriesSlider({ categories }: Props) {
+export default function CategoriesSlider({ categories, loading = false }: Props) {
 	const router = useRouter();
 	const searchParams = useSearchParams();
 
@@ -25,6 +26,19 @@ export default function CategoriesSlider({ categories }: Props) {
 
 		router.push(`/posts?category=${category}`);
 	};
+
+  if (loading) {
+    return (
+      <div className={styles.skeleton_container}>
+        {Array.from(Array(5)).map((_, index) => (
+          <span
+            key={index}
+            className={styles.skeleton_category}
+          />
+        ))}
+      </div>
+    );
+  }
 
 	return (
 		<div className={styles.container}>
