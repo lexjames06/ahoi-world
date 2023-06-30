@@ -22,7 +22,7 @@ export default function SmallListItems({ posts, loading = false }: Props) {
   return (
     <section className={styles.list}>
       {posts.map((post) => (
-        <Link href={`/posts/${post.id}`} key={post.id}>
+        <Link href={`/posts/${post.path}`} key={post.id}>
           <SmallListItem post={post} />
         </Link>
       ))}

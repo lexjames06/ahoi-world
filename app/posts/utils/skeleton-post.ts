@@ -1,9 +1,15 @@
+import { generateBlogPostId, generateUserId } from "@/lib/utils/generateUUIDV4";
+
+const dummyPostId = "";
+const dummyUserId = "";
+
 export const dummyPost: BlogPost = {
-  id: "1",
-  author: "skeleton",
-  date: "01-01-1990",
-  image: "/images/skeleton",
-  length: 0,
-  title: "Skeleton",
-  category: "skeleton",
+	id: generateBlogPostId(dummyPostId),
+	userId: generateUserId(dummyUserId),
+	path: "skeleton-post",
+	date: "01-01-1990",
+	image: "/images/skeleton",
+	length: 0,
+	title: "Skeleton",
+	category: "skeleton",
 };

@@ -1,6 +1,7 @@
 import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
+import { generateProjectId, generateUserId } from "./utils/generateUUIDV4";
 
 interface Details {
 	bio?: string;
@@ -48,8 +49,13 @@ export function getSortedProjectsData(): SortedProjectsData {
 			return projects;
 		}
 
+		// Convert string IDs to UUIDV4
+		const id = generateProjectId(matterResult.data.id);
+		const userId = generateUserId(matterResult.data.userId);
+
 		const project: Project = {
-			id: file.replace(".md", ""),
+			id,
+			userId,
 			company: matterResult.data.company,
 			name: matterResult.data.name,
 			start: matterResult.data.start,

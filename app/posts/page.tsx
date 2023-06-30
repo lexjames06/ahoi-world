@@ -1,5 +1,5 @@
-import { getSortedPostsData } from "@/lib/posts";
 import Link from "next/link";
+import { getSortedPostsData } from "@/lib/posts";
 import Page from "../components/Page";
 import CategoriesSlider from "../components/blog/CategoriesSlider";
 import LargeListItem from "../components/blog/LargeListItem";
@@ -8,6 +8,16 @@ import styles from "./page.module.scss";
 
 interface Props {
 	searchParams?: Record<'category', string>;
+}
+
+export function generateMetadata({ searchParams }: Props) {
+	const category = searchParams?.["category"];
+
+	if (!category) {
+		return { title: "Blogs" };
+	}
+
+	return { title: `Blogs/${category}` };
 }
 
 export default function Posts(props: Props) {
@@ -28,7 +38,7 @@ export default function Posts(props: Props) {
 	return (
 		<Page>
 			<CategoriesSlider categories={categories} />
-			<Link href={`/posts/${largeItemPost.id}`}>
+			<Link href={`/posts/${largeItemPost.path}`}>
 				<LargeListItem post={largeItemPost} />
 			</Link>
 			<SmallListItems posts={posts} />

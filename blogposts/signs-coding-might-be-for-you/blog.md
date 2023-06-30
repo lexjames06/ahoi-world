@@ -1,10 +1,11 @@
 ---
-author: 'AJ Stewart'
-date: '2023-05-15'
-title: 'Signs Coding Might Be for You'
-image: './signs-coding-might-be-for-you/sudoku.jpg'
+id: "2bbaa62f-c9c5-417d-b40d-128be0eeaf4b"
+userId: "fdc96b95-b420-4f55-b34e-edf7e5e2c91b"
+date: "2023-05-15"
+title: "Signs Coding Might Be for You"
+image: "./signs-coding-might-be-for-you/sudoku.jpg"
 length: 7
-category: 'software_eng.'
+category: "software_eng."
 ---
 
 Have you ever found yourself intrigued by puzzles, fascinated by problem-solving, or drawn to the challenge of fixing things? If so, coding might be the perfect path for you. As a software engineer who embarked on a career change in my 30s, I want to share my journey and explore why coding could be the right choice for those considering a career change or deciding on their field of study. Let's dive in and discover why coding might just be the opportunity you've been looking for.

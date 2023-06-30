@@ -1,10 +1,11 @@
 ---
-author: 'AJ Stewart'
-date: '2023-05-02'
-title: 'Why water is important'
-image: './why-water-is-important/water.jpg'
+id: "cb07143a-6c3e-4f5f-a067-8aa81da181b4"
+userId: "fdc96b95-b420-4f55-b34e-edf7e5e2c91b"
+date: "2023-05-02"
+title: "Why water is important"
+image: "./why-water-is-important/water.jpg"
 length: 7
-category: 'general'
+category: "general"
 ---
 
 You may have heard the commonly touted statement that you should drink 8 glasses of water a day to remain healthy, but is it true, and why is it recommended? Throughout this blog I will look at what the benefits of drinking water are, how much water is actually recommended, and I will finish with some tips to help increase your water intake if it’s something you struggle with.

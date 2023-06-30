@@ -7,20 +7,21 @@ import Page from "@/app/components/Page";
 import getFormattedDate from "@/lib/getFormattedDate";
 import { getPostData, getSortedPostsData } from "@/lib/posts";
 import styles from "./page.module.scss";
+import { kebabCase } from "lodash";
 
 export function generateStaticParams() {
 	const { posts } = getSortedPostsData();
 
 	return posts.map((post) => ({
-		postId: post.id,
+		path: post.path,
 	}));
 }
 
-export function generateMetadata({ params }: { params: { postId: string } }) {
+export function generateMetadata({ params }: { params: { path: string } }) {
 	const { posts } = getSortedPostsData();
-	const { postId } = params;
+	const { path } = params;
 
-	const post = posts.find((post) => post.id === postId);
+	const post = posts.find((post) => post.path === path);
 
 	if (!post) {
 		return {
@@ -29,20 +30,20 @@ export function generateMetadata({ params }: { params: { postId: string } }) {
 	}
 
 	return {
-		post: post.title,
+		title: post.title,
 	};
 }
 
-export default async function Post({ params }: { params: { postId: string } }) {
+export default async function Post({ params }: { params: { path: string } }) {
 	const { posts } = getSortedPostsData();
-	const { postId } = params;
+	const { path } = params;
   const socialPlatforms: SocialPlatform[] = ["facebook", "linkedIn", "twitter", "share"];
 
-	if (!posts.find((post) => post.id === postId)) {
+	if (!posts.find((post) => post.path === path)) {
 		return notFound();
 	}
 
-	const { title, date: dateString, length, image, images, contentHtml } = await getPostData(postId);
+	const { title, date: dateString, length, image, contentHtml } = await getPostData(path);
 
 	const date = getFormattedDate(dateString);
 

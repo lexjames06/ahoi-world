@@ -1,10 +1,11 @@
 ---
-author: 'AJ Stewart'
-date: '2023-05-22'
-title: 'The Power of Coding to Transform Your Personal Life'
-image: './the-power-of-coding-for-your-personal-life/coding.jpg'
+id: "bb4f0110-bf9b-4a33-b96d-82adf269381f"
+userId: "fdc96b95-b420-4f55-b34e-edf7e5e2c91b"
+date: "2023-05-22"
+title: "The Power of Coding to Transform Your Personal Life"
+image: "./the-power-of-coding-for-your-personal-life/coding.jpg"
 length: 5
-category: 'software_eng.'
+category: "software_eng."
 ---
 
 You've probably heard the saying that coding is a valuable skill for your professional life, but have you considered how it can improve your personal life as well? As a software engineer, I want to share with you the incredible benefits of coding beyond the confines of your job. In this blog post, we'll explore how coding can empower you to create personalized tools, enhance your problem-solving skills, and make a positive impact on your personal growth.
