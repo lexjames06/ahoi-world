@@ -4,6 +4,12 @@ import { getSortedProjectsData } from "@/lib/projects";
 import Image from "next/image";
 import styles from "./page.module.scss";
 
+export function generateMetadata() {
+	return {
+		title: "About AJ",
+	};
+}
+
 export default function About() {
 	const { projects, bio, name, job, image, } = getSortedProjectsData();
 
