@@ -3,6 +3,7 @@ id: "a5cbce3b-4d35-41a4-9910-d2022bc9598f"
 userId: "fdc96b95-b420-4f55-b34e-edf7e5e2c91b"
 date: "2023-05-01"
 title: "Understanding calories: the basics"
+description: "You will have heard of calories and will know that you should be somewhat paying attention to how many calories you consume."
 image: "./understanding-calories-the-basics/calories_donuts.jpg"
 length: 6
 category: "general"

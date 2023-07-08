@@ -3,6 +3,7 @@ id: "f1eae2fd-90f8-415e-a3a3-5cce6622e76f"
 userId: "fdc96b95-b420-4f55-b34e-edf7e5e2c91b"
 date: "2023-04-30"
 title: "Why you should be stretching"
+description: "Elit laborum eu aliqua laboris nisi deserunt sit dolore. Non culpa do irure ipsum minim qui qui enim magna do commodo in est."
 image: "./why-you-should-be-stretching/stretching.jpg"
 length: 6
 category: "general"

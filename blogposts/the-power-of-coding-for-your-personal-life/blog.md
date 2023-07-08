@@ -3,6 +3,7 @@ id: "bb4f0110-bf9b-4a33-b96d-82adf269381f"
 userId: "fdc96b95-b420-4f55-b34e-edf7e5e2c91b"
 date: "2023-05-22"
 title: "The Power of Coding to Transform Your Personal Life"
+description: "You've probably heard the saying that coding is a valuable skill for your professional life, but have you considered how it can improve your personal life as well?"
 image: "./the-power-of-coding-for-your-personal-life/coding.jpg"
 length: 5
 category: "software_eng."

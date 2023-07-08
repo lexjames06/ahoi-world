@@ -3,6 +3,7 @@ id: "f31d2a67-9895-4cd1-bada-89c36448a4e9"
 userId: "fdc96b95-b420-4f55-b34e-edf7e5e2c91b"
 date: "2023-04-28"
 title: "An era of LH44 and Mercedes dominance"
+description: "Elit laborum eu aliqua laboris nisi deserunt sit dolore. Non culpa do irure ipsum minim qui qui enim magna do commodo in est."
 image: "./an-era-of-lh44-and-mercedes-dominance/lh_trophy.jpg"
 length: 7
 category: "formula_1"

@@ -3,6 +3,7 @@ id: "2bbaa62f-c9c5-417d-b40d-128be0eeaf4b"
 userId: "fdc96b95-b420-4f55-b34e-edf7e5e2c91b"
 date: "2023-05-15"
 title: "Signs Coding Might Be for You"
+description: "Have you ever found yourself intrigued by puzzles, fascinated by problem-solving, or drawn to the challenge of fixing things? If so, coding might be the perfect path for you."
 image: "./signs-coding-might-be-for-you/sudoku.jpg"
 length: 7
 category: "software_eng."

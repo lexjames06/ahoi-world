@@ -3,6 +3,7 @@ id: "23cc4e7b-b4e9-4db9-9c9b-d76e15a9535c"
 userId: "fdc96b95-b420-4f55-b34e-edf7e5e2c91b"
 date: "2023-04-25"
 title: "How mastering vim will increase your productivity"
+description: "Elit laborum eu aliqua laboris nisi deserunt sit dolore. Non culpa do irure ipsum minim qui qui enim magna do commodo in est."
 image: "./vim-will-increase-your-productivity/vim_master.jpg"
 length: 7
 category: "software_eng."

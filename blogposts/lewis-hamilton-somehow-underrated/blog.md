@@ -3,6 +3,7 @@ id: "00ce2762-c710-40ba-8a0d-cf0a50db94ed"
 userId: "fdc96b95-b420-4f55-b34e-edf7e5e2c91b"
 date: "2023-04-29"
 title: "In trying times, LH44's performances are somehow underrated"
+description: "Elit laborum eu aliqua laboris nisi deserunt sit dolore. Non culpa do irure ipsum minim qui qui enim magna do commodo in est."
 image: "./lewis-hamilton-somehow-underrated/lh_2022.jpeg"
 length: 5
 category: "formula_1"
