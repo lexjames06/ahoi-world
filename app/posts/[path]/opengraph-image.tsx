@@ -13,9 +13,11 @@ export const size = {
 };
 export const contentType = "image/png";
 
+const baseUrl = process.env.BASE_URL;
+
 // Image generation
 export default async function Image({ params: { path } }: { params: { path: string } }) {
-	const { image, title } = await fetch(`https://ahoi.world/posts/${path}/get-post`).then((res) => res.json());
+	const { image, title } = await fetch(`${baseUrl}/posts/${path}/api`).then((res) => res.json());
 
 	return new ImageResponse(
 		(
