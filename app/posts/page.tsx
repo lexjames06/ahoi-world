@@ -20,10 +20,10 @@ export function generateMetadata({ searchParams }: Props) {
 	return { title: `Blogs/${category}` };
 }
 
-export default function Posts(props: Props) {
+export default async function Posts(props: Props) {
 	const { searchParams } = props;
 	const category = searchParams?.category;
-	const { posts, categories } = getSortedPostsData(category);
+	const { posts, categories } = await getSortedPostsData(category);
 
 	if (!posts.length) {
 		return (

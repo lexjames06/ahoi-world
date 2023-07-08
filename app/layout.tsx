@@ -4,8 +4,14 @@ import Navbar from "./components/Navbar";
 import "./styles/styles.scss";
 
 export const metadata = {
-	title: "Ahoi World",
-	description: "Personal website for Software Engineer AJ Stewart",
+  title: {
+    default: "AHOI",
+    template: `%s | AHOI`,
+  },
+  description: {
+    default: "A House Of Ideas",
+    template: `%s`,
+  },
 };
 
 type MetadataParams = {

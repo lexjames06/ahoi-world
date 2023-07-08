@@ -12,7 +12,7 @@ interface SortedPostsData {
 
 const postsDirectory = path.join(process.cwd(), "blogposts");
 
-export function getSortedPostsData(category?: string): SortedPostsData {
+export async function getSortedPostsData(category?: string): Promise<SortedPostsData> {
 	//  Get file names under /posts
 	const folders = fs.readdirSync(postsDirectory);
 	const categories: string[] = [];
@@ -46,6 +46,7 @@ export function getSortedPostsData(category?: string): SortedPostsData {
 			path: folder,
 			category: matterResult.data.category,
 			date: matterResult.data.date,
+			description: matterResult.data.description,
 			image: coverImage,
 			length: matterResult.data.length,
 			title: matterResult.data.title,
@@ -73,49 +74,57 @@ export function getSortedPostsData(category?: string): SortedPostsData {
 export async function getPostData(folder: string) {
 	const folderPath = path.join(postsDirectory, folder);
 	const blogFilePath = path.join(folderPath, "blog.md");
-	const fileContents = fs.readFileSync(blogFilePath, "utf-8");
 
-	// User gray-matter to parse the post metadata section
-	const matterResult = matter(fileContents);
+	try {
+		const fileContents = fs.readFileSync(blogFilePath, "utf-8");
+	
+		// User gray-matter to parse the post metadata section
+		const matterResult = matter(fileContents);
+	
+		const processedContent = await remark().use(html).process(matterResult.content);
+	
+		const initialContentHtml = processedContent.toString();
+	
+		// Get all fileNames from blog folder
+		const fileNames = fs.readdirSync(folderPath);
+	
+		// Convert cover image to base64 string
+		const coverImagePath = matterResult.data.image.replace(".", "blogposts");
+		const coverImageContent = fs.readFileSync(coverImagePath);
+		const coverImage = coverImageContent.toString("base64");
+	
+		// Convert body images to base64 string and inject into html
+		const imageNames = fileNames.filter((file) => file !== "blog.md");
+		const imagePaths = imageNames.map((image) => `blogposts/${folder}/${image}`);
+		const contentHtml = imagePaths.reduce((html, imagePath) => {
+			const file = fs.readFileSync(imagePath);
+			const relativeImagePath = imagePath.replace("blogposts", ".");
+			const imageSource = `data:image/png;base64,${file.toString("base64")}`;
+	
+			return html.replaceAll(relativeImagePath, imageSource);
+		}, initialContentHtml);
+	
+		// Convert string IDs to UUIDV4
+		const id = generateBlogPostId(matterResult.data.id);
+		const userId = generateUserId(matterResult.data.userId);
+	
+		const blogPostWithHTML: BlogPost & { contentHtml: string } = {
+			id,
+			userId,
+			path: folder,
+			category: matterResult.data.category,
+			contentHtml,
+			date: matterResult.data.date,
+			description: matterResult.data.description,
+			image: coverImage,
+			length: matterResult.data.length,
+			title: matterResult.data.title,
+		};
+	
+		return blogPostWithHTML;
+	} catch (error) {
+		console.log({error});
 
-	const processedContent = await remark().use(html).process(matterResult.content);
-
-	const initialContentHtml = processedContent.toString();
-
-	// Get all fileNames from blog folder
-	const fileNames = fs.readdirSync(folderPath);
-
-	// Convert cover image to base64 string
-	const coverImagePath = matterResult.data.image.replace(".", "blogposts");
-	const coverImageContent = fs.readFileSync(coverImagePath);
-	const coverImage = coverImageContent.toString("base64");
-
-	// Convert body images to base64 string and inject into html
-	const imageNames = fileNames.filter((file) => file !== "blog.md");
-	const imagePaths = imageNames.map((image) => `blogposts/${folder}/${image}`);
-	const contentHtml = imagePaths.reduce((html, imagePath) => {
-		const file = fs.readFileSync(imagePath);
-		const relativeImagePath = imagePath.replace("blogposts", ".");
-		const imageSource = `data:image/png;base64,${file.toString("base64")}`;
-
-		return html.replaceAll(relativeImagePath, imageSource);
-	}, initialContentHtml);
-
-	// Convert string IDs to UUIDV4
-	const id = generateBlogPostId(matterResult.data.id);
-	const userId = generateUserId(matterResult.data.userId);
-
-	const blogPostWithHTML: BlogPost & { contentHtml: string } = {
-		id,
-		userId,
-		path: folder,
-		category: matterResult.data.category,
-		contentHtml,
-		date: matterResult.data.date,
-		image: coverImage,
-		length: matterResult.data.length,
-		title: matterResult.data.title,
-	};
-
-	return blogPostWithHTML;
+		return undefined;
+	}
 }

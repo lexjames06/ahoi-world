@@ -7,49 +7,47 @@ import Page from "@/app/components/Page";
 import getFormattedDate from "@/lib/getFormattedDate";
 import { getPostData, getSortedPostsData } from "@/lib/posts";
 import styles from "./page.module.scss";
-import { kebabCase } from "lodash";
 
-export function generateStaticParams() {
-	const { posts } = getSortedPostsData();
+export async function generateStaticParams() {
+	const { posts } = await getSortedPostsData();
 
 	return posts.map((post) => ({
 		path: post.path,
 	}));
 }
 
-export function generateMetadata({ params }: { params: { path: string } }) {
-	const { posts } = getSortedPostsData();
+export async function generateMetadata({ params }: { params: { path: string } }) {
 	const { path } = params;
-
-	const post = posts.find((post) => post.path === path);
+	const post = await getPostData(path);
 
 	if (!post) {
 		return {
 			title: "Post Not Found",
+			descritption: "The post you are looking for does not exist",
 		};
 	}
 
 	return {
 		title: post.title,
+		description: post.description,
 	};
 }
 
 export default async function Post({ params }: { params: { path: string } }) {
-	const { posts } = getSortedPostsData();
 	const { path } = params;
+	const post = await getPostData(path)
   const socialPlatforms: SocialPlatform[] = ["facebook", "linkedIn", "twitter", "share"];
 
-	if (!posts.find((post) => post.path === path)) {
+	if (!post) {
 		return notFound();
 	}
 
-	const { title, date: dateString, length, image, contentHtml } = await getPostData(path);
-
+	const { title, date: dateString, length, image, contentHtml } = post;
 	const date = getFormattedDate(dateString);
 
 	return (
 		<Page>
-      <BackButton />
+			<BackButton />
 
 			<span className={styles.coverImage}>
 				<Image src={`data:image/png;base64,${image}`} fill={true} alt={title} />

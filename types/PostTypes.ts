@@ -10,6 +10,7 @@ export type BlogPost = {
   userId: UUIDV4<User>;
   path: string;
   date: string;
+  description: string;
   image: string;
   images?: ImagePathAndBase64String[];
   length: number;
