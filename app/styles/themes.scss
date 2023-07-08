@@ -2,6 +2,7 @@
 @import "./theme.scss";
 
 // Component Themes
+@import "./button_theme";
 @import "./footer_theme";
 @import "./global_theme";
 @import "./menu_theme";
@@ -10,6 +11,7 @@
 @import "./toggle_theme";
 
 $light-theme: (
+	"button": $button-theme-light,
 	"footer": $footer-theme-light,
 	"global": $global-theme-light,
 	"menu": $menu-theme-light,
@@ -19,6 +21,7 @@ $light-theme: (
 );
 
 $dark-theme: (
+	"button": $button-theme-dark,
 	"footer": $footer-theme-dark,
 	"global": $global-theme-dark,
 	"menu": $menu-theme-dark,

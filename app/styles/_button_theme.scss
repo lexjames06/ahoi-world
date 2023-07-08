@@ -1,0 +1,11 @@
+@import "./theme";
+
+$button-theme-light: (
+  'background': $black-1,
+  'text': $white,
+);
+
+$button-theme-dark: (
+  'background': $green,
+  'text': $black-1,
+);
