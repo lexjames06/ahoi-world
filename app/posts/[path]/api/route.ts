@@ -4,7 +4,12 @@ import { NextResponse } from "next/server";
 export async function GET(_request: Request, { params }: { params: { path: string } }) {
   let { path } = params;
 
-  const { image, title } = await getPostData(path);
+  const post = await getPostData(path);
 
-  return NextResponse.json({ image, title });
+  if (post) {
+    const { image, title } = post;
+    return NextResponse.json({ image, title });
+  } else {
+    return NextResponse.json({ image: undefined, title: undefined });
+  }
 }
