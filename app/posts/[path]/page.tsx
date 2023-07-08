@@ -28,8 +28,17 @@ export async function generateMetadata({ params }: { params: { path: string } })
 	}
 
 	return {
+		alternates: {
+			canonical: `/posts/${post.path}`,
+		},
 		title: post.title,
 		description: post.description,
+		twitter: {
+			card: 'summary_large_image',
+			title: post.title,
+			description: post.description,
+			creator: '@seaj_ahoi',
+		},
 	};
 }
 

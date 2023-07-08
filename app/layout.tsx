@@ -3,7 +3,10 @@ import Ahoi from "./ahoi";
 import Navbar from "./components/Navbar";
 import "./styles/styles.scss";
 
+const { BASE_URL } = process.env as Record<string, string>;
+
 export const metadata = {
+	metadataBase: new URL(BASE_URL),
   title: {
     default: "AHOI",
     template: `%s | AHOI`,

@@ -8,6 +8,7 @@ export const dummyPost: BlogPost = {
 	userId: generateUserId(dummyUserId),
 	path: "skeleton-post",
 	date: "01-01-1990",
+	description: "skeleton post",
 	image: "/images/skeleton",
 	length: 0,
 	title: "Skeleton",
