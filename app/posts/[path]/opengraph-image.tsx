@@ -1,6 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
 import { ImageResponse } from "next/server";
-import NextImage from "next/image";
 
 // Load font
 const interBoldP = fetch(new URL("../../../public/fonts/Inter-Bold.ttf", import.meta.url))
