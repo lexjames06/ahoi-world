@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import React from "react";
 import { notFound } from "next/navigation";
 import Image from "next/image";
@@ -5,11 +6,12 @@ import BackButton from "@/app/components/blog/BackButton";
 import ShareIcon, { SocialPlatform } from "@/app/components/blog/ShareIcon";
 import Page from "@/app/components/Page";
 import getFormattedDate from "@/lib/getFormattedDate";
-import { getPostData, getSortedPostsData } from "@/lib/posts";
+import { getFirebasePostData, getSortedFirebasePostsData } from "@/lib/posts";
 import styles from "./page.module.scss";
+import { generateHeader, generateImage, generateOrderedList, prepareBodyForParse } from "./utils/blog-formatter";
 
 export async function generateStaticParams() {
-	const { posts } = await getSortedPostsData();
+	const { posts } = await getSortedFirebasePostsData();
 
 	return posts.map((post) => ({
 		path: post.path,
@@ -18,7 +20,7 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({ params }: { params: { path: string } }) {
 	const { path } = params;
-	const post = await getPostData(path);
+	const post = await getFirebasePostData(path);
 
 	if (!post) {
 		return {
@@ -39,27 +41,59 @@ export async function generateMetadata({ params }: { params: { path: string } })
 			description: post.description,
 			creator: '@seaj_ahoi',
 		},
+		// openGraph: {
+		// 	title: post.title,
+		// 	description: post.description,
+		// 	siteName: 'AHOI',
+		// 	locale: 'en_GB',
+		// 	type: 'website',
+		// },
 	};
 }
 
 export default async function Post({ params }: { params: { path: string } }) {
 	const { path } = params;
-	const post = await getPostData(path)
+	const post = await getFirebasePostData(path);
+
   const socialPlatforms: SocialPlatform[] = ["facebook", "linkedIn", "twitter", "share"];
 
 	if (!post) {
 		return notFound();
 	}
 
-	const { title, date: dateString, length, image, contentHtml } = post;
-	const date = getFormattedDate(dateString);
+	const { title, date: unformattedDate, length, image, body } = post;
+	const date = getFormattedDate(unformattedDate);
+
+	const parseBlogBody = (body: string[]) => {
+		if (!body || !body.length) {
+			return null;
+		}
+
+		const preppedBody = prepareBodyForParse(body);
+
+		return (
+			<>
+				{preppedBody?.map((section) => {
+					if (section.startsWith("#")) {
+						return generateHeader(section);
+					} else if (section.startsWith("![")) {
+						return generateImage(section);
+					} else if (section.startsWith("ORDERED-LIST:")) {
+						return generateOrderedList(section);
+					}
+
+					return <p key={Symbol(section).toString()}>{section}</p>;
+				})}
+			</>
+		);
+	};
 
 	return (
 		<Page>
 			<BackButton />
 
 			<span className={styles.coverImage}>
-				<Image src={`data:image/png;base64,${image}`} fill={true} alt={title} />
+				<Image src={image} fill={true} alt={title} />
 			</span>
 
 			<span className={styles.articleHeader}>
@@ -76,7 +110,9 @@ export default async function Post({ params }: { params: { path: string } }) {
 				</span>
 			</span>
 
-			<article className={styles.blog} dangerouslySetInnerHTML={{ __html: contentHtml }} />
+			<article className={styles.blog}>
+				{parseBlogBody(body)}
+			</article>
 			
 			<div className={styles.articleFooter}>
 				<span className={styles.shareIcons}>

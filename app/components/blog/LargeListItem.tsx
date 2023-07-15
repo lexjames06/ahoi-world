@@ -11,11 +11,11 @@ type Props = {
 export default function LargeListItem({ post, loading = false }: Props) {
   const {
     title,
-    date: dateString,
+    date: unformattedDate,
     image,
     length,
   } = post;
-  const date = getFormattedDate(dateString);
+  const date = getFormattedDate(unformattedDate);
 
   if (loading) {
     return (
@@ -37,7 +37,7 @@ export default function LargeListItem({ post, loading = false }: Props) {
         <p>{length} min read • {date}</p>
       </div>
       <span className={styles.coverImage}>
-				<Image src={`data:image/png;base64,${image}`} fill={true} alt={title} />
+				<Image src={image} fill={true} alt={title} />
 			</span>
     </div>
   );

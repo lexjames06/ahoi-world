@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { getSortedPostsData } from "@/lib/posts";
+import { getSortedFirebasePostsData } from "@/lib/posts";
 import Page from "../components/Page";
 import CategoriesSlider from "../components/blog/CategoriesSlider";
 import LargeListItem from "../components/blog/LargeListItem";
@@ -23,7 +23,7 @@ export function generateMetadata({ searchParams }: Props) {
 export default async function Posts(props: Props) {
 	const { searchParams } = props;
 	const category = searchParams?.category;
-	const { posts, categories } = await getSortedPostsData(category);
+	const { posts, categories } = await getSortedFirebasePostsData(category);
 
 	if (!posts.length) {
 		return (

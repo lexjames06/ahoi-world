@@ -1,130 +1,72 @@
-import fs from "fs";
-import path from "path";
-import matter from "gray-matter";
-import { remark } from "remark";
-import html from "remark-html";
-import { generateBlogPostId, generateUserId } from "./utils/generateUUIDV4";
+import { DocumentData, collection, doc, getDoc, getDocs, orderBy, query, where } from "firebase/firestore";
+import { firestore } from "@/firebase/app";
+import { ConvertTime } from "./utils/convert-time";
+import { generateBlogPostId, generateUserId } from "./utils/generate-UUIDV4";
+import { convertBlogImages, getBlogImages } from "./utils/get-blog-images";
+import { getImage } from "./utils/get-image";
 
 interface SortedPostsData {
 	posts: BlogPost[];
 	categories: string[];
 }
 
-const postsDirectory = path.join(process.cwd(), "blogposts");
+const SORT_ORDER = "desc";
 
-export async function getSortedPostsData(category?: string): Promise<SortedPostsData> {
-	//  Get file names under /posts
-	const folders = fs.readdirSync(postsDirectory);
-	const categories: string[] = [];
-	const allPostsData = folders.reduce((posts: BlogPost[], folder) => {
-		const folderPath = path.join(postsDirectory, folder);
+function convertFirestorePostToBlogPost(doc: DocumentData) {
+	const data = doc.data();
 
-		// Read markdown file as string
-		const blogFilePath = path.join(folderPath, "blog.md");
-		const fileContents = fs.readFileSync(blogFilePath, "utf-8");
+	const imageUrl = getImage(data.imagePath ?? "");
+	const images = getBlogImages(data.body);
+	const body = convertBlogImages(data.body);
 
-		// Use gray-matter to parse the post metadata section
-		const matterResult = matter(fileContents);
-		categories.push(matterResult.data.category);
+	const post: BlogPost = {
+		id: generateBlogPostId(doc.id),
+		userId: generateUserId(data.userId),
+		path: data.path,
+		date: ConvertTime.fromTimestamp(data.date),
+		description: data.description,
+		image: imageUrl,
+		images,
+		length: data.length,
+		title: data.title,
+		category: data.category,
+		body: body,
+	};
 
-		if (category && matterResult.data.category !== category) {
-			return posts;
-		}
+	return post;
+}
 
-		// Convert cover image to base64 string
-		const coverImagePath = matterResult.data.image.replace(".", "blogposts");
-		const coverImageContent = fs.readFileSync(coverImagePath);
-		const coverImage = coverImageContent.toString("base64");
+export async function getSortedFirebasePostsData(category?: string): Promise<SortedPostsData> {
+	const postsRef = collection(firestore, "posts");
+	const clause = category ? where("category", "==", category) : null;
+	const q = clause ? query(postsRef, clause, orderBy("date", SORT_ORDER)) : query(postsRef, orderBy("date", SORT_ORDER));
 
-		// Convert string IDs to UUIDV4
-		const id = generateBlogPostId(matterResult.data.id);
-		const userId = generateUserId(matterResult.data.userId);
+	const posts: BlogPost[] = [];
 
-		const blogPost: BlogPost = {
-			id,
-			userId,
-			path: folder,
-			category: matterResult.data.category,
-			date: matterResult.data.date,
-			description: matterResult.data.description,
-			image: coverImage,
-			length: matterResult.data.length,
-			title: matterResult.data.title,
-		};
+	const querySnapshot = await getDocs(q);
+	querySnapshot.forEach(async (doc) => {
+		posts.push(convertFirestorePostToBlogPost(doc));
+	});
 
-		return [...posts, blogPost];
-	}, []);
+	// Sort by date
+	posts.sort((a, b) => a.date > b.date ? (SORT_ORDER === "desc" ? -1 : 1) : (SORT_ORDER === "desc" ? 1 : -1));
 
-	const uniqueCategories = Array.from(new Set(categories))
-		.sort((a, b) => (a > b ? 1 : -1))
-		.reduce((list: string[], category) => {
-			if (category === "general") {
-				return [category, ...list];
-			}
-			return [...list, category];
-		}, []);
-	const sortedPosts = allPostsData.sort((a, b) => (a.date < b.date ? 1 : -1));
+	const categoriesDoc = doc(firestore, "categories", "all");
+	const document = await getDoc(categoriesDoc);
+	const categories = document.data()?.list ?? [];
 
 	return {
-		posts: sortedPosts,
-		categories: uniqueCategories,
+		posts,
+		categories,
 	};
 }
 
-export async function getPostData(folder: string) {
-	const folderPath = path.join(postsDirectory, folder);
-	const blogFilePath = path.join(folderPath, "blog.md");
+export async function getFirebasePostData(path: string): Promise<BlogPost> {
+	const postsRef = collection(firestore, "posts");
+	const q = query(postsRef, where("path", "==", path));
+	const querySnapshots = await getDocs(q);
+	const posts: BlogPost[] = [];
+	querySnapshots.forEach((doc) => posts.push(convertFirestorePostToBlogPost(doc)));
 
-	try {
-		const fileContents = fs.readFileSync(blogFilePath, "utf-8");
-	
-		// User gray-matter to parse the post metadata section
-		const matterResult = matter(fileContents);
-	
-		const processedContent = await remark().use(html).process(matterResult.content);
-	
-		const initialContentHtml = processedContent.toString();
-	
-		// Get all fileNames from blog folder
-		const fileNames = fs.readdirSync(folderPath);
-	
-		// Convert cover image to base64 string
-		const coverImagePath = matterResult.data.image.replace(".", "blogposts");
-		const coverImageContent = fs.readFileSync(coverImagePath);
-		const coverImage = coverImageContent.toString("base64");
-	
-		// Convert body images to base64 string and inject into html
-		const imageNames = fileNames.filter((file) => file !== "blog.md");
-		const imagePaths = imageNames.map((image) => `blogposts/${folder}/${image}`);
-		const contentHtml = imagePaths.reduce((html, imagePath) => {
-			const file = fs.readFileSync(imagePath);
-			const relativeImagePath = imagePath.replace("blogposts", ".");
-			const imageSource = `data:image/png;base64,${file.toString("base64")}`;
-	
-			return html.replaceAll(relativeImagePath, imageSource);
-		}, initialContentHtml);
-	
-		// Convert string IDs to UUIDV4
-		const id = generateBlogPostId(matterResult.data.id);
-		const userId = generateUserId(matterResult.data.userId);
-	
-		const blogPostWithHTML: BlogPost & { contentHtml: string } = {
-			id,
-			userId,
-			path: folder,
-			category: matterResult.data.category,
-			contentHtml,
-			date: matterResult.data.date,
-			description: matterResult.data.description,
-			image: coverImage,
-			length: matterResult.data.length,
-			title: matterResult.data.title,
-		};
-	
-		return blogPostWithHTML;
-	} catch (error) {
-		console.log({error});
-
-		return undefined;
-	}
+	return posts?.[0];
 }

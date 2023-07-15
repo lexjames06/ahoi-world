@@ -1,9 +1,6 @@
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap");
 @import "./themes";
 
 :root {
-	font-family: "Inter", sans-serif;
-
 	@each $theme, $attributes in $active-theme {
 		@each $attribute, $value in $attributes {
 			--#{$theme}-#{$attribute}: #{$value};

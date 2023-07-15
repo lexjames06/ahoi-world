@@ -9,11 +9,12 @@ export type BlogPost = {
   id: UUIDV4<BlogPost>;
   userId: UUIDV4<User>;
   path: string;
-  date: string;
+  date: Date;
   description: string;
   image: string;
-  images?: ImagePathAndBase64String[];
+  images?: string[];
   length: number;
   title: string;
   category: string;
+  body: string[];
 }

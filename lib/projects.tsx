@@ -1,7 +1,7 @@
 import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
-import { generateProjectId, generateUserId } from "./utils/generateUUIDV4";
+import { generateProjectId, generateUserId } from "./utils/generate-UUIDV4";
 
 interface Details {
 	bio?: string;

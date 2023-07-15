@@ -19,6 +19,7 @@
 
   h2 {
     margin-bottom: 0.25rem;
+    font-size: 2rem;
   }
 
   p {
@@ -39,17 +40,21 @@
 .blog {
   margin-bottom: 2rem;
 
-  p {
+  p, li {
     text-align: justify;
     line-height: 1.75rem;
-
-    &:first-of-type {
-      font-weight: 600;
-    }
   }
 
-  p, h3, ol {
+  p:first-of-type {
+    font-weight: 600;
+  }
+
+  p, h3, ol, img {
     margin: 0 1rem 1rem;
+  }
+
+  ol {
+    margin-left: 2.5rem;
   }
 
   h3 {
@@ -60,7 +65,7 @@
 
   img {
     height: 15rem;
-    width: 100%;
+    width: calc(100% - 2rem);
     object-fit: cover;
     border-radius: 0.3125rem;
   }
@@ -81,6 +86,6 @@
     width: 100%;
     aspect-ratio: 9 / 4;
     display: block;
-    margin: 0 auto;
+    margin: 0 auto 1rem;
   }
 }

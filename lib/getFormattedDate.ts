@@ -1,3 +1,3 @@
-export default function getFormattedDate(dateString: string): string {
-  return new Intl.DateTimeFormat('en-GB', { dateStyle: 'long' }).format(new Date(dateString));
+export default function getFormattedDate(date: Date): string {
+  return new Intl.DateTimeFormat('en-GB', { dateStyle: 'long' }).format(date);
 }

@@ -1,9 +1,14 @@
-import { getPostData } from "@/lib/posts";
+import { Inter } from 'next/font/google'
 import Ahoi from "./ahoi";
 import Navbar from "./components/Navbar";
 import "./styles/styles.scss";
 
 const { BASE_URL } = process.env as Record<string, string>;
+
+const inter = Inter({
+  subsets: ['latin'],
+  display: 'swap',
+});
 
 export const metadata = {
 	metadataBase: new URL(BASE_URL),
@@ -33,7 +38,7 @@ type MetadataParams = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
 	return (
-		<html lang="en">
+		<html lang="en" className={inter.className}>
 			<body>
 				<Ahoi>
 					<Navbar />
