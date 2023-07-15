@@ -73,7 +73,7 @@ export default async function Post({ params }: { params: { path: string } }) {
 
 		return (
 			<>
-				{preppedBody?.map((section) => {
+				{preppedBody?.map((section, index) => {
 					if (section.startsWith("#")) {
 						return generateHeader(section);
 					} else if (section.startsWith("![")) {
@@ -82,7 +82,7 @@ export default async function Post({ params }: { params: { path: string } }) {
 						return generateOrderedList(section);
 					}
 
-					return <p key={Symbol(section).toString()}>{section}</p>;
+					return <p key={`${section.slice(0, 10)} ${index}`}>{section}</p>;
 				})}
 			</>
 		);

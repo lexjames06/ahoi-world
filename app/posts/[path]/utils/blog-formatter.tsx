@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import React from "react";
 
 export const prepareBodyForParse = (body: string[]) => {
@@ -48,7 +49,7 @@ export const generateOrderedList = (markdownListItem: string) => {
 	
 	return (
 		<ol>
-			{listItems.map((item) => <li key={Symbol(markdownListItem).toString()}>{item}</li>)}
+			{listItems.map((item, index) => <li key={`${item.slice(0, 10)} ${index}`}>{item}</li>)}
 		</ol>
 	);
 };
