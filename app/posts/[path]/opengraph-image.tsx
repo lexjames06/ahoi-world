@@ -1,13 +1,12 @@
 /* eslint-disable @next/next/no-img-element */
 import { ImageResponse } from "next/server";
 
+const baseUrl = process.env.BASE_URL;
+
 // Load font
-const interBoldP = fetch(new URL("../../../public/fonts/Inter-Bold.ttf", import.meta.url))
+const interBoldP = fetch(new URL(`${baseUrl}/fonts/Inter-Bold.ttf`, import.meta.url))
 	.then((res) => res.arrayBuffer())
-	.catch((err) => {
-		// console.log({err});
-		return;
-	});
+	.catch((err) => console.log({err}));
 
 // Route segment config
 export const runtime = "edge";
@@ -19,8 +18,6 @@ export const size = {
 	height: 630,
 };
 export const contentType = "image/png";
-
-const baseUrl = process.env.BASE_URL;
 
 // Image generation
 export default async function Image({ params: { path } }: { params: { path: string } }) {
