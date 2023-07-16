@@ -30,6 +30,11 @@ yarn-error.log*
 # development env files
 .env*.development
 
+# firebase log files
+firebase-debug.log
+ui-debug.log
+firestore-debug.log
+
 # vercel
 .vercel
 
