@@ -9,7 +9,7 @@ export async function GET(_request: Request, { params }: { params: { path: strin
   
   if (post) {
     const { image, title, userId } = post;
-    const user = await getFirebaseUserData(userId);
+    const user = await getFirebaseUserData({ userId });
     return NextResponse.json({ image, title, user });
   } else {
     return NextResponse.json({ image: undefined, title: undefined, user: null });
