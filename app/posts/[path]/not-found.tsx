@@ -11,7 +11,7 @@ export default function NotFound() {
 		<Page className={styles.container}>
 			<div className={styles.title}>The post you are looking for does not exist</div>
 			<button className={styles.button} onClick={() => router.push("/posts")}>
-				Go to Blog
+				Go to Blogs
 			</button>
 		</Page>
 	);

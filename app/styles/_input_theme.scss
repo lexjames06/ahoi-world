@@ -1,0 +1,23 @@
+@import "./theme";
+
+$input-theme-light: (
+  'border': $grey-4,
+  'border-active': $black-1,
+  'label': $grey-4,
+  'label-active': $black-1,
+  'text': $black-1,
+  'error': $red,
+  'icon': $grey-4,
+  'icon-hover': $black-1,
+);
+
+$input-theme-dark: (
+  'border': $grey-1,
+  'border-active': $white,
+  'label': $grey-4,
+  'label-active': $white,
+  'text': $white,
+  'error': $red,
+  'icon': $grey-1,
+  'icon-hover': $white,
+);

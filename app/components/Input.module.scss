@@ -1,0 +1,74 @@
+.container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+
+  input {
+    height: 3rem;
+    padding: 0 1rem;
+    width: 100%;
+    font-size: 1.25rem;
+    border-radius: 0.25rem;
+    border: 1px solid var(--input-border);
+    color: var(--input-text);
+    background-color: transparent;
+
+    &:active ~ label, &:focus ~ label, &[data-dirty="true"] ~ label {
+      transform: translateY(-60%);
+      font-size: 0.9rem;
+      color: var(--input-label-active);
+    }
+
+    &:active, &:focus {
+      border: 1px solid var(--input-border-active);
+      outline: none;
+
+    }
+    &[data-errored="true"] {
+      border-color: var(--input-error);
+
+      &~ label {
+        color: var(--input-error);
+      }
+    }
+  }
+
+  .icon {
+    position: absolute;
+    transform: translateY(20%);
+    right: 1rem;
+    cursor: pointer;
+    
+    svg {
+      height: 2rem;
+      width: 2rem;
+      fill: var(--input-icon);
+
+      &:hover {
+        fill: var(--input-icon-hover);
+      }
+    }
+  }
+
+  label {
+    position: absolute;
+    width: fit-content;
+    margin-left: 0.5rem;
+    padding: 0 0.5rem;
+    transform: translateY(40%);
+    pointer-events: none;
+    font-size: 1.25rem;
+    font-weight: 500;
+    background-color: var(--global-background);
+    color: var(--input-label);
+    transition: 0.1s ease-in-out;
+    user-select: none;
+  }
+
+  .errorMessage {
+    display: flex;
+    flex-direction: column;
+    color: var(--input-error);
+    padding: 0.5rem 1rem;
+  }
+}

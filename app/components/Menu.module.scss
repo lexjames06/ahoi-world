@@ -192,3 +192,12 @@
 		cursor: pointer;
 	}
 }
+
+
+.userButton {
+	padding: 0.5rem 1rem;
+	border-radius: 0.25rem;
+	background-color: var(--button-background);
+	color: var(--button-text);
+	font-weight: 600;
+}

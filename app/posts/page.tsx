@@ -5,6 +5,7 @@ import CategoriesSlider from "../components/blog/CategoriesSlider";
 import LargeListItem from "../components/blog/LargeListItem";
 import SmallListItems from "./SmallListItems";
 import styles from "./page.module.scss";
+import { SeedData } from "../components/SeedButton";
 
 interface Props {
 	searchParams?: Record<'category', string>;
@@ -28,6 +29,7 @@ export default async function Posts(props: Props) {
 	if (!posts.length) {
 		return (
 			<main className={styles.main}>
+				<SeedData />
 				<span className={styles.noPosts}>There are no posts available at this time</span>
 			</main>
 		);

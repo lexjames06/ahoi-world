@@ -44,13 +44,13 @@ export async function getSortedFirebasePostsData(category?: string): Promise<Sor
 	const posts: BlogPost[] = [];
 
 	const querySnapshot = await getDocs(q);
-	querySnapshot.forEach(async (doc) => {
-		posts.push(convertFirestorePostToBlogPost(doc));
+	querySnapshot.forEach((doc) => {
+		const post = convertFirestorePostToBlogPost(doc);
+		posts.push(post);
 	});
 
 	// Sort by date
 	posts.sort((a, b) => a.date > b.date ? (SORT_ORDER === "desc" ? -1 : 1) : (SORT_ORDER === "desc" ? 1 : -1));
-
 	const categoriesDoc = doc(firestore, "categories", "all");
 	const document = await getDoc(categoriesDoc);
 	const categories = document.data()?.list ?? [];

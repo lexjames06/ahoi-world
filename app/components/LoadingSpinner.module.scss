@@ -1,0 +1,65 @@
+.container {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .dot {
+    height: 0.75rem;
+    width: 0.75rem;
+    border-radius: 100%;
+    background-color: var(--loading-spinner-dot);
+    margin-right: 0.75rem;
+    animation-duration: 0.75s;
+    animation-iteration-count: infinite;
+
+    &[data-order="1"] {
+      margin-right: 0;
+      transform: scale(0);
+      animation-name: grow;
+    }
+
+    &[data-order="2"] {
+      margin-left: -0.75rem;
+      animation-name: slide;
+    }
+
+    &[data-order="3"] {
+      animation-name: slide;
+    }
+
+    &[data-order="4"] {
+      margin-right: 0;
+      transform: scale(1);
+      animation-name: shrink;
+    }
+  }
+}
+
+@keyframes grow {
+  0% {
+    transform: scale(0);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes shrink {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(0);
+  }
+}
+
+@keyframes slide {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(200%);
+  }
+}

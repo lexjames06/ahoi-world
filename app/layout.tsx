@@ -1,25 +1,26 @@
-import { Inter } from 'next/font/google'
-import Ahoi from "./ahoi";
+import { Inter } from "next/font/google";
+import Theme from "./theme";
 import Navbar from "./components/Navbar";
 import "./styles/styles.scss";
+import { AuthContextProvider } from "@/context/AuthContext";
 
 const { BASE_URL } = process.env as Record<string, string>;
 
 const inter = Inter({
-  subsets: ['latin'],
-  display: 'swap',
+	subsets: ["latin"],
+	display: "swap",
 });
 
 export const metadata = {
 	metadataBase: new URL(BASE_URL),
-  title: {
-    default: "AHOI",
-    template: `%s | AHOI`,
-  },
-  description: {
-    default: "A House Of Ideas",
-    template: `%s`,
-  },
+	title: {
+		default: "AHOI",
+		template: `%s | AHOI`,
+	},
+	description: {
+		default: "A House Of Ideas",
+		template: `%s`,
+	},
 };
 
 type MetadataParams = {
@@ -40,10 +41,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 	return (
 		<html lang="en" className={inter.className}>
 			<body>
-				<Ahoi>
-					<Navbar />
-					{children}
-				</Ahoi>
+				<Theme>
+					<AuthContextProvider>
+						<Navbar />
+						{children}
+					</AuthContextProvider>
+				</Theme>
 			</body>
 		</html>
 	);

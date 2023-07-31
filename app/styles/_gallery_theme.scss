@@ -1,0 +1,23 @@
+@import "./theme";
+
+$gallery-theme-light: (
+  'background': $white,
+  'button-color': $white,
+  'button-color-hover': $green,
+  'button-border': $grey-4,
+  'button-text': $black-1,
+  'button-text-hover': $white,
+  'blob': linear-gradient(to right, aquamarine, mediumpurple),
+  'card-border': $grey-4,
+);
+
+$gallery-theme-dark: (
+  'background': $black-1,
+  'button-color': $black-1,
+  'button-color-hover': $white,
+  'button-border': $grey-4,
+  'button-text': $white,
+  'button-text-hover': $black-1,
+  'blob': linear-gradient(to right, aquamarine, mediumpurple),
+  'card-border': $grey-1,
+);

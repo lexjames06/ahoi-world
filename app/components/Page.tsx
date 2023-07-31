@@ -1,4 +1,4 @@
-import React, { ReactNode } from 'react'
+import React, { ReactNode, forwardRef } from 'react'
 import { TiSocialTwitter, TiSocialLinkedin } from "react-icons/ti";
 import Link from "next/link";
 import { navOptions } from "./constants";
@@ -7,10 +7,13 @@ import styles from "./Page.module.scss";
 type Props = {
   children: ReactNode;
   className?: string;
+  id?: string;
 };
 
-export default function Page({ children, className }: Props) {
-  const props = { className };
+type Ref = HTMLElement;
+
+const Page = forwardRef<Ref, Props>((props, ref) => {
+  const { children, ...restProps } = props;
 
   const social = [
     {
@@ -29,7 +32,7 @@ export default function Page({ children, className }: Props) {
 
   return (
     <>
-      <main {...props}>
+      <main {...restProps} ref={ref ?? null}>
         {children}
       </main>
 
@@ -61,4 +64,6 @@ export default function Page({ children, className }: Props) {
       </footer>
     </>
   );
-}
+});
+
+export default Page;

@@ -25,11 +25,11 @@ export const navOptions: Option[] = [
     icon: MdArticle,
     link: "/posts",
   },
-  {
-    label: "Contact",
-    icon: MdEmail,
-    link: "mailto:a.stewart.developer@gmail.com",
-    divider: true,
-    target: "_blank",
-  },
+  // {
+  //   label: "Contact",
+  //   icon: MdEmail,
+  //   link: "mailto:a.stewart.developer@gmail.com",
+  //   divider: true,
+  //   target: "_blank",
+  // },
 ];

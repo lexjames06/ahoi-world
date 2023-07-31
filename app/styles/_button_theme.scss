@@ -2,10 +2,22 @@
 
 $button-theme-light: (
   'background': $black-1,
+  'background-hover': $grey-1,
+  'disabled': $grey-1,
+  'disabled-text': $grey-4,
   'text': $white,
+  "social-login-background": $black-1,
+  "social-login-text": $white,
+  "social-login-border": transparent,
 );
 
 $button-theme-dark: (
   'background': $green,
+  'background-hover': $white,
+  'disabled': $grey-1,
+  'disabled-text': $grey-4,
   'text': $black-1,
+  "social-login-background": $white,
+  "social-login-text": $black-1,
+  "social-login-border": transparent,
 );

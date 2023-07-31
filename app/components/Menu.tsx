@@ -5,6 +5,9 @@ import { usePathname } from "next/navigation";
 import { useTheme } from "next-themes";
 import { Option, navOptions } from "./constants";
 import styles from "./Menu.module.scss";
+import { useAuthContext } from "@/context/AuthContext";
+import { signout } from "@/lib/users";
+import UserNavIcon from "./UserNavIcon";
 
 type Props = {
 	show: boolean;
@@ -12,6 +15,7 @@ type Props = {
 };
 
 export default function Menu({ show, toggleMenu }: Props) {
+	const { user } = useAuthContext();
 	const pathname = usePathname();
 	const { systemTheme, theme, setTheme } = useTheme();
 	const currentTheme = theme === "system" ? systemTheme : theme;
@@ -67,6 +71,10 @@ export default function Menu({ show, toggleMenu }: Props) {
 						) : (
 							<span key={index} className={styles.line} />
 						)
+					)}
+					{!user && <Link href="/sign-in" className={styles.userButton} >sign in</Link>}
+					{!!user && (
+						<UserNavIcon user={user} onClick={signout} />
 					)}
 				</div>
 			</div>
