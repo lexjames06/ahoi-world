@@ -41,7 +41,7 @@ export default function Menu({ show, toggleMenu }: Props) {
 	}
 
 	return (
-		<div className={styles.overlay} id="menu" data-show={show} onClick={(e) => handleMenuToggle(e)}>
+		<div className={styles.overlay} id="menu" data-show={show} onClick={handleMenuToggle}>
 			<div className={styles.container}>
 				<div className={styles.menu}>
 					<div className={`${styles.option} ${styles.darkmode}`} data-preventclose={true} data-bottomdivider={true}>

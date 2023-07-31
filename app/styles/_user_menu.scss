@@ -1,0 +1,17 @@
+@import "./theme";
+
+$user-menu-theme-light: (
+	"option": $white,
+	"option-text": $black-1,
+	"option-hover": $black-1,
+	"option-text-hover": $white,
+  "background": $grey-4,
+);
+
+$user-menu-theme-dark: (
+	"option": $khaki,
+	"option-text": $white,
+	"option-hover": $black-1,
+	"option-text-hover": $white,
+  "background": $grey-4,
+);

@@ -12,6 +12,7 @@
 @import "./nav_theme";
 @import "./skeleton_theme";
 @import "./toggle_theme";
+@import "./user_menu";
 
 $light-theme: (
 	"button": $button-theme-light,
@@ -24,6 +25,7 @@ $light-theme: (
 	"nav": $nav-theme-light,
 	"skeleton": $skeleton-theme-light,
 	"toggle": $toggle-theme-light,
+	"user-menu": $user-menu-theme-light,
 );
 
 $dark-theme: (
@@ -37,6 +39,7 @@ $dark-theme: (
 	"nav": $nav-theme-dark,
 	"skeleton": $skeleton-theme-dark,
 	"toggle": $toggle-theme-dark,
+	"user-menu": $user-menu-theme-dark,
 );
 
 $active-theme: $light-theme;

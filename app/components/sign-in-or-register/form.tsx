@@ -30,6 +30,8 @@ type Props = {
   type: FormType;
 }
 
+const fieldKeys = Object.values(Field) as unknown as string[];
+
 export function Form({ type }: Props) {
 	const [errors, setErrors] = useState<Errors>({});
 	const [email, setEmail] = useState("");
@@ -71,7 +73,20 @@ export function Form({ type }: Props) {
 		const data = await response.json();
 
 		if (data.error) {
-			setErrors(data.error.errors);
+			const filteredErrors = Object.entries(data.error.errors).reduce((filtered: Errors, [key, value]) => {
+				console.log({key, value})
+				if (fieldKeys.includes(key)) {
+					console.log("included")
+					return {
+						...filtered,
+						[key]: value,
+					};
+				}
+				console.log("not included")
+				return filtered;
+			}, {});
+
+			setErrors(filteredErrors);
 			setLoading(false);
 			return;
 		}
@@ -130,6 +145,8 @@ export function Form({ type }: Props) {
 	const submitDisabled = loading || (type === FormType.SIGN_IN
 		? !email || !password || !isEmpty(errors)
 		: !email || !password || !confirmPassword || !isEmpty(errors));
+
+	console.log({errors})
 
 	return (
 		<form onSubmit={onSubmit} className={styles.form}>
