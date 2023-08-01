@@ -9,8 +9,6 @@ import getFormattedDate from "@/lib/getFormattedDate";
 import { getFirebasePostData, getSortedFirebasePostsData } from "@/lib/posts";
 import styles from "./page.module.scss";
 import { generateHeader, generateImage, generateOrderedList, prepareBodyForParse } from "./utils/blog-formatter";
-import { getFeatureFlag } from "@/app/utils/get-feature-flag";
-import getConfig from "next/config";
 
 // const authFeature = getFeatureFlag("auth");
 
