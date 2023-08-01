@@ -1,3 +1,18 @@
+.noData {
+	height: 100%;
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+
+	.noPosts {
+		margin-bottom: 2rem;
+		font-size: 1.25rem;
+		font-weight: 600;
+	}
+}
+
 .listEnd {
 	display: flex;
 	justify-content: center;

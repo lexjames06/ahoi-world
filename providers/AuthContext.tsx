@@ -18,7 +18,6 @@ export const AuthContextProvider = ({
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged(async (firebaseUser: FirebaseUser | null) => {
       if (firebaseUser) {
-        console.log({firebaseUser});
         const userProfile = await getFirebaseUserData({ firebaseUID: firebaseUser.uid });
 
         if (userProfile) {

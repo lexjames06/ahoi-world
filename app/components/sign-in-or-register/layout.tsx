@@ -4,9 +4,10 @@ import Page from "../Page";
 import { Form } from "./form";
 import styles from "./layout.module.scss";
 import { googleLogIn } from "@/lib/users";
-import { useAuthContext } from "@/context/AuthContext";
+import { useAuthContext } from "@/providers/AuthContext";
 import { redirect } from "next/navigation";
 import { FormType } from "./types";
+import { useFeatureFlagContext } from "@/providers/FeatureFlag";
 
 type SocialLogins = {
 	google?: boolean;
@@ -25,8 +26,9 @@ type Props = {
 
 export default function UserAccessForm({ type, header, subHeader, thirdPartyLogins = defaultSocialLogins }: Props) {
 	const { user } = useAuthContext();
+	const { auth } = useFeatureFlagContext();
 
-	if (user) {
+	if (user || !auth || !auth.enabled) {
 		redirect("/");
 	}
 

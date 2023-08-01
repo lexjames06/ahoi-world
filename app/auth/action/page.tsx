@@ -10,12 +10,9 @@ export default function AuthAction() {
 
   const mode = searchParams.get("mode");
   const oobCode = searchParams.get("oobCode");
-  console.log({mode})
 
   if (mode === "resetPassword") {
     const path = `/sign-in/reset-password?oobCode=${oobCode}`;
-
-    console.log({path})
 
     router.push(path);
   }

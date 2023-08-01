@@ -9,6 +9,8 @@ import { LoadingSpinner } from "@/app/components/LoadingSpinner";
 import { sendResetPasswordEmail } from "@/lib/users";
 import Link from "next/link";
 import { BiArrowBack } from "react-icons/bi";
+import { redirect } from "next/navigation";
+import { useFeatureFlagContext } from "@/providers/FeatureFlag";
 
 type ForgotPasswordErrors = {
   [Field.EMAIL]?: ZodError;
@@ -20,6 +22,11 @@ export default function ForgotPassword() {
   const [email, setEmail] = useState("");
   const [loading, setLoading] = useState(false);
   const [successMessage, setSuccessMessage] = useState("");
+  const { auth } = useFeatureFlagContext();
+
+  if (!auth || !auth.enabled) {
+    redirect("/");
+  }
 
   const handleValueChange = (
     value: string

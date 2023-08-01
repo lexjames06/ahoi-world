@@ -28,9 +28,9 @@ export default async function Posts(props: Props) {
 
 	if (!posts.length) {
 		return (
-			<main className={styles.main}>
-				<SeedData />
+			<main className={styles.noData}>
 				<span className={styles.noPosts}>There are no posts available at this time</span>
+				<SeedData />
 			</main>
 		);
 	}

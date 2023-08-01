@@ -2,7 +2,8 @@ import { Inter } from "next/font/google";
 import Theme from "./theme";
 import Navbar from "./components/Navbar";
 import "./styles/styles.scss";
-import { AuthContextProvider } from "@/context/AuthContext";
+import { AuthContextProvider } from "@/providers/AuthContext";
+import { FeatureFlagContextProvider } from "@/providers/FeatureFlag";
 
 const { BASE_URL } = process.env as Record<string, string>;
 
@@ -43,8 +44,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 			<body>
 				<Theme>
 					<AuthContextProvider>
-						<Navbar />
-						{children}
+						<FeatureFlagContextProvider>
+							<Navbar />
+							{children}
+						</FeatureFlagContextProvider>
 					</AuthContextProvider>
 				</Theme>
 			</body>

@@ -1,13 +1,14 @@
 "use client";
 import React, { SetStateAction } from "react";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { redirect, usePathname } from "next/navigation";
 import { useTheme } from "next-themes";
 import { Option, navOptions } from "./constants";
 import styles from "./Menu.module.scss";
-import { useAuthContext } from "@/context/AuthContext";
+import { useAuthContext } from "@/providers/AuthContext";
 import { signout } from "@/lib/users";
 import UserNavIcon from "./UserNavIcon";
+import { useFeatureFlagContext } from "@/providers/FeatureFlag";
 
 type Props = {
 	show: boolean;
@@ -19,6 +20,7 @@ export default function Menu({ show, toggleMenu }: Props) {
 	const pathname = usePathname();
 	const { systemTheme, theme, setTheme } = useTheme();
 	const currentTheme = theme === "system" ? systemTheme : theme;
+	const { auth } = useFeatureFlagContext();
 
 	const toggleTheme = (current: string) => {
 		const toggled = current === "dark" ? "light" : "dark";
@@ -34,11 +36,11 @@ export default function Menu({ show, toggleMenu }: Props) {
 	}, []);
 
 	const handleMenuToggle = (e: React.MouseEvent) => {
-		const preventClose = (e.target as HTMLElement).getAttribute('data-preventclose');
+		const preventClose = (e.target as HTMLElement).getAttribute("data-preventclose");
 		if (!preventClose && toggleMenu) {
 			toggleMenu(false);
 		}
-	}
+	};
 
 	return (
 		<div className={styles.overlay} id="menu" data-show={show} onClick={handleMenuToggle}>
@@ -72,9 +74,16 @@ export default function Menu({ show, toggleMenu }: Props) {
 							<span key={index} className={styles.line} />
 						)
 					)}
-					{!user && <Link href="/sign-in" className={styles.userButton} >sign in</Link>}
-					{!!user && (
-						<UserNavIcon user={user} onClick={signout} />
+
+					{!!auth && auth.enabled && (
+						<>
+							{!user && (
+								<Link href="/sign-in" className={styles.userButton}>
+									sign in
+								</Link>
+							)}
+							{!!user && <UserNavIcon user={user} onClick={signout} />}
+						</>
 					)}
 				</div>
 			</div>

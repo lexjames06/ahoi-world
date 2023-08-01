@@ -20,6 +20,10 @@ const envVariables = z.object({
   // application
   NEXT_PUBLIC_BASE_URL: z.string(),
   NEXT_PUBLIC_FEATURE_FLAGS: z.string(),
+
+  // feature flags
+  NEXT_PUBLIC_FF_AUTH_FLAG: z.string(),
+  NEXT_PUBLIC_FF_AUTH_DESCRIPTION: z.string(),
 });
 
 declare global {
