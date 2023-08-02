@@ -1,5 +1,5 @@
 "use client";
-import Page from "@/app/components/Page";
+import { Page } from "@ahoi-world/templates";
 import { useRouter } from "next/navigation";
 import React from "react";
 import styles from "./not-found.module.scss";

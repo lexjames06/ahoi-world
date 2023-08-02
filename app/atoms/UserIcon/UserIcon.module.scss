@@ -1,0 +1,27 @@
+.container {
+  height: 2.25rem;
+  aspect-ratio: 1 / 1;
+  border-radius: 100%;
+  background-color: var(--button-background);
+  color: var(--button-text);
+  font-size: 1.5rem;
+  line-height: 1.5rem;
+  font-weight: 600;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: 0.1s ease-in-out;
+  overflow: hidden;
+
+  svg {
+    transform: scale(1.75);
+    margin-top: 0.3rem;
+    pointer-events: none;
+  }
+
+  &:hover, &[data-active="true"] {
+    background-color: var(--button-background-hover);
+    color: var(--button-text);
+  }
+}

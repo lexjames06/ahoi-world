@@ -2,7 +2,7 @@ import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
 import { arrayUnion, doc, setDoc, updateDoc } from "firebase/firestore";
-import { firestore, storage } from "@/firebase/app";
+import { firestore, storage } from "@ahoi-world/firebase/app";
 import { ConvertTime } from "./utils/convert-time";
 import { generateBlogPostId, generateUserId } from "./utils/generate-UUIDV4";
 import { getEndOfUUIDV4 } from "./utils/get-end-of-UUIDV4";

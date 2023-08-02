@@ -1,4 +1,5 @@
-import { generateBlogPostId, generateUserId } from "@/lib/utils/generate-UUIDV4";
+import { generateBlogPostId, generateUserId } from "@ahoi-world/lib/utils/generate-UUIDV4";
+import { BlogPost } from "@ahoi-world/types/PostTypes";
 
 const dummyPostId = "";
 const dummyUserId = "";

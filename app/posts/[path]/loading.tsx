@@ -1,9 +1,9 @@
-import Skeleton from "@/app/components/Skeleton";
+import { SkeletonPage } from "@ahoi-world/templates";
 import styles from "./loading.module.scss";
 
 export default function Loading() {
   return (
-    <Skeleton>
+    <SkeletonPage>
 			<span className={styles.skeleton_coverImage} />
 
 			<span className={styles.skeleton_articleHeader}>
@@ -59,6 +59,6 @@ export default function Loading() {
 					))}
 				</span>
 			</div>
-    </Skeleton>
+    </SkeletonPage>
   );
 }

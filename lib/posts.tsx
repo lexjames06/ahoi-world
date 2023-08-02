@@ -1,5 +1,6 @@
 import { DocumentData, collection, doc, getDoc, getDocs, orderBy, query, where } from "firebase/firestore";
-import { firestore } from "@/firebase/app";
+import { firestore } from "@ahoi-world/firebase/app";
+import { BlogPost } from "@ahoi-world/types/PostTypes";
 import { ConvertTime } from "./utils/convert-time";
 import { generateBlogPostId, generateUserId } from "./utils/generate-UUIDV4";
 import { convertBlogImages, getBlogImages } from "./utils/get-blog-images";

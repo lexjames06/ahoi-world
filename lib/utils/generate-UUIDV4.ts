@@ -1,5 +1,8 @@
 import { v4 as uuidv4 } from "uuid";
-import { OptionalType } from "@/types/GeneralTypes";
+import type { OptionalType, UUIDV4 } from "@ahoi-world/types/GeneralTypes";
+import type { User } from "@ahoi-world/types/UserTypes";
+import type { BlogPost } from "@ahoi-world/types/PostTypes";
+import type { Project } from "@ahoi-world/types/ProjectTypes";
 
 const generateUUIDV4 = <T extends OptionalType = undefined>(id?: string): UUIDV4<T> => {
   const uuid = id ? id : uuidv4();

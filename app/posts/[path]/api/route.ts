@@ -1,5 +1,5 @@
-import { getFirebasePostData } from "@/lib/posts";
-import { getFirebaseUserData } from "@/lib/users";
+import { getFirebasePostData } from "@ahoi-world/lib/posts";
+import { getFirebaseUserData } from "@ahoi-world/lib/users";
 import { NextResponse } from "next/server";
 
 export async function GET(_request: Request, { params }: { params: { path: string } }) {

@@ -1,4 +1,4 @@
-import { auth, firestore } from "@/firebase/app";
+import { auth, firestore } from "@ahoi-world/firebase/app";
 import {
 	getAuth,
 	signInWithPopup,
@@ -13,7 +13,8 @@ import {
 } from "firebase/auth";
 import { collection, doc, getDoc, getDocs, query, setDoc, where } from "firebase/firestore";
 import { generateUserId } from "./utils/generate-UUIDV4";
-import { Field } from "@/app/components/sign-in-or-register/types";
+import { Field } from "@ahoi-world/pages/sign-in-or-register/types";
+import { User } from "@ahoi-world/types/UserTypes";
 
 export type UserError = {
 	hasError: true;
@@ -72,7 +73,7 @@ export function signout() {
 export async function createUserWithEmailPassword(email: string, password: string): Promise<UserResponse> {
 	return await createUserWithEmailAndPassword(auth, email, password)
 		.then((userCredential) => {
-			console.log({register: userCredential})
+			console.log({ register: userCredential });
 			return {
 				hasError: false as const,
 				userCredential,
@@ -109,7 +110,7 @@ export async function signInWithEmailPassword(email: string, password: string): 
 			const errorCode = error.code;
 			const errorMessage = error.message;
 
-			console.log({errorCode, errorMessage});
+			console.log({ errorCode, errorMessage });
 
 			if (errorCode === "auth/wrong-password") {
 				return {
@@ -126,45 +127,43 @@ export async function signInWithEmailPassword(email: string, password: string): 
 }
 
 export async function resetPassword(oobCode: string, password: string): Promise<UserError | void> {
-	return await confirmPasswordReset(auth, oobCode, password)
-		.catch((error) => {
-			const errorCode = error.code;
-			const errorMessage = error.message;
+	return await confirmPasswordReset(auth, oobCode, password).catch((error) => {
+		const errorCode = error.code;
+		const errorMessage = error.message;
 
-			console.log({errorCode, errorMessage});
+		console.log({ errorCode, errorMessage });
 
-			if (errorCode === "auth/invalid-action-code") {
-				return {
-					hasError: true,
-					path: Field.FORM,
-					message: "It looks like this link has expired.\nTry requesting a new code.",
-				};
-			}
+		if (errorCode === "auth/invalid-action-code") {
+			return {
+				hasError: true,
+				path: Field.FORM,
+				message: "It looks like this link has expired.\nTry requesting a new code.",
+			};
+		}
 
-			return defaultError;
-		});
+		return defaultError;
+	});
 }
 
 export async function sendResetPasswordEmail(email: string): Promise<UserError | void> {
-	return await sendPasswordResetEmail(auth, email)
-		.catch((error) => {
-			const errorCode = error.code;
-			const errorMessage = error.message;
+	return await sendPasswordResetEmail(auth, email).catch((error) => {
+		const errorCode = error.code;
+		const errorMessage = error.message;
 
-			console.log({errorCode, errorMessage});
+		console.log({ errorCode, errorMessage });
 
-			if (errorCode === "auth/user-not-found") {
-				return {
-					hasError: true,
-					path: Field.FORM,
-					message: "There was no account found with this email",
-				};
-			}
+		if (errorCode === "auth/user-not-found") {
+			return {
+				hasError: true,
+				path: Field.FORM,
+				message: "There was no account found with this email",
+			};
+		}
 
-			// TODO: introduce error handling
+		// TODO: introduce error handling
 
-			return defaultError;
-		});
+		return defaultError;
+	});
 }
 
 export async function confirmUserPasswordReset(oobCode: string, newPassword: string) {
@@ -172,17 +171,16 @@ export async function confirmUserPasswordReset(oobCode: string, newPassword: str
 		return;
 	}
 
-	return await confirmPasswordReset(auth, oobCode, newPassword)
-		.catch((error) => {
-			const errorCode = error.code;
-			const errorMessage = error.message;
+	return await confirmPasswordReset(auth, oobCode, newPassword).catch((error) => {
+		const errorCode = error.code;
+		const errorMessage = error.message;
 
-			console.log({errorCode, errorMessage});
+		console.log({ errorCode, errorMessage });
 
-			// TODO: introduce error handling
+		// TODO: introduce error handling
 
-			return defaultError;
-		});
+		return defaultError;
+	});
 }
 
 export function getCurrentUser() {
@@ -224,9 +222,9 @@ async function getFirebaseUserByFirebaseUID(firebaseUID: string): Promise<User |
 	const q = query(collectionRef, where("uid", "==", firebaseUID));
 
 	try {
-		console.log("trying")
+		console.log("trying");
 		const docSnapshots = await getDocs(q);
-		console.log({docSnapshots});
+		console.log({ docSnapshots });
 		const users: User[] = [];
 		docSnapshots?.forEach((doc) => users.push(doc.data() as User));
 		return users?.[0] ?? null;

@@ -1,11 +1,11 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import { User as FirebaseUser, connectAuthEmulator } from "firebase/auth";
-import { auth } from "@/firebase/app";
-import { createFirebaseUser, getFirebaseUserData } from "@/lib/users";
-import { generateUserId } from "@/lib/utils/generate-UUIDV4";
+import { User as FirebaseUser } from "firebase/auth";
+import { auth } from "@ahoi-world/firebase/app";
+import { createFirebaseUser, getFirebaseUserData } from "@ahoi-world/lib/users";
+import { User } from "@ahoi-world/types/UserTypes";
 
-export const AuthContext = React.createContext<{ user?: User | null }>({});
+export const AuthContext = React.createContext<{ user: User | null }>({ user: null });
 
 export const useAuthContext = () => React.useContext(AuthContext);
 

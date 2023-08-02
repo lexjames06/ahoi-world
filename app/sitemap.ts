@@ -1,4 +1,4 @@
-import { getSortedFirebasePostsData } from "@/lib/posts";
+import { getSortedFirebasePostsData } from "@ahoi-world/lib/posts";
 
 export default async function sitemap() {
   const baseUrl = process.env.BASE_URL;

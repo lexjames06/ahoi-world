@@ -1,9 +1,9 @@
 import { Inter } from "next/font/google";
 import Theme from "./theme";
-import Navbar from "./components/Navbar";
+import { AuthContextProvider } from "@ahoi-world/providers/AuthContext";
+import { FeatureFlagContextProvider } from "@ahoi-world/providers/FeatureFlag";
+import { Navbar } from "@ahoi-world/molecules";
 import "./styles/styles.scss";
-import { AuthContextProvider } from "@/providers/AuthContext";
-import { FeatureFlagContextProvider } from "@/providers/FeatureFlag";
 
 const { BASE_URL } = process.env as Record<string, string>;
 

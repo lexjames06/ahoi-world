@@ -1,4 +1,5 @@
 import { UUIDV4 } from "./GeneralTypes";
+import { User } from "./UserTypes";
 
 export type ImagePathAndBase64String = {
   base64String: string;

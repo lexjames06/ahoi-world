@@ -1,14 +1,13 @@
 import Link from "next/link";
-import { getSortedFirebasePostsData } from "@/lib/posts";
-import Page from "../components/Page";
-import CategoriesSlider from "../components/blog/CategoriesSlider";
-import LargeListItem from "../components/blog/LargeListItem";
-import SmallListItems from "./SmallListItems";
+import { getSortedFirebasePostsData } from "@ahoi-world/lib/posts";
+
+import { SmallBlogCardList } from "./SmallBlogCardList";
 import styles from "./page.module.scss";
-import { SeedData } from "../components/SeedButton";
+import { CategoriesSelector, LargeBlogCard, SeedButton } from "@ahoi-world/atoms";
+import { Page } from "@ahoi-world/templates";
 
 interface Props {
-	searchParams?: Record<'category', string>;
+	searchParams?: Record<"category", string>;
 }
 
 export function generateMetadata({ searchParams }: Props) {
@@ -30,7 +29,7 @@ export default async function Posts(props: Props) {
 		return (
 			<main className={styles.noData}>
 				<span className={styles.noPosts}>There are no posts available at this time</span>
-				<SeedData />
+				<SeedButton />
 			</main>
 		);
 	}
@@ -39,11 +38,11 @@ export default async function Posts(props: Props) {
 
 	return (
 		<Page>
-			<CategoriesSlider categories={categories} />
+			<CategoriesSelector categories={categories} />
 			<Link href={`/posts/${largeItemPost.path}`}>
-				<LargeListItem post={largeItemPost} />
+				<LargeBlogCard post={largeItemPost} />
 			</Link>
-			<SmallListItems posts={posts} />
+			<SmallBlogCardList posts={posts} />
 			<span className={styles.listEnd}>That&#39;s all the posts for now</span>
 		</Page>
 	);

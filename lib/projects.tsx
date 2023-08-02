@@ -2,6 +2,7 @@ import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
 import { generateProjectId, generateUserId } from "./utils/generate-UUIDV4";
+import { Project } from "@ahoi-world/types/ProjectTypes";
 
 interface Details {
 	bio?: string;

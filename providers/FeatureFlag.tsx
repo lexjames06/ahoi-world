@@ -1,6 +1,6 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import { FeatureFlags, getFeatureFlags } from "@/app/utils/get-feature-flag";
+import { FeatureFlags, getFeatureFlags } from "@ahoi-world/utils/get-feature-flag";
 
 export const FeatureFlagContext = React.createContext<FeatureFlags>({});
 

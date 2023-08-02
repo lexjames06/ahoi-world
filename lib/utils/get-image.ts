@@ -1,5 +1,5 @@
-import { storage } from "@/firebase/app";
-import { firebaseConfig } from "@/firebase/config";
+import { storage } from "@ahoi-world/firebase/app";
+import { firebaseConfig } from "@ahoi-world/firebase/config";
 import { getDownloadURL, ref } from "firebase/storage";
 
 export const getImage = (url: string): string => {

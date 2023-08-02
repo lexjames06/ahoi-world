@@ -3,15 +3,19 @@
 $user-menu-theme-light: (
 	"option": $white,
 	"option-text": $black-1,
-	"option-hover": $black-1,
+	"option-hover": $grey-2,
 	"option-text-hover": $white,
-  "background": $grey-4,
+  "background": $grey-3,
+	"username": $grey-4,
+	"displayName": $black-1,
 );
 
 $user-menu-theme-dark: (
-	"option": $khaki,
+	"option": $black-1,
 	"option-text": $white,
-	"option-hover": $black-1,
-	"option-text-hover": $white,
-  "background": $grey-4,
+	"option-hover": $green,
+	"option-text-hover": $black-1,
+  "background": $khaki,
+	"username": $green,
+	"displayName": $white,
 );

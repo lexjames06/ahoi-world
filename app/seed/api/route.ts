@@ -1,4 +1,4 @@
-import { uploadMarkdownBlogs } from "@/lib/seed";
+import { uploadMarkdownBlogs } from "@ahoi-world/lib/seed";
 import { NextResponse } from "next/server";
 
 export async function GET(_request: Request) {
