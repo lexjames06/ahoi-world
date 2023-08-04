@@ -50,7 +50,9 @@ export default async function Playlist({ params }: { params: { playlist: string 
 	const { playlist } = params;
 	const { playlist: paylistName, videos } = await getSortedFirebasePlaylistData(playlist);
 
-	if (videos && videos.length < 1) {
+	console.log({videos});
+
+	if (videos && !videos.length) {
 		return (
 			<main className={styles.noData}>
 				<span className={styles.noPlaylists}>Sorry, we don&apos;t have a <span className={styles.name}>{playlist}</span> playlist</span>

@@ -222,9 +222,7 @@ async function getFirebaseUserByFirebaseUID(firebaseUID: string): Promise<User |
 	const q = query(collectionRef, where("uid", "==", firebaseUID));
 
 	try {
-		console.log("trying");
 		const docSnapshots = await getDocs(q);
-		console.log({ docSnapshots });
 		const users: User[] = [];
 		docSnapshots?.forEach((doc) => users.push(doc.data() as User));
 		return users?.[0] ?? null;

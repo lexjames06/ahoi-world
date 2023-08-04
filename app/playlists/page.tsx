@@ -7,7 +7,6 @@ import { getSortedFirebasePlaylistsData } from "@ahoi-world/lib/playlists";
 import { SeedOptions } from "@ahoi-world/types/Seed";
 
 export function generateMetadata() {
-
 	return { title: "Playlists" };
 }
 
