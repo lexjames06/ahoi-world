@@ -5,6 +5,7 @@ import { SmallBlogCardList } from "./SmallBlogCardList";
 import styles from "./page.module.scss";
 import { CategoriesSelector, LargeBlogCard, SeedButton } from "@ahoi-world/atoms";
 import { Page } from "@ahoi-world/templates";
+import { SeedOptions } from "@ahoi-world/types/Seed";
 
 interface Props {
 	searchParams?: Record<"category", string>;
@@ -29,7 +30,7 @@ export default async function Posts(props: Props) {
 		return (
 			<main className={styles.noData}>
 				<span className={styles.noPosts}>There are no posts available at this time</span>
-				<SeedButton />
+				<SeedButton option={SeedOptions.BLOGS} />
 			</main>
 		);
 	}

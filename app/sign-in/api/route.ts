@@ -23,8 +23,6 @@ export async function POST(req: Request, _res: Response) {
 
   const { email, password } = response.data;
 
-  
-
   console.log({ email, password });
 
   return NextResponse.json({ message: "Success" }, { status: 200 });

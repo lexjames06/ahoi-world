@@ -8,6 +8,8 @@ import { generateBlogPostId, generateUserId } from "./utils/generate-UUIDV4";
 import { getEndOfUUIDV4 } from "./utils/get-end-of-UUIDV4";
 import { ref, uploadBytes } from "firebase/storage";
 
+// <-- BLOGS -->
+
 const postsDirectory = path.join(process.cwd(), "blogposts");
 
 function formatBlogForWrite(matterResult: matter.GrayMatterFile<string>, folder: string) {
@@ -122,7 +124,7 @@ export async function uploadMarkdownBlogs() {
 		return [...posts, blogPost];
 	}, []);
 
-	const uniqueCategories = Array.from(new Set(categories))
+	const uniqueCategories = Array.from(new Set(categories));
 
 	writeBlogs(allPostsData);
 	writeCategories(uniqueCategories);
@@ -130,4 +132,96 @@ export async function uploadMarkdownBlogs() {
 
 function isImageFile(filename: string) {
 	return filename.endsWith(".jpeg") || filename.endsWith(".jpg");
+}
+
+// <-- PLAYLISTS -->
+
+const playlistsDirectory = path.join(process.cwd(), "playlists");
+
+async function writePlaylists(playlists: string[]) {
+	const docRef = doc(firestore, "playlists", "all");
+	await setDoc(docRef, {
+		list: arrayUnion(...playlists),
+	});
+
+	console.log(`added ${playlists.length} playlists to the database`);
+}
+
+async function writeMusicVideos(playlists: any[]) {
+	playlists.forEach(async (playlist: any[]) => {
+		playlist.forEach(async (video) => {
+			const docRef = doc(firestore, "playlists", video.id);
+			await setDoc(docRef, video);
+		});
+
+		console.log(`written playlist to database with ${playlist.length} videos`);
+	});
+
+	if (playlists.length > 1) {
+		console.log(`all videos in ${playlists.length} playlists have been written to the database`);
+	} else {
+		console.log(`All videos in the playlist have been written to the database`);
+	}
+}
+
+export async function uploadPlaylistsVideos() {
+	const folders = fs.readdirSync(playlistsDirectory);
+	const playlistsList: string[] = [];
+
+	const allPlaylistsData = folders.reduce((playlists: any[], playlistFolder) => {
+		if (playlistFolder === ".DS_Store") {
+			return playlists;
+		}
+
+		const playlistFolderPath = path.join(playlistsDirectory, playlistFolder);
+
+		const videoFolders = fs.readdirSync(playlistFolderPath);
+
+		const allVideosData = videoFolders.reduce((videos: any[], videoFolder) => {
+			const folderPath = path.join(playlistFolderPath, videoFolder);
+
+			// images
+			const files = fs.readdirSync(folderPath);
+			files.forEach((filename) => {
+				if (filename === ".DS_Store") {
+					return;
+				}
+	
+				if (!isImageFile(filename)) {
+					return;
+				}
+	
+				const storagePath = path.join("images/", videoFolder, filename);
+				const filePath = path.join(folderPath, filename);
+	
+				const file = fs.readFileSync(filePath);
+	
+				uploadImage(storagePath, file);
+			});
+	
+			// Read markdown file as string
+			const videoFilePath = path.join(folderPath, "details.md");
+			const fileContents = fs.readFileSync(videoFilePath, "utf-8");
+	
+			// Use gray-matter to parse the post metadata section
+			const matterResult = matter(fileContents);
+	
+			const video = {
+				id: matterResult.data.videoId,
+				thumbnail: matterResult.data.thumbnail,
+				playlist: matterResult.data.playlist,
+			};
+
+			playlistsList.push(matterResult.data.playlist);
+	
+			return [...videos, video];
+		}, []);
+
+		return [...playlists, allVideosData];
+	}, []);
+
+	const uniquePlaylists = Array.from(new Set(playlistsList));
+
+	writePlaylists(uniquePlaylists);
+	writeMusicVideos(allPlaylistsData);
 }

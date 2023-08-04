@@ -1,0 +1,57 @@
+@import "../../styles/_breakpoints.scss";
+
+.page {
+  max-width: 100%;
+  margin-left: 0;
+  margin-right: 0;
+  padding: 0;
+}
+
+.container {
+  height: 100%;
+  display: grid;
+  grid-template-columns: 1fr;
+
+  .tileContainer {
+    .tiles {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 2rem;
+      width: 100%;
+      padding: 2rem;
+    }
+  }
+}
+
+@mixin split-horizontal() {
+  grid-template-columns: 1fr 2fr;
+  padding-left: 2rem;
+
+  &[data-playing="false"] {
+    grid-template-columns: 1fr;
+    padding-left: 0;
+  }
+
+  .tileContainer {
+    max-height: 86.875vh;
+    overflow-y: scroll;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+}
+
+// normal desktop view
+@media (min-width: $playlist-width-split) {
+  .container {
+    @include split-horizontal();
+  }
+}
+
+// rotated mobile view
+@media (min-width: $playlist-width-split-rotated) and (max-height: $playlist-height-split-rotated) {
+  .container {
+    @include split-horizontal();
+  }
+}

@@ -1,0 +1,25 @@
+@import "./theme";
+
+$desktop: 720px;
+
+$playlist-theme-light: (
+	"tile-shadow": $black-shadow,
+	"button-shadow": $black-shadow,
+	"current-background": $black-2,
+	"play-pause-background": $green,
+	"play-pause-icon": $black-2,
+	"author": $green,
+	"title": $white,
+	"desktop": $desktop,
+);
+
+$playlist-theme-dark: (
+	"tile-shadow": $white,
+	"button-shadow": $black-shadow,
+	"current-background": $khaki,
+	"play-pause-background": $white,
+	"play-pause-icon": $dark-green,
+	"author": $grey-4,
+	"title": $white,
+	"desktop": $desktop,
+);

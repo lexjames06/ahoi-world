@@ -10,6 +10,7 @@
 @import "./loading_spinner";
 @import "./menu_theme";
 @import "./nav_theme";
+@import "./playlist_theme";
 @import "./skeleton_theme";
 @import "./toggle_theme";
 @import "./user_menu";
@@ -23,6 +24,7 @@ $light-theme: (
 	"loading-spinner": $loading-spinner-theme-light,
 	"menu": $menu-theme-light,
 	"nav": $nav-theme-light,
+	"playlist": $playlist-theme-light,
 	"skeleton": $skeleton-theme-light,
 	"toggle": $toggle-theme-light,
 	"user-menu": $user-menu-theme-light,
@@ -37,6 +39,7 @@ $dark-theme: (
 	"loading-spinner": $loading-spinner-theme-dark,
 	"menu": $menu-theme-dark,
 	"nav": $nav-theme-dark,
+	"playlist": $playlist-theme-dark,
 	"skeleton": $skeleton-theme-dark,
 	"toggle": $toggle-theme-dark,
 	"user-menu": $user-menu-theme-dark,

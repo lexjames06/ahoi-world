@@ -5,7 +5,7 @@ import { FeatureFlagContextProvider } from "@ahoi-world/providers/FeatureFlag";
 import { Navbar } from "@ahoi-world/molecules";
 import "./styles/styles.scss";
 
-const { BASE_URL } = process.env as Record<string, string>;
+const { NEXT_PUBLIC_BASE_URL } = process.env as Record<string, string>;
 
 const inter = Inter({
 	subsets: ["latin"],
@@ -13,7 +13,7 @@ const inter = Inter({
 });
 
 export const metadata = {
-	metadataBase: new URL(BASE_URL),
+	metadataBase: new URL(NEXT_PUBLIC_BASE_URL),
 	title: {
 		default: "AHOI",
 		template: `%s | AHOI`,

@@ -21,6 +21,9 @@ const envVariables = z.object({
   NEXT_PUBLIC_BASE_URL: z.string(),
   NEXT_PUBLIC_FEATURE_FLAGS: z.string(),
 
+  // API keys
+  NEXT_PUBLIC_YOUTUBE_API_KEY: z.string(),
+
   // feature flags
   NEXT_PUBLIC_FF_AUTH_FLAG: z.string(),
   NEXT_PUBLIC_FF_AUTH_DESCRIPTION: z.string(),
