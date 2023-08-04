@@ -1,4 +1,3 @@
-import { notFound } from "next/navigation";
 import { getSortedFirebasePlaylistData, getSortedFirebasePlaylistsData } from "@ahoi-world/lib/playlists";
 import PlayerPage from "@ahoi-world/pages/playlist/player-page";
 import styles from "./page.module.scss";
@@ -54,7 +53,7 @@ export default async function Playlist({ params }: { params: { playlist: string 
 	if (videos && videos.length < 1) {
 		return (
 			<main className={styles.noData}>
-				<span className={styles.noPlaylists}>Sorry, we don't have a <span className={styles.name}>{playlist}</span> playlist</span>
+				<span className={styles.noPlaylists}>Sorry, we don&apos;t have a <span className={styles.name}>{playlist}</span> playlist</span>
 				<span className={styles.noPlaylists}>Why not check out what we do have?</span>
 				<Link href="/playlists">Go to playlists</Link>
 			</main>

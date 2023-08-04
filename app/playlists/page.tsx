@@ -26,7 +26,7 @@ export default async function Playlists() {
 	return (
 		<Page className={styles.container}>
       {playlists.map((playlist) => (
-        <Link href={`/playlists/${playlist}`}>
+        <Link key={playlist} href={`/playlists/${playlist}`}>
           <h2>{playlist}</h2>
         </Link>
       ))}
