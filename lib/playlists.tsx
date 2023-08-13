@@ -26,7 +26,7 @@ function convertFirestoreVideoToVideo(doc: DocumentData) {
 const SORT_ORDER = "desc";
 
 export async function getUserPlaylistData(playlistId: string): Promise<PlaylistData> {
-	const musicVideosRef = collection(firestore, "music-videos");
+	const musicVideosRef = collection(firestore, "musicVideos");
 	const q = query(musicVideosRef,  where("playlistId", "==", playlistId));
 
 	const videos: Video[] = [];

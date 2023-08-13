@@ -27,14 +27,7 @@ export async function POST(request: Request) {
   }
 
   if (option === SeedOptions.ALL || option === SeedOptions.PLAYLISTS) {
-    const errors = await uploadPlaylistsVideos(userId);
-    if (errors) {
-      return NextResponse.json({
-        error: { message: "Invalid Request", errors },
-      }, {
-        status: 400,
-      });
-    }
+    await uploadPlaylistsVideos(userId);
   }
 
   return NextResponse.json({ message: `successfully seeded ${option} data` });

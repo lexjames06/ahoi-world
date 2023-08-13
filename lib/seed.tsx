@@ -163,37 +163,29 @@ async function addPlaylistsToUser(userId: string, playlists: Video[][]) {
 	});
 
 	const docRef = doc(firestore, "users", userId);
-	try {
-		await updateDoc(docRef, { playlists: userPlaylists });
-	
-		if (playlists.length > 1) {
-			console.log(`written ${userPlaylists.length} playlists to the user with ID ${userId}`);
-		} else {
-			console.log(`written ${userPlaylists.length} playlist to the user with ID ${userId}`);
-		}
-	} catch (error) {
-		return "adding to user error";
+	await updateDoc(docRef, { playlists: userPlaylists });
+
+	if (playlists.length > 1) {
+		console.log(`written ${userPlaylists.length} playlists to the user with ID ${userId}`);
+	} else {
+		console.log(`written ${userPlaylists.length} playlist to the user with ID ${userId}`);
 	}
 }
 
 async function writeMusicVideos(playlists: Video[][]) {
-	try {
-		playlists.forEach(async (playlist) => {
-			playlist.forEach(async (video) => {
-				const docRef = doc(firestore, "music-videos", video.id);
-				await setDoc(docRef, video);
-			});
-	
-			console.log(`written playlist to database with ${playlist.length} videos`);
+	playlists.forEach(async (playlist) => {
+		playlist.forEach(async (video) => {
+			const docRef = doc(firestore, "musicVideos", video.id);
+			await setDoc(docRef, video);
 		});
-	
-		if (playlists.length > 1) {
-			console.log(`all videos in ${playlists.length} playlists have been written to the database`);
-		} else {
-			console.log(`All videos in the playlist have been written to the database`);
-		}
-	} catch (error: any) {
-		return "writing error";
+
+		console.log(`written playlist to database with ${playlist.length} videos`);
+	});
+
+	if (playlists.length > 1) {
+		console.log(`all videos in ${playlists.length} playlists have been written to the database`);
+	} else {
+		console.log(`All videos in the playlist have been written to the database`);
 	}
 }
 
@@ -251,13 +243,9 @@ export async function uploadPlaylistsVideos(userId?: string) {
 		return [...playlists, allVideosData];
 	}, []);
 
-	
-	return allPlaylistsData;
-	const error = writeMusicVideos(allPlaylistsData);
+	writeMusicVideos(allPlaylistsData);
 
-	// if (userId) {
-	// 	addPlaylistsToUser(userId, allPlaylistsData);
-	// }
-
-	// return error;
+	if (userId) {
+		addPlaylistsToUser(userId, allPlaylistsData);
+	}
 }
