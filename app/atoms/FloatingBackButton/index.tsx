@@ -28,10 +28,8 @@ export function FloatingBackButton({}: Props) {
 
   const onClick = () => {
     if (window && window.history.length > 1) {
-      console.log("going back")
       router.back();
     } else {
-      console.log("going to posts")
       router.push("/posts");
     }
   }

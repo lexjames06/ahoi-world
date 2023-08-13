@@ -7,12 +7,12 @@ import { useAuthContext } from "@ahoi-world/providers/AuthContext";
 import { MdEmail } from "react-icons/md";
 import { UserError, isUser, isUserError, updateUser } from "@ahoi-world/lib/users";
 import { useCallback, useEffect, useState } from "react";
-import { AlbumGrid, BlogGrid, PlaylistGrid, PlaylistsGrid } from "@ahoi-world/molecules";
 import Link from "next/link";
 import { getImage } from "@ahoi-world/lib/utils/get-image";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { getUserPlaylistData } from "@ahoi-world/lib/playlists";
 import { Video } from "@ahoi-world/types/Video";
+import { UserContent } from "@ahoi-world/molecules";
 
 type Props = {
   profile: User;
@@ -41,16 +41,11 @@ const contentPageOptions = Object.entries(contentPages).map(([key, value]) => ({
 
 export function UserProfile({ profile }: Props) {
   const [user, setUser] = useState<User>(profile);
-  const [activeContentPage, setActiveContentPage] = useState<ContentPage>(ContentPage.BLOGS);
-  const [activePlaylist, setActivePlaylist] = useState<string>("");
-  const [currentlyPlaying, setPlaying] = useState<string>("");
-
-  const [loadingVideos, setLoadingVideos] = useState(true);
-  const [videos, setVideos] = useState<Video[]>([]);
+  const [activeContentPage, setActiveContentPage] = useState<ContentPage | null>(null);
+  const [currentVideo, setCurrentVideo] = useState<Video | null>(null);
 
   const searchParams = useSearchParams();
   const content = searchParams.get("content") as ContentPage ?? ContentPage.BLOGS;
-  const searchedPlaylist = searchParams.get("playlist");
 
   const { user: currentUser } = useAuthContext();
   const router = useRouter();
@@ -62,8 +57,6 @@ export function UserProfile({ profile }: Props) {
   const showDetails = showHeadline || showBio;
   const showEmailButton = owner || (user.profileOptions.showEmailButton && !!user.email);
   const emailButtonDisabled = !user.profileOptions.showEmailButton;
-
-  const currentVideo = videos.find((video) => video.id === currentlyPlaying);
 
   const toggleShowEmailButton = async (currentFlag: boolean) => {
     if (owner) {
@@ -91,44 +84,11 @@ export function UserProfile({ profile }: Props) {
     router.push(`${pathname}?content=${page}`);
   };
 
-  const selectVideo = useCallback((id: string) => {
-		if (currentlyPlaying !== id) {
-			setPlaying(id);
-		}
-	}, [currentlyPlaying]);
-
-  const loadVideos = useCallback(async (id: string) => {
-    console.log("loading videos")
-    const { videos: videoList } = await getUserPlaylistData(id);
-    console.log({videoList})
-    setVideos(videoList);
-    setLoadingVideos(false);
-  }, []);
-
-  useEffect(() => {
-    if (activePlaylist !== searchedPlaylist) {
-      
-      if (!!searchedPlaylist) {
-        loadVideos(searchedPlaylist);
-        setActivePlaylist(searchedPlaylist);
-      } else {
-        setActivePlaylist("");
-        setVideos([]);
-      }
-    }
-  }, [searchedPlaylist, activePlaylist, loadVideos]);
-
-  useEffect(() => {
-    console.log("user changed");
-  }, [currentUser]);
-
   useEffect(() => {
     if (content !== activeContentPage) {
       setActiveContentPage(content);
     }
   }, [content, activeContentPage]);
-
-  console.log({activePlaylist})
 
   return (
     <div className={styles.container}>
@@ -196,28 +156,7 @@ export function UserProfile({ profile }: Props) {
 
           <section className={styles.content}>
             <Selector activeOption={activeContentPage} options={contentPageOptions} onSelect={changeContentPage} />
-            <div className={styles.contentGrid}>
-              {activeContentPage === ContentPage.ALBUMS && (
-                <AlbumGrid />
-              )}
-              {activeContentPage === ContentPage.BLOGS && (
-                <BlogGrid user={user} />
-              )}
-              {activeContentPage === ContentPage.PLAYLISTS && !activePlaylist && (
-                <PlaylistsGrid user={user} owner={owner} />
-              )}
-              {activeContentPage === ContentPage.PLAYLISTS && !!activePlaylist && (
-                <PlaylistGrid
-                  user={user}
-                  owner={owner}
-                  playlist={activePlaylist}
-                  videos={videos}
-                  loading={loadingVideos}
-                  currentlyPlaying={currentlyPlaying}
-                  selectVideo={selectVideo}
-                />
-              )}
-            </div> 
+            <UserContent owner={owner} user={user} activePage={activeContentPage} setCurrent={setCurrentVideo} />
           </section>
       </Page>
     </div>

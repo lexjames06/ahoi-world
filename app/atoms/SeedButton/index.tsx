@@ -27,7 +27,6 @@ export function SeedButton({ option, userId = null, label }: Props) {
 		})
       .then((res) => res.json())
       .catch((error) => {
-        console.log("seed error: ", error);
         return {
           message: "ERROR",
           error,

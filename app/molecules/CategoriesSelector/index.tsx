@@ -13,7 +13,6 @@ export function CategoriesSelector({ category, categories, loading = false }: Pr
   const router = useRouter();
 
   const onCategoryClick = (category: string): void => {
-    console.log({category})
 		if (category === "all") {
 			router.push("/posts");
       return;

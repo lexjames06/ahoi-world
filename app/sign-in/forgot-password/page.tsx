@@ -64,8 +64,6 @@ export default function ForgotPassword() {
 
 		const userError = await sendResetPasswordEmail(email);
 
-		console.log({ userError });
-
 		if (userError?.hasError) {
 			setErrors({ [userError.path]: { _errors: [userError.message] } });
 			setLoading(false);

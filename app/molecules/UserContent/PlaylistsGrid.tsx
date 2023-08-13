@@ -39,8 +39,6 @@ export function PlaylistsGrid({ user, owner }: Props) {
 		);
   }
 
-  console.log({pathname})
-
 	return (
     <div className={styles.tiles}>
 		  <div className={styles.grid}>

@@ -26,9 +26,6 @@ export function CurrentlyPlaying({ currentVideo }: Props) {
     ? `${playerInfo.title} | ${playerInfo.author}`
     : null;
 
-  console.log({tickerInfo});
-  console.log({length: tickerInfo?.length});
-
   function onPlayerReady(event: YouTubeEvent) {
     const youtubePlayer = event.target;
 

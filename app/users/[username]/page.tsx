@@ -6,9 +6,7 @@ import { UserProfile } from "@ahoi-world/organisms/user-profile/user-profile";
 
 export default async function Profile({ params }: { params: { username: string } }) {
   const { username } = params;
-  console.log({username})
   const userProfile = await getUserProfileByUsername(username);
-  console.log({userProfile})
 
   if (!userProfile) {
     return (

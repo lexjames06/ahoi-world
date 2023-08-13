@@ -3,10 +3,8 @@ import { forgotPasswordSchema } from "./utils/zod-schema";
 
 export async function POST(req: Request, _res: Response) {
   const body = await req.json();
-  console.log({body});
   
   const response = forgotPasswordSchema.safeParse(body);
-  console.log({response});
 
   if (!response.success) {
     const errors = response.error.format();

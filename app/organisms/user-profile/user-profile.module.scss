@@ -128,19 +128,6 @@
       }
     }
   }
-
-  .content {
-    .contentGrid {
-      display: flex;
-      padding: 1rem;
-      width: auto;
-      background-color: var(--user-profile-sidebar-background);
-
-      &::-webkit-scrollbar {
-        display: none;
-      }
-    }
-  }
 }
 
 @media (min-width: 720px) {

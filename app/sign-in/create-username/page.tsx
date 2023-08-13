@@ -74,8 +74,6 @@ export default function CreateUsername() {
 
 		const userError = await updateUser(user, { username });
 
-		console.log({ userError });
-
 		if (isUserError(userError) && userError.hasError) {
 			setErrors({ [userError.path]: { _errors: [userError.message] } });
 			setLoading(false);

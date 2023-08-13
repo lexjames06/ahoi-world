@@ -1,4 +1,4 @@
-export { AlbumGrid, BlogGrid, PlaylistGrid, PlaylistsGrid } from "./ContentGrid";
+export { UserContent } from "./UserContent";
 export { CategoriesSelector } from "./CategoriesSelector";
 export { Menu } from "./Menu";
 export { MobileMenu } from "./MobileMenu";

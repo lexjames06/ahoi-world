@@ -57,8 +57,6 @@ export function PlaylistGrid({ user, owner, playlist, currentlyPlaying, videos, 
 
 	const name = user.playlists.find((list) => list.id === playlist)?.name;
 
-	console.log({videos})
-
 	return (
 		<div className={styles.playlist}>
 			<h2>{name}</h2>

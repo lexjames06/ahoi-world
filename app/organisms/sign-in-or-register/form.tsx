@@ -71,15 +71,13 @@ export function Form({ type }: Props) {
 
 		if (data.error) {
 			const filteredErrors = Object.entries(data.error.errors).reduce((filtered: Errors, [key, value]) => {
-				console.log({key, value})
 				if (fieldKeys.includes(key)) {
-					console.log("included")
 					return {
 						...filtered,
 						[key]: value,
 					};
 				}
-				console.log("not included")
+
 				return filtered;
 			}, {});
 
