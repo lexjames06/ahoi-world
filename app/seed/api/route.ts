@@ -27,10 +27,10 @@ export async function POST(request: Request) {
   }
 
   if (option === SeedOptions.ALL || option === SeedOptions.PLAYLISTS) {
-    const error = await uploadPlaylistsVideos(userId);
-    if (error) {
+    const errors = await uploadPlaylistsVideos(userId);
+    if (errors) {
       return NextResponse.json({
-        error: { message: "Invalid Request", errors: [error] },
+        error: { message: "Invalid Request", errors },
       }, {
         status: 400,
       });
