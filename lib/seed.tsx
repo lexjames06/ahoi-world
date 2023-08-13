@@ -175,7 +175,6 @@ async function addPlaylistsToUser(userId: string, playlists: Video[][]) {
 async function writeMusicVideos(playlists: Video[][]) {
 	const log: Record<string, any> = {};
 	log["original_data"] = playlists;
-	return log;
 	try {
 		playlists.forEach(async (playlist, index) => {
 			log[`playlist_${index}`] = playlist;
@@ -183,7 +182,7 @@ async function writeMusicVideos(playlists: Video[][]) {
 				log[`video_${index}`] = video;
 				const docRef = doc(firestore, "musicVideos", video.id);
 				log[`video_${index}_docRef`] = docRef;
-				await setDoc(docRef, video);
+				// await setDoc(docRef, video);
 			});
 
 			console.log(`written playlist to database with ${playlist.length} videos`);
