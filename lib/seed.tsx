@@ -207,9 +207,6 @@ export async function uploadPlaylistsVideos(userId?: string) {
 		const playlistFolderPath = path.join(playlistsDirectory, playlistFolder);
 		
 		const videoFolders = fs.readdirSync(playlistFolderPath);
-		// REMOVE
-		return playlists;
-		// REMOVE
 
 		const allVideosData = videoFolders.reduce((videos: Video[], videoFolder) => {
 			const folderPath = path.join(playlistFolderPath, videoFolder);
@@ -224,6 +221,10 @@ export async function uploadPlaylistsVideos(userId?: string) {
 				if (!isImageFile(filename)) {
 					return;
 				}
+
+				// REMOVE
+				return;
+				// REMOVE
 	
 				const storagePath = path.join("images/", videoFolder, filename);
 				const filePath = path.join(folderPath, filename);
@@ -232,6 +233,10 @@ export async function uploadPlaylistsVideos(userId?: string) {
 	
 				uploadImage(storagePath, file);
 			});
+
+			// REMOVE
+			return videos;
+			// REMOVE
 	
 			// Read markdown file as string
 			const videoFilePath = path.join(folderPath, "details.md");
