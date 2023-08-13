@@ -33,7 +33,7 @@ export function UserContent({ owner, user, activePage, setCurrent }: Props) {
 			setPlaying(id);
       setCurrent(currentVideo);
 		}
-	}, [currentlyPlaying]);
+	}, [currentlyPlaying, videos]);
 
   const loadVideos = useCallback(async (id: string) => {
     const { videos: videoList } = await getUserPlaylistData(id);
