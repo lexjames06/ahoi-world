@@ -174,6 +174,7 @@ async function addPlaylistsToUser(userId: string, playlists: Video[][]) {
 
 async function writeMusicVideos(playlists: Video[][]) {
 	const log: Record<string, any> = {};
+	log["original_data"] = playlists;
 	try {
 		playlists.forEach(async (playlist, index) => {
 			log[`playlist_${index}`] = playlist;
@@ -192,6 +193,8 @@ async function writeMusicVideos(playlists: Video[][]) {
 		} else {
 			console.log(`All videos in the playlist have been written to the database`);
 		}
+
+		return log;
 	} catch (error) {
 		return log;
 	}
