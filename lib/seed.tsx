@@ -231,10 +231,6 @@ export async function uploadPlaylistsVideos(userId?: string) {
 				uploadImage(storagePath, file);
 			});
 
-			// REMOVE
-			return videos;
-			// REMOVE
-
 			// Read markdown file as string
 			const videoFilePath = path.join(folderPath, "details.md");
 			const fileContents = fs.readFileSync(videoFilePath, "utf-8");
