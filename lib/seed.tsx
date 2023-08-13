@@ -205,7 +205,7 @@ export async function uploadPlaylistsVideos(userId?: string) {
 			return playlists;
 		}
 		const playlistFolderPath = path.join(playlistsDirectory, playlistFolder);
-		
+
 		const videoFolders = fs.readdirSync(playlistFolderPath);
 
 		const allVideosData = videoFolders.reduce((videos: Video[], videoFolder) => {
@@ -217,7 +217,7 @@ export async function uploadPlaylistsVideos(userId?: string) {
 				if (filename === ".DS_Store") {
 					return;
 				}
-	
+
 				if (!isImageFile(filename)) {
 					return;
 				}
@@ -227,31 +227,28 @@ export async function uploadPlaylistsVideos(userId?: string) {
 				const filePath = path.join(folderPath, filename);
 				
 				const file = fs.readFileSync(filePath);
-				// REMOVE
-				return;
-				// REMOVE
-	
+
 				uploadImage(storagePath, file);
 			});
 
 			// REMOVE
 			return videos;
 			// REMOVE
-	
+
 			// Read markdown file as string
 			const videoFilePath = path.join(folderPath, "details.md");
 			const fileContents = fs.readFileSync(videoFilePath, "utf-8");
-	
+
 			// Use gray-matter to parse the post metadata section
 			const matterResult = matter(fileContents);
-	
+
 			const video: Video = {
 				id: matterResult.data.videoId,
 				thumbnail: matterResult.data.thumbnail,
 				playlistId: matterResult.data.playlistId,
 				playlistName: matterResult.data.playlistName,
 			};
-	
+
 			return [...videos, video];
 		}, []);
 
