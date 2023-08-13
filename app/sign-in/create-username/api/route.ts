@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { createUsernameSchema } from "../utils/zod-schema";
-import { isUsernameAvailable, updateUser } from "@ahoi-world/lib/users";
+import { isUserError, isUsernameAvailable, updateUser } from "@ahoi-world/lib/users";
 
 export async function POST(req: Request, _res: Response) {
   const body = await req.json();
@@ -37,7 +37,7 @@ export async function POST(req: Request, _res: Response) {
 
   const updateResponse = await updateUser(body.user, { username });
 
-  if (updateResponse?.hasError) {
+  if (isUserError(updateResponse) && updateResponse.hasError) {
     const errors = {
       [updateResponse.path]: {
         _errors: [updateResponse.message],
