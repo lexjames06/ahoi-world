@@ -1,5 +1,6 @@
 export type Video = {
 	id: string;
 	thumbnail: string;
-	playlist: string;
+	playlistId: string;
+	playlistName: string;
 };

@@ -1,11 +1,15 @@
 import Link from "next/link";
-import { getSortedFirebasePostsData } from "@ahoi-world/lib/posts";
+import { getSortedPostsData } from "@ahoi-world/lib/posts";
 
 import { SmallBlogCardList } from "./SmallBlogCardList";
 import styles from "./page.module.scss";
-import { CategoriesSelector, LargeBlogCard, SeedButton } from "@ahoi-world/atoms";
+import { Selector, LargeBlogCard, SeedButton } from "@ahoi-world/atoms";
 import { Page } from "@ahoi-world/templates";
 import { SeedOptions } from "@ahoi-world/types/Seed";
+import { redirect } from "next/navigation";
+import { SelectorOption } from "@ahoi-world/atoms/Selector";
+import { CategoriesSelector } from "@ahoi-world/molecules";
+import { NoPosts } from "./NoPosts";
 
 interface Props {
 	searchParams?: Record<"category", string>;
@@ -24,14 +28,11 @@ export function generateMetadata({ searchParams }: Props) {
 export default async function Posts(props: Props) {
 	const { searchParams } = props;
 	const category = searchParams?.category;
-	const { posts, categories } = await getSortedFirebasePostsData(category);
+	const { posts, categories } = await getSortedPostsData(category);
 
 	if (!posts.length) {
 		return (
-			<main className={styles.noData}>
-				<span className={styles.noPosts}>There are no posts available at this time</span>
-				<SeedButton option={SeedOptions.BLOGS} />
-			</main>
+			<NoPosts />
 		);
 	}
 
@@ -39,7 +40,7 @@ export default async function Posts(props: Props) {
 
 	return (
 		<Page>
-			<CategoriesSelector categories={categories} />
+			<CategoriesSelector categories={categories} category={category} />
 			<Link href={`/posts/${largeItemPost.path}`}>
 				<LargeBlogCard post={largeItemPost} />
 			</Link>

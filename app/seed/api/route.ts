@@ -18,16 +18,16 @@ export async function POST(request: Request) {
     });
   }
 
-  const { option } = response.data;
+  const { option, userId } = response.data;
 
   console.log(`seeding ${option} posts`);
 
   if (option === SeedOptions.ALL || option === SeedOptions.BLOGS) {
-    await uploadMarkdownBlogs();
+    await uploadMarkdownBlogs(userId);
   }
 
   if (option === SeedOptions.ALL || option === SeedOptions.PLAYLISTS) {
-    await uploadPlaylistsVideos();
+    await uploadPlaylistsVideos(userId);
   }
 
   return NextResponse.json({ message: `successfully seeded ${option} data` });

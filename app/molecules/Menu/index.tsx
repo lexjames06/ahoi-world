@@ -11,6 +11,7 @@ import { signout } from "@ahoi-world/lib/users";
 import { useFeatureFlagContext } from "@ahoi-world/providers/FeatureFlag";
 import { Option, navOptions } from "@ahoi-world/templates/constants";
 import { UserNavIcon } from "../UserNavIcon";
+import { Toggle } from "@ahoi-world/atoms";
 
 type Props = {
 	show: boolean;
@@ -50,15 +51,9 @@ export function Menu({ show, toggleMenu }: Props) {
 				<div className={styles.menu}>
 					<div className={`${styles.option} ${styles.darkmode}`} data-preventclose={true} data-bottomdivider={true}>
 						<span>Dark Mode</span>
-						<div
-							className={styles.toggle}
-							onClick={() => toggleTheme(currentTheme ?? "dark")}
-							data-toggled={currentTheme === "dark"}
-							data-preventclose={true}
-						>
-							<div className={styles.toggleThumb} data-preventclose={true} />
-						</div>
+						<Toggle onClick={() => toggleTheme(currentTheme ?? "dark")} toggled={currentTheme === "dark"} />
 					</div>
+
 					{options.map((option, index) =>
 						option ? (
 							<Link
@@ -77,7 +72,7 @@ export function Menu({ show, toggleMenu }: Props) {
 						)
 					)}
 
-					{!!auth && auth.enabled && <UserNavIcon user={user} />}
+					{!!auth && auth.enabled && <UserNavIcon user={user} isDesktop={true} />}
 				</div>
 			</div>
 		</div>

@@ -1,5 +1,5 @@
-import UserAccessForm from "../pages/sign-in-or-register/form-layout";
-import { FormType } from "../pages/sign-in-or-register/types";
+import UserAccessForm from "../organisms/sign-in-or-register/form-layout";
+import { FormType } from "../organisms/sign-in-or-register/types";
 
 export function generateMetadata() {
 	return { title: "Sign In" };

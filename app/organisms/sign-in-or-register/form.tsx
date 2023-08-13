@@ -1,7 +1,7 @@
 "use client";
 import { useState } from "react";
 import Link from "next/link";
-import { Field, FormType } from "./types";
+import { Field, FormType, UserFormField } from "./types";
 import { createUserWithEmailPassword, signInWithEmailPassword } from "@ahoi-world/lib/users";
 import { LoadingSpinner, UserFormInput } from "@ahoi-world/atoms";
 import styles from "./form.module.scss";
@@ -38,13 +38,13 @@ export function Form({ type }: Props) {
 	const [showPassword, setShowPassword] = useState(false);
 	const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
-	const deleteError = (field: Field) => {
+	const deleteError = (field: UserFormField) => {
 		const errorsCopy = errors;
 		delete errorsCopy[field];
 		setErrors(errorsCopy);
 	};
 
-	const addError = (field: Field, message:string) => {
+	const addError = (field: UserFormField, message:string) => {
 		const updatedErrors = errors;
 		updatedErrors[field] = { _errors: [message] };
 		setErrors(updatedErrors);
@@ -93,7 +93,7 @@ export function Form({ type }: Props) {
 			: await createUserWithEmailPassword(email, password);
 
 		if (userResponse.hasError) {
-			addError(userResponse.path, userResponse.message);
+			addError(userResponse.path as UserFormField, userResponse.message);
 			setLoading(false);
 			return;
 		}
@@ -103,31 +103,31 @@ export function Form({ type }: Props) {
 
   const handleValueChange = (
     setter: React.Dispatch<React.SetStateAction<string>>,
-    name: Field,
+    name: UserFormField,
     value: string
   ): void => {
     if (errors[name]) {
 			deleteError(name);
     }
 
-		if (name === Field.PASSWORD) {
+		if (name === UserFormField.PASSWORD) {
 			if (value === confirmPassword && !!errors.confirmPassword) {
-				deleteError(Field.CONFIRM_PASSWORD);
+				deleteError(UserFormField.CONFIRM_PASSWORD);
 			} else if (value !== confirmPassword && confirmPassword && !errors.confirmPassword) {
-				addError(Field.CONFIRM_PASSWORD, confirmPasswordError);
+				addError(UserFormField.CONFIRM_PASSWORD, confirmPasswordError);
 			}
 		}
 
-		if (name === Field.CONFIRM_PASSWORD) {
+		if (name === UserFormField.CONFIRM_PASSWORD) {
 			if (value === password && !!errors.confirmPassword) {
 				deleteError(name);
 			} else if (value !== password && !errors.confirmPassword) {
-				addError(Field.CONFIRM_PASSWORD, confirmPasswordError);
+				addError(UserFormField.CONFIRM_PASSWORD, confirmPasswordError);
 			}
 		}
 
 		if (errors.form) {
-			deleteError(Field.FORM);
+			deleteError(UserFormField.FORM);
 		}
 
     setter(value);
@@ -146,7 +146,7 @@ export function Form({ type }: Props) {
 				value={email}
 				hasError={!!errors.email}
 				errorMessages={errors.email?._errors ?? []}
-				onChange={(e) => handleValueChange(setEmail, Field.EMAIL, e.currentTarget.value)}
+				onChange={(e) => handleValueChange(setEmail, UserFormField.EMAIL, e.currentTarget.value)}
 			/>
 
 			<UserFormInput
@@ -156,7 +156,7 @@ export function Form({ type }: Props) {
 				value={password}
 				hasError={!!errors.password}
 				errorMessages={errors.password?._errors ?? []}
-				onChange={(e) => handleValueChange(setPassword, Field.PASSWORD, e.currentTarget.value)}
+				onChange={(e) => handleValueChange(setPassword, UserFormField.PASSWORD, e.currentTarget.value)}
 			/>
 
       {type === FormType.REGISTER && (
@@ -167,7 +167,7 @@ export function Form({ type }: Props) {
 					value={confirmPassword}
 					hasError={!!errors.confirmPassword}
 					errorMessages={errors.confirmPassword?._errors ?? []}
-					onChange={(e) => handleValueChange(setConfirmPassword, Field.CONFIRM_PASSWORD, e.currentTarget.value)}
+					onChange={(e) => handleValueChange(setConfirmPassword, UserFormField.CONFIRM_PASSWORD, e.currentTarget.value)}
 				/>
       )}
 

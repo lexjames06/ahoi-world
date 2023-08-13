@@ -1,4 +1,4 @@
-export { CategoriesSelector } from "./CategoriesSelector";
+export { Selector } from "./Selector";
 export { CurrentlyPlaying } from "./CurrentlyPlaying";
 export { FloatingBackButton } from "./FloatingBackButton";
 export { LargeBlogCard } from "./LargeBlogCard";
@@ -7,5 +7,6 @@ export { PlaylistTile } from "./PlaylistTile";
 export { SeedButton } from "./SeedButton";
 export { ShareIcon } from "./ShareIcon";
 export { SmallBlogCard } from "./SmallBlogCard";
+export { Toggle } from "./Toggle";
 export { UserFormInput } from "./Input";
 export { UserIcon } from "./UserIcon";

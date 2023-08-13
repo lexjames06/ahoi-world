@@ -1,0 +1,41 @@
+.grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  width: fit-content;
+
+  .card {
+    width: 100%;
+    cursor: pointer;
+    background-color: var(--global-background);
+    height: fit-content;
+  }
+
+  .listEnd {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 4rem 0 2rem;
+    color: var(--global-inactive-text);
+    font-weight: 600;
+    white-space: break-spaces;
+
+    .username {
+      display: inline;
+      color: var(--global-accent);
+      text-align: inherit;
+    }
+  }
+}
+
+@media (min-width: 720px) {
+  .grid {
+    .card {
+      max-width: 18rem;
+      width: 18rem;
+      background-color: var(--user-profile-blog-card-background);
+      border-radius: 0.5rem;
+    }
+  }
+}

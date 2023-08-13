@@ -11,13 +11,14 @@
 	gap: 2rem;
 	padding: 1rem;
 	width: max-content;
+	height: 3.5rem;
 }
 
 .skeleton_container {
 	@extend .overflowContainer;
 }
 
-.category {
+.option {
 	font-size: 1rem;
 	font-weight: 700;
 	text-transform: capitalize;
@@ -35,8 +36,8 @@
 	}
 }
 
-.skeleton_category {
-	@extend .category;
+.skeleton_option {
+	@extend .option;
 
 	height: 1.5rem;
 	width: 5rem;
@@ -45,7 +46,7 @@
 }
 
 @media (min-width: 720px) {
-	.category {
+	.option {
 		font-size: 1rem;
 	}
 }

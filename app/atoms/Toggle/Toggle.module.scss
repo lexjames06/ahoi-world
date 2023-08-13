@@ -1,0 +1,37 @@
+.toggle {
+	$toggle-thumg-size: 1.1rem;
+	$toggle-thumb-padding: 0.15rem;
+
+	position: relative;
+	align-items: center;
+	height: 1.4rem;
+	width: 2.8rem;
+	border-radius: 1rem;
+	background-color: var(--toggle-inactive);
+	transition-property: background-color;
+	transition-duration: 0.2s;
+	transition-timing-function: ease-in-out;
+  cursor: pointer;
+
+	&[data-toggled="true"] {
+		background-color: var(--toggle-active);
+
+		.toggleThumb {
+			left: calc(100% - $toggle-thumb-padding - $toggle-thumg-size);
+		}
+	}
+
+	.toggleThumb {
+		position: absolute;
+		top: $toggle-thumb-padding;
+		left: $toggle-thumb-padding;
+		display: flex;
+		height: $toggle-thumg-size;
+		width: $toggle-thumg-size;
+		border-radius: 50%;
+		background-color: var(--toggle-thumb);
+		transition-property: all;
+		transition-duration: 0.2s;
+		transition-timing-function: ease-in-out;
+	}
+}

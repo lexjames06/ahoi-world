@@ -7,12 +7,14 @@ import { ConvertTime } from "./utils/convert-time";
 import { generateBlogPostId, generateUserId } from "./utils/generate-UUIDV4";
 import { getEndOfUUIDV4 } from "./utils/get-end-of-UUIDV4";
 import { ref, uploadBytes } from "firebase/storage";
+import { Video } from "@ahoi-world/types/Video";
+import { UserPlaylist } from "@ahoi-world/types/UserTypes";
 
 // <-- BLOGS -->
 
 const postsDirectory = path.join(process.cwd(), "blogposts");
 
-function formatBlogForWrite(matterResult: matter.GrayMatterFile<string>, folder: string) {
+function formatBlogForWrite(matterResult: matter.GrayMatterFile<string>, folder: string, giveUserId?: string) {
 	const body = matterResult.content.split("\n").reduce((body: string[], block: string) => {
 		if (block.startsWith("![")) {
 			const paths = block.split("](");
@@ -22,7 +24,7 @@ function formatBlogForWrite(matterResult: matter.GrayMatterFile<string>, folder:
 		return block ? [...body, block] : body;
 	}, []);
 
-	const userId = generateUserId(matterResult.data.userId);
+	const userId = giveUserId ?? generateUserId(matterResult.data.userId);
 	const id = generateBlogPostId(matterResult.data.id);
 	const imagePath = matterResult.data.image.slice(1);
 
@@ -81,7 +83,7 @@ async function uploadImage(storagePath: string, file: Buffer) {
 		.catch((error) => console.log({uploadImageError: error}));
 }
 
-export async function uploadMarkdownBlogs() {
+export async function uploadMarkdownBlogs(userId?: string) {
 	const folders = fs.readdirSync(postsDirectory);
 	const categories: string[] = [];
 
@@ -119,7 +121,7 @@ export async function uploadMarkdownBlogs() {
 		const matterResult = matter(fileContents);
 		categories.push(matterResult.data.category);
 
-		const blogPost = formatBlogForWrite(matterResult, folder);
+		const blogPost = formatBlogForWrite(matterResult, folder, userId);
 
 		return [...posts, blogPost];
 	}, []);
@@ -138,19 +140,42 @@ function isImageFile(filename: string) {
 
 const playlistsDirectory = path.join(process.cwd(), "playlists");
 
-async function writePlaylists(playlists: string[]) {
-	const docRef = doc(firestore, "playlists", "all");
-	await setDoc(docRef, {
-		list: arrayUnion(...playlists),
+async function addPlaylistsToUser(userId: string, playlists: Video[][]) {
+	const userPlaylists: UserPlaylist[] = [];
+	console.log(`gathering list of playlists to add to the user with ID ${userId}`);
+
+	playlists.forEach(async (playlist) => {
+		const userPlaylist: Partial<UserPlaylist> = {};
+
+		playlist.forEach(async (video, index) => {
+			if (index !== 0) {
+				return;
+			}
+
+			userPlaylist.id = video.playlistId;
+			userPlaylist.name = video.playlistName;
+			userPlaylist.thumbnail = video.thumbnail;
+
+			console.log(`adding the ${userPlaylist.name} to the list`);
+
+			userPlaylists.push(userPlaylist as UserPlaylist);
+		});
 	});
 
-	console.log(`added ${playlists.length} playlists to the database`);
+	const docRef = doc(firestore, "users", userId);
+	await updateDoc(docRef, { playlists: userPlaylists });
+
+	if (playlists.length > 1) {
+		console.log(`written ${userPlaylists.length} playlists to the user with ID ${userId}`);
+	} else {
+		console.log(`written ${userPlaylists.length} playlist to the user with ID ${userId}`);
+	}
 }
 
-async function writeMusicVideos(playlists: any[]) {
-	playlists.forEach(async (playlist: any[]) => {
+async function writeMusicVideos(playlists: Video[][]) {
+	playlists.forEach(async (playlist) => {
 		playlist.forEach(async (video) => {
-			const docRef = doc(firestore, "playlists", video.id);
+			const docRef = doc(firestore, "music-videos", video.id);
 			await setDoc(docRef, video);
 		});
 
@@ -164,11 +189,10 @@ async function writeMusicVideos(playlists: any[]) {
 	}
 }
 
-export async function uploadPlaylistsVideos() {
+export async function uploadPlaylistsVideos(userId?: string) {
 	const folders = fs.readdirSync(playlistsDirectory);
-	const playlistsList: string[] = [];
 
-	const allPlaylistsData = folders.reduce((playlists: any[], playlistFolder) => {
+	const allPlaylistsData = folders.reduce((playlists: Video[][], playlistFolder) => {
 		if (playlistFolder === ".DS_Store") {
 			return playlists;
 		}
@@ -177,7 +201,7 @@ export async function uploadPlaylistsVideos() {
 
 		const videoFolders = fs.readdirSync(playlistFolderPath);
 
-		const allVideosData = videoFolders.reduce((videos: any[], videoFolder) => {
+		const allVideosData = videoFolders.reduce((videos: Video[], videoFolder) => {
 			const folderPath = path.join(playlistFolderPath, videoFolder);
 
 			// images
@@ -206,13 +230,12 @@ export async function uploadPlaylistsVideos() {
 			// Use gray-matter to parse the post metadata section
 			const matterResult = matter(fileContents);
 	
-			const video = {
+			const video: Video = {
 				id: matterResult.data.videoId,
 				thumbnail: matterResult.data.thumbnail,
-				playlist: matterResult.data.playlist,
+				playlistId: matterResult.data.playlistId,
+				playlistName: matterResult.data.playlistName,
 			};
-
-			playlistsList.push(matterResult.data.playlist);
 	
 			return [...videos, video];
 		}, []);
@@ -220,8 +243,9 @@ export async function uploadPlaylistsVideos() {
 		return [...playlists, allVideosData];
 	}, []);
 
-	const uniquePlaylists = Array.from(new Set(playlistsList));
-
-	writePlaylists(uniquePlaylists);
 	writeMusicVideos(allPlaylistsData);
+
+	if (userId) {
+		addPlaylistsToUser(userId, allPlaylistsData);
+	}
 }

@@ -10,9 +10,9 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  cursor: pointer;
   transition: 0.1s ease-in-out;
   overflow: hidden;
+  cursor: pointer;
 
   svg {
     transform: scale(1.75);
@@ -20,7 +20,11 @@
     pointer-events: none;
   }
 
-  &:hover, &[data-active="true"] {
+  &[data-isclickable="false"] {
+    cursor: default;
+  }
+
+  &[data-isclickable="true"]:hover {
     background-color: var(--button-background-hover);
     color: var(--button-text);
   }

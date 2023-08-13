@@ -8,4 +8,12 @@ export enum Field {
   PASSWORD = "password",
   CONFIRM_PASSWORD = "confirmPassword",
   FORM = "form",
+  USERNAME = "username",
+}
+
+export enum UserFormField {
+	EMAIL = Field.EMAIL,
+	PASSWORD = Field.PASSWORD,
+	CONFIRM_PASSWORD = Field.CONFIRM_PASSWORD,
+	FORM = Field.FORM,
 }

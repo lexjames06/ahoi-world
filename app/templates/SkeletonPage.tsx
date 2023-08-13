@@ -12,3 +12,11 @@ export function SkeletonPage({ children }: SkeletonPageProps) {
     </Page>
   );
 }
+
+export function SkeletonModule({ children }: SkeletonPageProps) {
+  return (
+    <div className={styles.skeleton}>
+      {children}
+    </div>
+  );
+}

@@ -1,0 +1,11 @@
+@import "./theme";
+
+$button-theme-light: (
+  'blog-card-background': $white,
+  'blog-card-background-hover': $grey-4,
+);
+
+$button-theme-dark: (
+  'blog-card-background': $white,
+  'blog-card-background-hover': $white,
+);

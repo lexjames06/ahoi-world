@@ -28,6 +28,14 @@ export default function UserAccessForm({ type, header, subHeader, thirdPartyLogi
 	const { user } = useAuthContext();
 	const { auth } = useFeatureFlagContext();
 
+	console.log({auth})
+	console.log({user})
+
+	if (auth && auth.enabled && user && !user.username) {
+		console.log("redirect to create username");
+		redirect("/sign-in/create-username");
+	}
+
 	if (user || !auth || !auth.enabled) {
 		redirect("/");
 	}

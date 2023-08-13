@@ -6,20 +6,22 @@ $playlist-theme-light: (
 	"tile-shadow": $black-shadow,
 	"button-shadow": $black-shadow,
 	"current-background": $black-2,
-	"play-pause-background": $green,
-	"play-pause-icon": $black-2,
-	"author": $green,
+	"play-pause-background": $green-1,
+	"play-pause-icon": $white,
+	"author": $green-1,
 	"title": $white,
 	"desktop": $desktop,
+	"ticker-text": $white,
 );
 
 $playlist-theme-dark: (
 	"tile-shadow": $white,
 	"button-shadow": $black-shadow,
 	"current-background": $khaki,
-	"play-pause-background": $white,
-	"play-pause-icon": $dark-green,
+	"play-pause-background": $green-1,
+	"play-pause-icon": $white,
 	"author": $grey-4,
 	"title": $white,
 	"desktop": $desktop,
+	"ticker-text": $white,
 );

@@ -1,5 +1,6 @@
 ---
 videoId: "1fueZCTYkpA"
 thumbnail: "/1fueZCTYkpA/thumbnail.jpg"
-playlist: "lofi"
+playlistId: "00ce2762-c710-40ba-8a0d-cf0a50db94ed"
+playlistName: "lofi"
 ---

@@ -22,8 +22,8 @@
     &:active, &:focus {
       border: 1px solid var(--input-border-active);
       outline: none;
-
     }
+
     &[data-errored="true"] {
       border-color: var(--input-error);
 

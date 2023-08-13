@@ -22,6 +22,13 @@ export function CurrentlyPlaying({ currentVideo }: Props) {
   const [playing, setPlaying] = useState<boolean>(true);
   const [loading, setLoading] = useState<boolean>(false);
 
+  const tickerInfo = !!playerInfo.title || !!playerInfo.author
+    ? `${playerInfo.title} | ${playerInfo.author}`
+    : null;
+
+  console.log({tickerInfo});
+  console.log({length: tickerInfo?.length});
+
   function onPlayerReady(event: YouTubeEvent) {
     const youtubePlayer = event.target;
 
@@ -102,11 +109,12 @@ export function CurrentlyPlaying({ currentVideo }: Props) {
     if (!loading) {
       setLoading(true);
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentVideo]);
 
   return (
-    <div className={styles.outerContainer} data-playing={playing}>
-      <div className={styles.innerContainer}>
+    <div className={styles.container} data-playing={playing}>
+      <div className={styles.video}>
         <Youtube
           videoId={currentVideo.id}
           opts={{
@@ -122,17 +130,21 @@ export function CurrentlyPlaying({ currentVideo }: Props) {
           onStateChange={onPlayerStateChange}
           style={{ display: "none" }}
         />
-        <span className={styles.thumbnail}>
-          <Image src={currentVideo.thumbnail} alt="Currently Playing" fill={true} />
-        </span>
-        <h2>{playerInfo.title}</h2>
-        <h3>{playerInfo.author}</h3>
-        <span className={styles.controller} onClick={togglePlaying}>
-          <button className={styles.playPause} disabled={loading}>
-            {loading ? <LoadingSpinner /> : playing ? <GiPauseButton /> : <GiPlayButton />}
-          </button>
-        </span>
       </div>
+      <span className={styles.thumbnail}>
+        <Image src={currentVideo.thumbnail} alt="Currently Playing" fill={true} />
+      </span>
+      <div className={styles.detailsTicker}>
+        {tickerInfo && (
+          <div className={styles.ticker} data-playing={playing}>
+            <span  className={styles.details}>{playerInfo.title} | {playerInfo.author}</span>
+            <span  className={styles.details}>{playerInfo.title} | {playerInfo.author}</span>
+          </div>
+        )}
+      </div>
+      <button className={styles.playPause} disabled={loading} onClick={togglePlaying}>
+        {loading ? <LoadingSpinner /> : playing ? <GiPauseButton /> : <GiPlayButton />}
+      </button>
     </div>
   );
 }

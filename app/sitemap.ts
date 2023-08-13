@@ -1,9 +1,9 @@
-import { getSortedFirebasePostsData } from "@ahoi-world/lib/posts";
+import { getSortedPostsData } from "@ahoi-world/lib/posts";
 
 export default async function sitemap() {
 	const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
 
-	const { posts } = await getSortedFirebasePostsData();
+	const { posts } = await getSortedPostsData();
 	const postUrls = posts?.map((post) => ({
 		url: `${BASE_URL}/posts/${post.path}`,
 		lastModified: new Date(),

@@ -9,6 +9,7 @@ import { UserIcon } from "@ahoi-world/atoms/UserIcon";
 import Link from "next/link";
 import { IconType } from "react-icons";
 import { User } from "@ahoi-world/types/UserTypes";
+import { usePathname } from "next/navigation";
 
 type UserMenuOption = {
   label: string;
@@ -48,6 +49,8 @@ type Props = {
 }
 
 export function UserNavMenu({ isOpen, user, closeMenu }: Props) {
+  const pathname = usePathname();
+
   const handleMenuToggle = useCallback((e: Event) => {
     const isMenu = (e.target as HTMLElement).getAttribute('data-ismenu');
       if (!isMenu && isOpen) {
@@ -83,6 +86,7 @@ export function UserNavMenu({ isOpen, user, closeMenu }: Props) {
   }
 
   const { displayName, username } = user;
+  const isUserProfile = pathname.includes("/users/") && pathname.split("/").length === 3;
 
   return (
     <div className={styles.outerContainer}>
@@ -90,9 +94,9 @@ export function UserNavMenu({ isOpen, user, closeMenu }: Props) {
         <div className={styles.userNavMenu} data-ismenu={true}>
           <div className={styles.mainMenu}>
             <span className={styles.header}>
-              <span className={styles.userIcon}>
-                <UserIcon user={user} size={2} />
-              </span>
+              <Link href={`/users/${username}`} data-ismenu={false} className={styles.userIcon} onClick={closeMenu}>
+                <UserIcon isClickable={!isUserProfile} user={user} size={2} />
+              </Link>
               {displayName && <span className={styles.displayName}>{displayName}</span>}
               {username && <span className={styles.username}>@{username}</span>}
             </span>

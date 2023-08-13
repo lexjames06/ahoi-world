@@ -3,38 +3,49 @@ import type { OptionalType, UUIDV4 } from "@ahoi-world/types/GeneralTypes";
 import type { User } from "@ahoi-world/types/UserTypes";
 import type { BlogPost } from "@ahoi-world/types/PostTypes";
 import type { Project } from "@ahoi-world/types/ProjectTypes";
+import { Photo } from "@ahoi-world/types/Photo";
 
 const generateUUIDV4 = <T extends OptionalType = undefined>(id?: string): UUIDV4<T> => {
-  const uuid = id ? id : uuidv4();
-  return uuid as UUIDV4<T>;
-}
+	const uuid = id ? id : uuidv4();
+	return uuid as UUIDV4<T>;
+};
 
 /**
  * Generate UUIDV4 User ID
- * 
+ *
  * @param id string (optional)
  * @returns UUIDV4<User>
  */
 export const generateUserId = (id?: string): UUIDV4<User> => {
-  return generateUUIDV4<User>(id);
-}
+	return generateUUIDV4<User>(id);
+};
 
 /**
  * Generate UUIDV4 Blog Post ID
- * 
+ *
  * @param id string (optional)
  * @returns UUIDV4<BlogPost>
  */
 export const generateBlogPostId = (id?: string): UUIDV4<BlogPost> => {
-  return generateUUIDV4<BlogPost>(id);
-}
+	return generateUUIDV4<BlogPost>(id);
+};
 
 /**
  * Generate UUIDV4 Project ID
- * 
+ *
  * @param id string (optional)
  * @returns UUIDV4<Project>
  */
 export const generateProjectId = (id?: string): UUIDV4<Project> => {
-  return generateUUIDV4<Project>(id);
-}
+	return generateUUIDV4<Project>(id);
+};
+
+/**
+ * Generate UUIDV4 Picture ID
+ *
+ * @param id string (optional)
+ * @returns UUIDV4<Picture>
+ */
+export const generatePhotoId = (id?: string): UUIDV4<Photo> => {
+	return generateUUIDV4<Photo>(id);
+};

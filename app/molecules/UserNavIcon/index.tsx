@@ -5,22 +5,30 @@ import { UserNavMenu } from "../UserNavMenu";
 import { UserIcon } from "@ahoi-world/atoms/UserIcon";
 import { User } from "@ahoi-world/types/UserTypes";
 
-export function UserNavIcon({ user }: { user: User | null }) {
+type Props = {
+  user: User | null;
+  isDesktop?: boolean;
+}
+
+export function UserNavIcon({ user, isDesktop = false }: Props) {
   const [showUserMenu, setShow] = useState(false);
 
   const toggleMenu = () => {
-    setShow((flag) => !flag);
+    if (isDesktop) {
+      setShow((flag) => !flag);
+    }
   };
 
   const closeMenu = () => {
-    console.log("closing");
-    setShow(false);
+    if (isDesktop) {
+      setShow(false);
+    }
   };
 
   return (
     <>
       <button className={styles.container} data-active={showUserMenu} onClick={toggleMenu}>
-        <UserIcon user={user} isMenu={true} />
+        <UserIcon isClickable={true} user={user} isMenu={true} />
       </button>
 
       {showUserMenu && (

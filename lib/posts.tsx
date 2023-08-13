@@ -5,6 +5,7 @@ import { ConvertTime } from "./utils/convert-time";
 import { generateBlogPostId, generateUserId } from "./utils/generate-UUIDV4";
 import { convertBlogImages, getBlogImages } from "./utils/get-blog-images";
 import { getImage } from "./utils/get-image";
+import { User } from "@ahoi-world/types/UserTypes";
 
 interface SortedPostsData {
 	posts: BlogPost[];
@@ -13,7 +14,7 @@ interface SortedPostsData {
 
 const SORT_ORDER = "desc";
 
-function convertFirestorePostToBlogPost(doc: DocumentData) {
+function convertDocToBlogPost(doc: DocumentData) {
 	const data = doc.data();
 
 	const imageUrl = getImage(data.imagePath ?? "");
@@ -37,21 +38,23 @@ function convertFirestorePostToBlogPost(doc: DocumentData) {
 	return post;
 }
 
-export async function getSortedFirebasePostsData(category?: string): Promise<SortedPostsData> {
+export async function getSortedPostsData(category?: string): Promise<SortedPostsData> {
 	const postsRef = collection(firestore, "posts");
 	const clause = category ? where("category", "==", category) : null;
-	const q = clause ? query(postsRef, clause, orderBy("date", SORT_ORDER)) : query(postsRef, orderBy("date", SORT_ORDER));
+	const q = clause
+		? query(postsRef, clause, orderBy("date", SORT_ORDER))
+		: query(postsRef, orderBy("date", SORT_ORDER));
 
 	const posts: BlogPost[] = [];
 
 	const querySnapshot = await getDocs(q);
 	querySnapshot.forEach((doc) => {
-		const post = convertFirestorePostToBlogPost(doc);
+		const post = convertDocToBlogPost(doc);
 		posts.push(post);
 	});
 
 	// Sort by date
-	posts.sort((a, b) => a.date > b.date ? (SORT_ORDER === "desc" ? -1 : 1) : (SORT_ORDER === "desc" ? 1 : -1));
+	posts.sort((a, b) => (a.date > b.date ? (SORT_ORDER === "desc" ? -1 : 1) : SORT_ORDER === "desc" ? 1 : -1));
 	const categoriesDoc = doc(firestore, "categories", "all");
 	const document = await getDoc(categoriesDoc);
 	const categories = document.data()?.list ?? [];
@@ -62,12 +65,22 @@ export async function getSortedFirebasePostsData(category?: string): Promise<Sor
 	};
 }
 
-export async function getFirebasePostData(path: string): Promise<BlogPost> {
+export async function getPostData(path: string): Promise<BlogPost> {
 	const postsRef = collection(firestore, "posts");
 	const q = query(postsRef, where("path", "==", path));
 	const querySnapshots = await getDocs(q);
 	const posts: BlogPost[] = [];
-	querySnapshots.forEach((doc) => posts.push(convertFirestorePostToBlogPost(doc)));
+	querySnapshots.forEach((doc) => posts.push(convertDocToBlogPost(doc)));
 
 	return posts?.[0];
+}
+
+export async function getUserBlogs(user: User): Promise<BlogPost[]> {
+	const postsRef = collection(firestore, "posts");
+	const q = query(postsRef, where("userId", "==", user.id));
+	const querySnapshots = await getDocs(q);
+	const posts: BlogPost[] = [];
+	querySnapshots.forEach((doc) => posts.push(convertDocToBlogPost(doc)));
+
+	return posts;
 }

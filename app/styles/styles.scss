@@ -1,6 +1,6 @@
 @import "./themes";
 
-:root {
+:root, ::backdrop {
 	@each $theme, $attributes in $active-theme {
 		@each $attribute, $value in $attributes {
 			--#{$theme}-#{$attribute}: #{$value};

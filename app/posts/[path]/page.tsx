@@ -3,7 +3,7 @@ import React from "react";
 import { notFound } from "next/navigation";
 import Image from "next/image";
 import getFormattedDate from "@ahoi-world/lib/getFormattedDate";
-import { getFirebasePostData, getSortedFirebasePostsData } from "@ahoi-world/lib/posts";
+import { getPostData, getSortedPostsData } from "@ahoi-world/lib/posts";
 import styles from "./page.module.scss";
 import { generateHeader, generateImage, generateOrderedList, prepareBodyForParse } from "./utils/blog-formatter";
 import { ShareIcon, SocialPlatform } from "@ahoi-world/atoms/ShareIcon";
@@ -13,7 +13,7 @@ import { Page } from "@ahoi-world/templates";
 // const authFeature = getFeatureFlag("auth");
 
 export async function generateStaticParams() {
-	const { posts } = await getSortedFirebasePostsData();
+	const { posts } = await getSortedPostsData();
 
 	return posts.map((post) => ({
 		path: post.path,
@@ -22,7 +22,7 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({ params }: { params: { path: string } }) {
 	const { path } = params;
-	const post = await getFirebasePostData(path);
+	const post = await getPostData(path);
 
 	if (!post) {
 		return {
@@ -55,7 +55,7 @@ export async function generateMetadata({ params }: { params: { path: string } })
 
 export default async function Post({ params }: { params: { path: string } }) {
 	const { path } = params;
-	const post = await getFirebasePostData(path);
+	const post = await getPostData(path);
 
 	const socialPlatforms: SocialPlatform[] = ["facebook", "linkedIn", "twitter", "share"];
 

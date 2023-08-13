@@ -1,0 +1,37 @@
+@import "./theme";
+
+$colors-theme-light: (
+  "black-1": $black-1,
+  "black-2": $black-2,
+  "black-shadow": $black-shadow,
+  "grey-1": $grey-1,
+  "grey-2": $grey-2,
+  "grey-3": $grey-3,
+  "grey-4": $grey-4,
+  "grey-shadow": $grey-shadow,
+  "white": $white,
+  "green": $green-1,
+  "green-2": $green-2,
+  "dark-green": $dark-green,
+  "green-shadow": $green-shadow,
+  "khaki": $khaki,
+  "red": $red,
+);
+
+$colors-theme-dark: (
+  "black-1": $black-1,
+  "black-2": $black-2,
+  "black-shadow": $black-shadow,
+  "grey-1": $grey-1,
+  "grey-2": $grey-2,
+  "grey-3": $grey-3,
+  "grey-4": $grey-4,
+  "grey-shadow": $grey-shadow,
+  "white": $white,
+  "green-1": $green-1,
+  "green-2": $green-2,
+  "dark-green": $dark-green,
+  "green-shadow": $green-shadow,
+  "khaki": $khaki,
+  "red": $red,
+);

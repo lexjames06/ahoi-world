@@ -2,12 +2,15 @@
 import { useRouter } from "next/navigation";
 import styles from "./SeedButton.module.scss";
 import { SeedOptions } from "@ahoi-world/types/Seed";
+import { User } from "@ahoi-world/types/UserTypes";
 
 type Props = {
   option: SeedOptions;
+  userId?: string | null;
+  label?: string;
 };
 
-export function SeedButton({ option }: Props) {
+export function SeedButton({ option, userId = null, label }: Props) {
   const router = useRouter();
   const seedData = async () => {
     const url = "/seed/api";
@@ -20,7 +23,7 @@ export function SeedButton({ option }: Props) {
 			headers: {
 				"Content-Type": "application/json",
 			},
-			body: JSON.stringify({ option }),
+			body: JSON.stringify({ option, userId }),
 		}).then((res) => res.json());
     
     if (error) {
@@ -35,7 +38,7 @@ export function SeedButton({ option }: Props) {
 
   return (
     <button className={styles.seed} onClick={seedData}>
-      Add Data
+      {label ?? "Add Data"}
     </button>
   );
 };

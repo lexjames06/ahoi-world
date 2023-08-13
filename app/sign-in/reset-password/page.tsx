@@ -10,8 +10,8 @@ import { resetPassword } from "@ahoi-world/lib/users";
 import { redirect, useSearchParams } from "next/navigation";
 import { useAuthContext } from "@ahoi-world/providers/AuthContext";
 import { useFeatureFlagContext } from "@ahoi-world/providers/FeatureFlag";
-import { Field } from "@ahoi-world/pages/sign-in-or-register/types";
-import { ZodError } from "@ahoi-world/pages/sign-in-or-register/form";
+import { Field } from "@ahoi-world/organisms/sign-in-or-register/types";
+import { ZodError } from "@ahoi-world/organisms/sign-in-or-register/form";
 import { Page } from "@ahoi-world/templates";
 import { LoadingSpinner, UserFormInput } from "@ahoi-world/atoms";
 

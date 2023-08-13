@@ -3,7 +3,7 @@
 	display: grid;
 	grid-template-columns: auto 6.25rem;
 	column-gap: 0.5rem;
-	padding: 1.5rem 0.5rem;
+	padding: 0.5rem 0.5rem 1.5rem;
 	border-radius: 0.5rem;
 	transition-property: background-color;
 	transition-duration: 0.1s;
@@ -12,6 +12,7 @@
 
 .skeleton_card {
 	@extend .card;
+	background-color: transparent;
 }
 
 .details {
@@ -78,7 +79,12 @@
 		text-align: left;
 
 		&:hover {
-			background-color: var(--global-border);
+			background-color: var(--global-text);
+			color: var(--global-background);
+
+			p {
+				color: var(--global-accent);
+			}
 
 			.coverImage {
 				filter: brightness(0.9);

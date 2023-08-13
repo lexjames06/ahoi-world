@@ -26,8 +26,18 @@ export function FloatingBackButton({}: Props) {
 		}
 	}, [pageHeight, viewHeight, scrollHeight]);
 
+  const onClick = () => {
+    if (window && window.history.length > 1) {
+      console.log("going back")
+      router.back();
+    } else {
+      console.log("going to posts")
+      router.push("/posts");
+    }
+  }
+
   return (
-    <button className={styles.back} onClick={() => router.push("/posts")}>
+    <button className={styles.back} onClick={onClick}>
       <MdArrowBack />
       <svg viewBox="0 0 36 36" className={styles.circle}>
         <path

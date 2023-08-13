@@ -1,11 +1,11 @@
-import { DocumentData, collection, doc, getDoc, getDocs, orderBy, query, where } from "firebase/firestore";
+import { DocumentData, collection, getDocs, query, where } from "firebase/firestore";
 import { firestore } from "@ahoi-world/firebase/app";
 import { getImage } from "./utils/get-image";
 import type { Video } from "@ahoi-world/types/Video";
 
 interface PlaylistData {
 	videos: Video[];
-	playlist: string;
+	playlistId: string;
 }
 
 function convertFirestoreVideoToVideo(doc: DocumentData) {
@@ -16,7 +16,8 @@ function convertFirestoreVideoToVideo(doc: DocumentData) {
 	const video: Video = {
 		id: data.id,
 		thumbnail,
-		playlist: data.playlist,
+		playlistId: data.playlistId,
+		playlistName: data.playlistName,
 	};
 
 	return video;
@@ -24,10 +25,9 @@ function convertFirestoreVideoToVideo(doc: DocumentData) {
 
 const SORT_ORDER = "desc";
 
-export async function getSortedFirebasePlaylistData(playlist?: string): Promise<PlaylistData> {
-	const musicVideosRef = collection(firestore, "playlists");
-	const clause = playlist ? where("playlist", "==", playlist) : null;
-	const q = clause ? query(musicVideosRef, clause) : query(musicVideosRef);
+export async function getUserPlaylistData(playlistId: string): Promise<PlaylistData> {
+	const musicVideosRef = collection(firestore, "music-videos");
+	const q = query(musicVideosRef,  where("playlistId", "==", playlistId));
 
 	const videos: Video[] = [];
 
@@ -42,14 +42,6 @@ export async function getSortedFirebasePlaylistData(playlist?: string): Promise<
 
 	return {
 		videos,
-		playlist: playlist ?? "",
+		playlistId,
 	};
-}
-
-export async function getSortedFirebasePlaylistsData(): Promise<string[]> {
-	const playlistsDoc = doc(firestore, "playlists", "all");
-	const document = await getDoc(playlistsDoc);
-	const playlists = document.data()?.list ?? [];
-
-	return playlists;
 }

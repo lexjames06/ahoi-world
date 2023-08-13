@@ -6,9 +6,18 @@
 	justify-content: center;
 	align-items: center;
 
-	.noPlaylists {
+	.noPosts {
 		margin-bottom: 2rem;
 		font-size: 1.25rem;
 		font-weight: 600;
 	}
+}
+
+.listEnd {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding: 4rem 0 2rem;
+	color: var(--global-inactive-text);
+	font-weight: 600;
 }
