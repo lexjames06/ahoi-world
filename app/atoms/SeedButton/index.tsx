@@ -24,7 +24,9 @@ export function SeedButton({ option, userId = null, label }: Props) {
 				"Content-Type": "application/json",
 			},
 			body: JSON.stringify({ option, userId }),
-		}).then((res) => res.json());
+		})
+      .then((res) => res.json())
+      .catch((error) => console.log("seed error: ", error));
     
     if (error) {
       console.log("There was an error seeding the data: ", error.errors);
