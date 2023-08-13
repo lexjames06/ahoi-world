@@ -22,7 +22,7 @@ export const contentType = "image/png";
 // Image generation
 export default async function Image({ params: { path } }: { params: { path: string } }) {
 	try {
-		const { image, title, user } = await fetch(`${BASE_URL}/posts/${path}/api`).then((res) => res.json());
+		const { image, title, user } = await fetch(`${BASE_URL}/api/posts/${path}`).then((res) => res.json());
 		const username = user ? `@${user.username}` : "";
 		const subtext = username ? "written by" : "an idea from the house";
 		const green = "#2FE282";

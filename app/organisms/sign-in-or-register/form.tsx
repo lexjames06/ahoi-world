@@ -56,7 +56,7 @@ export function Form({ type }: Props) {
 		const inputs = e.currentTarget.getElementsByTagName("input");
 		const body = Array.from(inputs).reduce((body, { name, value }) => ({ ...body, [name]: value }), {});
 
-		const response = await fetch(`/${type}/api`, {
+		const response = await fetch(`/api/${type}`, {
 			method: "POST",
 			mode: "cors",
 			cache: "no-cache",

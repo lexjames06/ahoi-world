@@ -43,7 +43,7 @@ export default function ForgotPassword() {
 		setLoading(true);
 		e.preventDefault();
 
-		const response = await fetch("/sign-in/forgot-password/api", {
+		const response = await fetch("/api/sign-in/forgot-password", {
 			method: "POST",
 			mode: "cors",
 			cache: "no-cache",

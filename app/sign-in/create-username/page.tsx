@@ -53,7 +53,7 @@ export default function CreateUsername() {
 		setLoading(true);
 		e.preventDefault();
 
-		const response = await fetch("/sign-in/create-username/api", {
+		const response = await fetch("/api/sign-in/create-username", {
 			method: "POST",
 			mode: "cors",
 			cache: "no-cache",

@@ -91,7 +91,7 @@ export default function ResetPassword() {
 		setLoading(true);
 		e.preventDefault();
 
-		const response = await fetch("/sign-in/reset-password/api", {
+		const response = await fetch("/api/sign-in/reset-password", {
 			method: "POST",
 			mode: "cors",
 			cache: "no-cache",

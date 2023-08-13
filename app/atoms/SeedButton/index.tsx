@@ -13,7 +13,7 @@ type Props = {
 export function SeedButton({ option, userId = null, label }: Props) {
   const router = useRouter();
   const seedData = async () => {
-    const url = "/seed/api";
+    const url = "/api/seed";
 
     const { message, error } = await fetch(url,{
 			method: "POST",

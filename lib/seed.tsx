@@ -173,35 +173,19 @@ async function addPlaylistsToUser(userId: string, playlists: Video[][]) {
 }
 
 async function writeMusicVideos(playlists: Video[][]) {
-	const log: Record<string, any> = {};
-	log["original_data"] = playlists;
-	try {
-		playlists.forEach(async (playlist, index) => {
-			log[`playlist_${index}`] = playlist;
-			playlist.forEach(async (video, videoIndex) => {
-				log[`video_${videoIndex}`] = video;
-				const docRef = doc(firestore, "musicVideos", video.id);
-				log[`video_${videoIndex}_docRef`] = docRef;
-				await setDoc(docRef, video).catch((error) => {
-					log.errorCode = error.code;
-					log.errorMessage = error.message;
-				});
-			});
-
-			console.log(`written playlist to database with ${playlist.length} videos`);
+	playlists.forEach(async (playlist, index) => {
+		playlist.forEach(async (video, videoIndex) => {
+			const docRef = doc(firestore, "musicVideos", video.id);
+			await setDoc(docRef, video);
 		});
 
-		if (playlists.length > 1) {
-			console.log(`all videos in ${playlists.length} playlists have been written to the database`);
-		} else {
-			console.log(`All videos in the playlist have been written to the database`);
-		}
+		console.log(`written playlist to database with ${playlist.length} videos`);
+	});
 
-		return log;
-	} catch (error: any) {
-		log.errorCode = error.code;
-		log.errorMessage = error.message;
-		return log;
+	if (playlists.length > 1) {
+		console.log(`all videos in ${playlists.length} playlists have been written to the database`);
+	} else {
+		console.log(`All videos in the playlist have been written to the database`);
 	}
 }
 
@@ -259,10 +243,9 @@ export async function uploadPlaylistsVideos(userId?: string) {
 		return [...playlists, allVideosData];
 	}, []);
 
-	const log = await writeMusicVideos(allPlaylistsData);
-	return log;
+	await writeMusicVideos(allPlaylistsData);
 
-	// if (userId) {
-	// 	await addPlaylistsToUser(userId, allPlaylistsData);
-	// }
+	if (userId) {
+		await addPlaylistsToUser(userId, allPlaylistsData);
+	}
 }
