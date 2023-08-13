@@ -175,6 +175,7 @@ async function addPlaylistsToUser(userId: string, playlists: Video[][]) {
 async function writeMusicVideos(playlists: Video[][]) {
 	const log: Record<string, any> = {};
 	log["original_data"] = playlists;
+	return log;
 	try {
 		playlists.forEach(async (playlist, index) => {
 			log[`playlist_${index}`] = playlist;
