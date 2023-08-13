@@ -222,14 +222,14 @@ export async function uploadPlaylistsVideos(userId?: string) {
 					return;
 				}
 
+				
+				const storagePath = path.join("images/", videoFolder, filename);
+				const filePath = path.join(folderPath, filename);
+				
+				const file = fs.readFileSync(filePath);
 				// REMOVE
 				return;
 				// REMOVE
-	
-				const storagePath = path.join("images/", videoFolder, filename);
-				const filePath = path.join(folderPath, filename);
-	
-				const file = fs.readFileSync(filePath);
 	
 				uploadImage(storagePath, file);
 			});
