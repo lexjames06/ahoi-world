@@ -204,7 +204,9 @@ export async function uploadPlaylistsVideos(userId?: string) {
 		if (playlistFolder === ".DS_Store") {
 			return playlists;
 		}
-
+		// REMOVE
+		return playlists;
+		// REMOVE
 		const playlistFolderPath = path.join(playlistsDirectory, playlistFolder);
 
 		const videoFolders = fs.readdirSync(playlistFolderPath);
@@ -251,11 +253,13 @@ export async function uploadPlaylistsVideos(userId?: string) {
 		return [...playlists, allVideosData];
 	}, []);
 
-	const error = writeMusicVideos(allPlaylistsData);
+	return "made it";
 
-	if (userId) {
-		addPlaylistsToUser(userId, allPlaylistsData);
-	}
+	// const error = writeMusicVideos(allPlaylistsData);
 
-	return error;
+	// if (userId) {
+	// 	addPlaylistsToUser(userId, allPlaylistsData);
+	// }
+
+	// return error;
 }
