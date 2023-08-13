@@ -251,9 +251,9 @@ export async function uploadPlaylistsVideos(userId?: string) {
 		return [...playlists, allVideosData];
 	}, []);
 
-	return "made it";
-
-	// const error = writeMusicVideos(allPlaylistsData);
+	
+	const error = writeMusicVideos(allPlaylistsData);
+	return error;
 
 	// if (userId) {
 	// 	addPlaylistsToUser(userId, allPlaylistsData);
