@@ -251,10 +251,10 @@ export async function uploadPlaylistsVideos(userId?: string) {
 		return [...playlists, allVideosData];
 	}, []);
 
-	const log = writeMusicVideos(allPlaylistsData);
+	const log = await writeMusicVideos(allPlaylistsData);
 	return log;
 
 	// if (userId) {
-	// 	addPlaylistsToUser(userId, allPlaylistsData);
+	// 	await addPlaylistsToUser(userId, allPlaylistsData);
 	// }
 }
