@@ -204,12 +204,12 @@ export async function uploadPlaylistsVideos(userId?: string) {
 		if (playlistFolder === ".DS_Store") {
 			return playlists;
 		}
+		const playlistFolderPath = path.join(playlistsDirectory, playlistFolder);
+		
+		const videoFolders = fs.readdirSync(playlistFolderPath);
 		// REMOVE
 		return playlists;
 		// REMOVE
-		const playlistFolderPath = path.join(playlistsDirectory, playlistFolder);
-
-		const videoFolders = fs.readdirSync(playlistFolderPath);
 
 		const allVideosData = videoFolders.reduce((videos: Video[], videoFolder) => {
 			const folderPath = path.join(playlistFolderPath, videoFolder);
