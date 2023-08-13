@@ -173,19 +173,23 @@ async function addPlaylistsToUser(userId: string, playlists: Video[][]) {
 }
 
 async function writeMusicVideos(playlists: Video[][]) {
-	playlists.forEach(async (playlist) => {
-		playlist.forEach(async (video) => {
-			const docRef = doc(firestore, "music-videos", video.id);
-			await setDoc(docRef, video);
+	try {
+		playlists.forEach(async (playlist) => {
+			playlist.forEach(async (video) => {
+				const docRef = doc(firestore, "music-videos", video.id);
+				await setDoc(docRef, video);
+			});
+	
+			console.log(`written playlist to database with ${playlist.length} videos`);
 		});
-
-		console.log(`written playlist to database with ${playlist.length} videos`);
-	});
-
-	if (playlists.length > 1) {
-		console.log(`all videos in ${playlists.length} playlists have been written to the database`);
-	} else {
-		console.log(`All videos in the playlist have been written to the database`);
+	
+		if (playlists.length > 1) {
+			console.log(`all videos in ${playlists.length} playlists have been written to the database`);
+		} else {
+			console.log(`All videos in the playlist have been written to the database`);
+		}
+	} catch (error: any) {
+		return error?.message ?? error?.code ?? error;
 	}
 }
 
@@ -243,9 +247,11 @@ export async function uploadPlaylistsVideos(userId?: string) {
 		return [...playlists, allVideosData];
 	}, []);
 
-	writeMusicVideos(allPlaylistsData);
+	const error = writeMusicVideos(allPlaylistsData);
 
 	if (userId) {
 		addPlaylistsToUser(userId, allPlaylistsData);
 	}
+
+	return error;
 }
