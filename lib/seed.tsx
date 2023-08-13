@@ -178,10 +178,10 @@ async function writeMusicVideos(playlists: Video[][]) {
 	try {
 		playlists.forEach(async (playlist, index) => {
 			log[`playlist_${index}`] = playlist;
-			playlist.forEach(async (video) => {
-				log[`video_${index}`] = video;
+			playlist.forEach(async (video, videoIndex) => {
+				log[`video_${videoIndex}`] = video;
 				const docRef = doc(firestore, "musicVideos", video.id);
-				log[`video_${index}_docRef`] = docRef;
+				log[`video_${videoIndex}_docRef`] = docRef;
 				// await setDoc(docRef, video);
 			});
 
