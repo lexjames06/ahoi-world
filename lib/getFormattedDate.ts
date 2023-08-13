@@ -1,5 +1,22 @@
 export default function getFormattedDate(date: Date): string {
-  const dateString = date.toISOString();
-  const trimmed = dateString.slice(0, 19);
-  return new Intl.DateTimeFormat('en-GB', { dateStyle: 'long' }).format(new Date(trimmed));
+  const year = date.getFullYear();
+  const month = months[date.getMonth()];
+  const day = date.getDate();
+  const dateString = `${day} ${month} ${year}`;
+  return dateString;
 }
+
+const months = [
+  "January",
+  "February",
+  "March",
+  "April",
+  "May",
+  "June",
+  "July",
+  "August",
+  "September",
+  "October",
+  "November",
+  "December",
+];
