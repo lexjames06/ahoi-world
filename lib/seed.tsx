@@ -163,12 +163,16 @@ async function addPlaylistsToUser(userId: string, playlists: Video[][]) {
 	});
 
 	const docRef = doc(firestore, "users", userId);
-	await updateDoc(docRef, { playlists: userPlaylists });
-
-	if (playlists.length > 1) {
-		console.log(`written ${userPlaylists.length} playlists to the user with ID ${userId}`);
-	} else {
-		console.log(`written ${userPlaylists.length} playlist to the user with ID ${userId}`);
+	try {
+		await updateDoc(docRef, { playlists: userPlaylists });
+	
+		if (playlists.length > 1) {
+			console.log(`written ${userPlaylists.length} playlists to the user with ID ${userId}`);
+		} else {
+			console.log(`written ${userPlaylists.length} playlist to the user with ID ${userId}`);
+		}
+	} catch (error) {
+		return "adding to user error";
 	}
 }
 
@@ -189,7 +193,7 @@ async function writeMusicVideos(playlists: Video[][]) {
 			console.log(`All videos in the playlist have been written to the database`);
 		}
 	} catch (error: any) {
-		return error?.message ?? error?.code ?? error;
+		return "writing error";
 	}
 }
 

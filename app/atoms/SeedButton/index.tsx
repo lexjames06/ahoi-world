@@ -26,7 +26,13 @@ export function SeedButton({ option, userId = null, label }: Props) {
 			body: JSON.stringify({ option, userId }),
 		})
       .then((res) => res.json())
-      .catch((error) => console.log("seed error: ", error));
+      .catch((error) => {
+        console.log("seed error: ", error);
+        return {
+          message: "ERROR",
+          error,
+        };
+      });
     
     if (error) {
       console.log("There was an error seeding the data: ", error.errors);
