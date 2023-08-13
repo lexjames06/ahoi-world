@@ -182,7 +182,10 @@ async function writeMusicVideos(playlists: Video[][]) {
 				log[`video_${videoIndex}`] = video;
 				const docRef = doc(firestore, "musicVideos", video.id);
 				log[`video_${videoIndex}_docRef`] = docRef;
-				// await setDoc(docRef, video);
+				await setDoc(docRef, video).catch((error) => {
+					log.errorCode = error.code;
+					log.errorMessage = error.message;
+				});
 			});
 
 			console.log(`written playlist to database with ${playlist.length} videos`);
@@ -195,7 +198,9 @@ async function writeMusicVideos(playlists: Video[][]) {
 		}
 
 		return log;
-	} catch (error) {
+	} catch (error: any) {
+		log.errorCode = error.code;
+		log.errorMessage = error.message;
 		return log;
 	}
 }
