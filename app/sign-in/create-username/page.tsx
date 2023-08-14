@@ -1,13 +1,7 @@
 "use client";
-
-import styles from "./page.module.scss";
-
 import { useState } from "react";
-
-
-import { isUserError, sendResetPasswordEmail, updateUser } from "@ahoi-world/lib/users";
+import { isUserError, updateUser } from "@ahoi-world/lib/users";
 import Link from "next/link";
-import { BiArrowBack } from "react-icons/bi";
 import { redirect, useRouter } from "next/navigation";
 import { useFeatureFlagContext } from "@ahoi-world/providers/FeatureFlag";
 import { Field } from "@ahoi-world/organisms/sign-in-or-register/types";
@@ -16,6 +10,7 @@ import { Page } from "@ahoi-world/templates";
 import { LoadingSpinner, UserFormInput } from "@ahoi-world/atoms";
 import { useAuthContext } from "@ahoi-world/providers/AuthContext";
 import { usernameRegex } from "./utils/zod-schema";
+import styles from "./page.module.scss";
 
 type CreateUsernameErrors = {
 	[Field.USERNAME]?: ZodError;
@@ -28,11 +23,8 @@ export default function CreateUsername() {
 	const [loading, setLoading] = useState(false);
 	const { auth } = useFeatureFlagContext();
 	const { user } = useAuthContext();
-	const router = useRouter();
 
-	const shouldRedirect = !user || !auth || !auth.enabled || (user && user.username);
-
-	if (shouldRedirect) {
+	if (!auth || !auth.enabled || !user || !!user.username) {
 		redirect("/");
 	}
 
@@ -50,6 +42,10 @@ export default function CreateUsername() {
 	};
 
 	const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+		if (!user) {
+			return;
+		}
+
 		setLoading(true);
 		e.preventDefault();
 
@@ -76,9 +72,6 @@ export default function CreateUsername() {
 
 		if (isUserError(userError) && userError.hasError) {
 			setErrors({ [userError.path]: { _errors: [userError.message] } });
-			setLoading(false);
-			return;
-		} else {
 			setLoading(false);
 			return;
 		}

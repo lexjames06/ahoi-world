@@ -3,7 +3,7 @@ import { User, UserPlaylist } from "@ahoi-world/types/UserTypes";
 import styles from "./PlaylistsGrid.module.scss";
 import { SeedButton } from "@ahoi-world/atoms";
 import { SeedOptions } from "@ahoi-world/types/Seed";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import { getImage } from "@ahoi-world/lib/utils/get-image";
 import Link from "next/link";
@@ -16,8 +16,14 @@ type Props = {
 };
 
 export function PlaylistsGrid({ user, owner }: Props) {
+	const [playlists, setPlaylists] = useState<UserPlaylist[]>([]);
 	const pathname = usePathname();
-	const { playlists } = user;
+
+	useEffect(() => {
+		if ((!playlists && user.playlists?.length) || (playlists.length !== user.playlists?.length)) {
+			setPlaylists(user.playlists);
+		}
+	}, [user, playlists]);
 
 	if (!playlists.length && owner) {
 		return (

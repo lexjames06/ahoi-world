@@ -13,6 +13,7 @@ import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { getUserPlaylistData } from "@ahoi-world/lib/playlists";
 import { Video } from "@ahoi-world/types/Video";
 import { UserContent } from "@ahoi-world/molecules";
+import { isEqual } from "@ahoi-world/utils/is-equal";
 
 type Props = {
   profile: User;
@@ -89,6 +90,12 @@ export function UserProfile({ profile }: Props) {
       setActiveContentPage(content);
     }
   }, [content, activeContentPage]);
+
+  useEffect(() => {
+    if (user.id === currentUser?.id && !isEqual(user, currentUser)) {
+      setUser(currentUser);
+    }
+  }, [user, currentUser]);
 
   return (
     <div className={styles.container}>
