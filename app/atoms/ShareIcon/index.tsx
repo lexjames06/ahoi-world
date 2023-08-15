@@ -1,7 +1,6 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import { AiFillTwitterSquare, AiFillFacebook, AiFillLinkedin } from "react-icons/ai";
-import { MdShare } from "react-icons/md";
+import { ReactIcons } from "@ahoi-world/atoms";
 import Link from "next/link";
 
 export type SocialPlatform = "twitter" | "facebook" | "linkedIn" | "share";
@@ -53,13 +52,13 @@ export function ShareIcon({ platform, title }: Props) {
 	const getIcon = (platform: string) => {
 		switch (platform) {
 			case "facebook":
-				return <AiFillFacebook color="#4267B2" />;
+				return <ReactIcons.AiFillFacebook color="#4267B2" />;
 			case "linkedIn":
-				return <AiFillLinkedin color="#0072b1" />;
+				return <ReactIcons.AiFillLinkedin color="#0072b1" />;
 			case "twitter":
-				return <AiFillTwitterSquare color="#00acee" />;
+				return <ReactIcons.AiFillTwitterSquare color="#00acee" />;
 			case "share":
-				return <MdShare />;
+				return <ReactIcons.MdShare />;
 			default:
 				return null;
 		}

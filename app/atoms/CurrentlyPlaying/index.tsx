@@ -3,7 +3,7 @@ import Youtube, { YouTubeEvent, YouTubePlayer } from "react-youtube";
 import styles from "./CurrentlyPlaying.module.scss";
 import { useEffect, useState } from "react";
 import { Video } from "@ahoi-world/types/Video";
-import { GiPauseButton, GiPlayButton } from "react-icons/gi";
+import { ReactIcons } from "@ahoi-world/atoms";
 import Image from "next/image";
 import { LoadingSpinner } from "../LoadingSpinner";
 
@@ -140,7 +140,7 @@ export function CurrentlyPlaying({ currentVideo }: Props) {
         )}
       </div>
       <button className={styles.playPause} disabled={loading} onClick={togglePlaying}>
-        {loading ? <LoadingSpinner /> : playing ? <GiPauseButton /> : <GiPlayButton />}
+        {loading ? <LoadingSpinner /> : playing ? <ReactIcons.GiPauseButton /> : <ReactIcons.GiPlayButton />}
       </button>
     </div>
   );

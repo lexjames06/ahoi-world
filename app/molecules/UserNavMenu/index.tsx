@@ -1,8 +1,6 @@
 "use client";
 import { signout } from "@ahoi-world/lib/users";
-import { PiSignOut, PiSignIn } from "react-icons/pi"
-import { FaHouseUser } from "react-icons/fa"
-import { IoMdSettings } from "react-icons/io"
+import { ReactIcons } from "@ahoi-world/atoms";
 import styles from "./UserNavMenu.module.scss";
 import { useCallback, useEffect } from "react";
 import { UserIcon } from "@ahoi-world/atoms/UserIcon";
@@ -21,25 +19,25 @@ const options: UserMenuOption[] = [] ?? [
   {
     label: "profile",
     action: () => {},
-    icon: FaHouseUser,
+    icon: ReactIcons.FaHouseUser,
   },
   {
     label: "settings",
     action: () => {},
-    icon: IoMdSettings,
+    icon: ReactIcons.IoMdSettings,
   },
 ];
 
 const signoutOption = {
   label: "sign out",
   action: signout,
-  icon: PiSignOut,
+  icon: ReactIcons.PiSignOut,
 };
 
 const signinOption = {
   label: "sign in",
   action: "/sign-in",
-  icon: PiSignIn,
+  icon: ReactIcons.PiSignIn,
 };
 
 type Props = {

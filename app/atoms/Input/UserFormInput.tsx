@@ -1,6 +1,6 @@
 "use client";
 import { SetStateAction, useState } from "react";
-import { BiHide, BiShow } from "react-icons/bi";
+import { ReactIcons } from "@ahoi-world/atoms";
 import styles from "./UserFormInput.module.scss";
 import { Field } from "@ahoi-world/organisms/sign-in-or-register/types";
 
@@ -32,7 +32,7 @@ export function UserFormInput({ label, type, field, value, hasError, errorMessag
 
       {isPassword && (
         <span className={styles.icon} onClick={() => setShowPassword((old) => !old)}>
-          {showPassword ? <BiHide /> : <BiShow />}
+          {showPassword ? <ReactIcons.BiHide /> : <ReactIcons.BiShow />}
         </span>
       )}
 

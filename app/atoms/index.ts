@@ -10,3 +10,4 @@ export { SmallBlogCard } from "./SmallBlogCard";
 export { Toggle } from "./Toggle";
 export { UserFormInput } from "./Input";
 export { UserIcon } from "./UserIcon";
+export * as ReactIcons from "./ReactIcons";

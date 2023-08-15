@@ -1,5 +1,5 @@
 "use client";
-import { FcGoogle } from "react-icons/fc";
+import { ReactIcons } from "@ahoi-world/atoms";
 import { Form } from "./form";
 import { googleLogIn } from "@ahoi-world/lib/users";
 import { useAuthContext } from "@ahoi-world/providers/AuthContext";
@@ -45,7 +45,7 @@ export default function UserAccessForm({ type, header, subHeader, thirdPartyLogi
 				</div>
 				{thirdPartyLogins.google && (
 					<button className={styles.socialLogin} onClick={googleLogIn}>
-						<FcGoogle />
+						<ReactIcons.FcGoogle />
 						Log in with Google
 					</button>
 				)}

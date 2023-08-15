@@ -1,6 +1,6 @@
 "use client";
 import React, { useEffect, useState } from 'react'
-import { MdArrowBack } from "react-icons/md";
+import { ReactIcons } from "@ahoi-world/atoms";
 import { useRouter } from "next/navigation";
 import { useOnScroll } from "@ahoi-world/hooks/use-on-scroll";
 import styles from "./FloatingBackButton.module.scss"
@@ -36,7 +36,7 @@ export function FloatingBackButton({}: Props) {
 
   return (
     <button className={styles.back} onClick={onClick}>
-      <MdArrowBack />
+      <ReactIcons.MdArrowBack />
       <svg viewBox="0 0 36 36" className={styles.circle}>
         <path
           strokeDasharray={`${progressBarWidth} 100`}

@@ -1,5 +1,4 @@
-import { MdHome, MdAccountBox, MdArticle, MdEmail } from "react-icons/md";
-import { TiSocialTwitter, TiSocialLinkedin } from "react-icons/ti";
+import { ReactIcons } from "@ahoi-world/atoms";
 import type { IconType } from "react-icons";
 
 export type Option = {
@@ -13,12 +12,12 @@ export type Option = {
 export const navOptions: Option[] = [
   {
     label: "About",
-    icon: MdAccountBox,
+    icon: ReactIcons.MdAccountBox,
     link: "/about",
   },
   {
     label: "Blog",
-    icon: MdArticle,
+    icon: ReactIcons.MdArticle,
     link: "/posts",
   },
   // {
@@ -34,13 +33,13 @@ export const socialPlatforms = [
   {
     name: 'twitter',
     link: 'https://www.twitter.com/seaj_ctc',
-    icon: TiSocialTwitter,
+    icon: ReactIcons.TiSocialTwitter,
     target: '_blank',
   },
   {
     name: 'linkedin',
     link: 'https://www.linkedin.com/in/alexander-j-stewart/',
-    icon: TiSocialLinkedin,
+    icon: ReactIcons.TiSocialLinkedin,
     target: '_blank',
   },
 ];

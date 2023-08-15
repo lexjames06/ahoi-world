@@ -10,7 +10,7 @@ import { signout } from "@ahoi-world/lib/users";
 import { UserNavIcon } from "../UserNavIcon";
 import { useFeatureFlagContext } from "@ahoi-world/providers/FeatureFlag";
 import { Toggle, UserIcon } from "@ahoi-world/atoms";
-import { PiSignOut, PiSignIn } from "react-icons/pi";
+import { ReactIcons } from "@ahoi-world/atoms";
 
 type Props = {
 	show: boolean;
@@ -20,13 +20,13 @@ type Props = {
 const signoutOption = {
   label: "Sign Out",
   action: signout,
-  icon: PiSignOut,
+  icon: ReactIcons.PiSignOut,
 };
 
 const signinOption = {
   label: "Sign In",
   action: "/sign-in",
-  icon: PiSignIn,
+  icon: ReactIcons.PiSignIn,
 };
 
 export function MobileMenu({ show, toggleMenu }: Props) {

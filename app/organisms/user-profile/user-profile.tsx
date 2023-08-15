@@ -4,7 +4,7 @@ import styles from "./user-profile.module.scss";
 import { Page } from "@ahoi-world/templates";
 import { CurrentlyPlaying, Selector, Toggle, UserIcon } from "@ahoi-world/atoms";
 import { useAuthContext } from "@ahoi-world/providers/AuthContext";
-import { MdEmail } from "react-icons/md";
+import { ReactIcons } from "@ahoi-world/atoms";
 import { UserError, isUser, isUserError, updateUser } from "@ahoi-world/lib/users";
 import { useCallback, useEffect, useState } from "react";
 import Link from "next/link";
@@ -147,7 +147,7 @@ export function UserProfile({ profile }: Props) {
                     data-disabled={emailButtonDisabled}
                     data-owner={owner}
                   >
-                    <MdEmail />
+                    <ReactIcons.MdEmail />
                     Email
                   </Link>
                   {owner && (

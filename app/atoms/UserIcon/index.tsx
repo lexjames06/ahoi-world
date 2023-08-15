@@ -1,4 +1,4 @@
-import { BsFillPersonFill } from "react-icons/bs";
+import { ReactIcons } from "@ahoi-world/atoms";
 import styles from "./UserIcon.module.scss";
 import { User } from "@ahoi-world/types/UserTypes";
 import Image from "next/image";
@@ -21,7 +21,7 @@ export function UserIcon({ user, size = 1, isMenu = false, isClickable = false, 
         data-allowclose={allowClose}
         style={{height: `calc(${size} * 2.25rem)`}}
       >
-        <BsFillPersonFill data-allowclose={allowClose} height={20} width={20} style={{
+        <ReactIcons.BsFillPersonFill data-allowclose={allowClose} height={20} width={20} style={{
           transform: `scale(calc(${size} * 1.75))`,
           marginTop: `calc(${size} * 0.3rem)`,
         }} />

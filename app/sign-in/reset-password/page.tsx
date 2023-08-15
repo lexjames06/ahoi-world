@@ -3,7 +3,7 @@
 import styles from "./page.module.scss";
 
 import Link from "next/link";
-import { BiArrowBack } from "react-icons/bi";
+import { ReactIcons } from "@ahoi-world/atoms";
 import { useState } from "react";
 
 import { resetPassword } from "@ahoi-world/lib/users";
@@ -142,7 +142,7 @@ export default function ResetPassword() {
 							<p className={styles.successMessage}>{successMessage}</p>
 							<Link href="/sign-in" className={styles.returnLink}>
 								<p>
-									<BiArrowBack /> Back to login
+									<ReactIcons.BiArrowBack /> Back to login
 								</p>
 							</Link>
 						</>
@@ -185,7 +185,7 @@ export default function ResetPassword() {
 
 							<Link href="/sign-in" className={styles.returnLink}>
 								<p>
-									<BiArrowBack /> Back to login
+									<ReactIcons.BiArrowBack /> Back to login
 								</p>
 							</Link>
 						</>

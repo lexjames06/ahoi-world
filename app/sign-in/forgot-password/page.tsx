@@ -7,7 +7,7 @@ import { useState } from "react";
 
 import { sendResetPasswordEmail } from "@ahoi-world/lib/users";
 import Link from "next/link";
-import { BiArrowBack } from "react-icons/bi";
+import { ReactIcons } from "@ahoi-world/atoms";
 import { redirect } from "next/navigation";
 import { useFeatureFlagContext } from "@ahoi-world/providers/FeatureFlag";
 import { Field } from "@ahoi-world/organisms/sign-in-or-register/types";
@@ -119,7 +119,7 @@ export default function ForgotPassword() {
 
 					<Link href="/sign-in" className={styles.returnLink}>
 						<p>
-							<BiArrowBack /> Back to login
+							<ReactIcons.BiArrowBack /> Back to login
 						</p>
 					</Link>
 				</form>
