@@ -112,11 +112,13 @@ export default function CreateUsername() {
 						</span>
 					)}
 
-					<button disabled={loading || submitDisabled}>{loading ? <LoadingSpinner /> : "Set username"}</button>
+					<button disabled={loading || submitDisabled}>
+						{loading ? <LoadingSpinner /> : "Set username"}
+					</button>
 
-					<Link href="/" className={styles.skipLink}>
+					{/* <Link href="/" className={styles.skipLink}>
 						<p>Skip</p>
-					</Link>
+					</Link> */}
 				</form>
 			</div>
 		</Page>

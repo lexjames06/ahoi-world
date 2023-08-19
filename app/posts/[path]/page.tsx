@@ -7,7 +7,7 @@ import { getPostData, getSortedPostsData } from "@ahoi-world/lib/posts";
 import styles from "./page.module.scss";
 import { generateHeader, generateImage, generateOrderedList, prepareBodyForParse } from "./utils/blog-formatter";
 import { ShareIcon, SocialPlatform } from "@ahoi-world/atoms/ShareIcon";
-import { FloatingBackButton } from "@ahoi-world/atoms";
+import { CurrentlyPlayingBanner, FloatingBackButton } from "@ahoi-world/atoms";
 import { Page } from "@ahoi-world/templates";
 
 // const authFeature = getFeatureFlag("auth");

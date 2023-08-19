@@ -4,6 +4,8 @@ import { AuthContextProvider } from "@ahoi-world/providers/AuthContext";
 import { FeatureFlagContextProvider } from "@ahoi-world/providers/FeatureFlag";
 import { Navbar } from "@ahoi-world/molecules";
 import "./styles/styles.scss";
+import { CurrentPlaylistContextProvider } from "@ahoi-world/providers/CurrentPlaylist";
+import { CurrentlyPlayingBanner } from "./atoms";
 
 const { NEXT_PUBLIC_BASE_URL } = process.env as Record<string, string>;
 
@@ -45,8 +47,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 				<Theme>
 					<AuthContextProvider>
 						<FeatureFlagContextProvider>
-							<Navbar />
-							{children}
+							<CurrentPlaylistContextProvider>
+								<Navbar />
+								{children}
+								<CurrentlyPlayingBanner />
+							</CurrentPlaylistContextProvider>
 						</FeatureFlagContextProvider>
 					</AuthContextProvider>
 				</Theme>

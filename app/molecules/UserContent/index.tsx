@@ -15,25 +15,15 @@ type Props = {
   owner: boolean;
   user: User;
   activePage: ContentPage | null;
-  setCurrent: React.Dispatch<React.SetStateAction<Video | null>>;
 }
 
-export function UserContent({ owner, user, activePage, setCurrent }: Props) {
+export function UserContent({ owner, user, activePage }: Props) {
   const searchParams = useSearchParams();
   const searchedPlaylist = searchParams.get("playlist");
 
   const [activePlaylist, setActivePlaylist] = useState<string>("");
   const [loadingVideos, setLoadingVideos] = useState(true);
   const [videos, setVideos] = useState<Video[]>([]);
-  const [currentlyPlaying, setPlaying] = useState<string>("");
-
-  const selectVideo = useCallback((id: string) => {
-		if (currentlyPlaying !== id) {
-      const currentVideo = videos.find((video) => video.id === id) ?? null;
-			setPlaying(id);
-      setCurrent(currentVideo);
-		}
-	}, [currentlyPlaying, videos]);
 
   const loadVideos = useCallback(async (id: string) => {
     const { videos: videoList } = await getUserPlaylistData(id);
@@ -87,8 +77,6 @@ export function UserContent({ owner, user, activePage, setCurrent }: Props) {
           playlist={activePlaylist}
           videos={videos}
           loading={loadingVideos}
-          currentlyPlaying={currentlyPlaying}
-          selectVideo={selectVideo}
         />
       </div>
     );

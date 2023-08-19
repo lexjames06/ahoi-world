@@ -35,6 +35,9 @@
 
 .tiles {
   width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .grid {
@@ -134,5 +137,9 @@
         top: 7.5rem;
       }
     }
+  }
+
+  .listEnd {
+    margin-top: auto;
   }
 }

@@ -3,7 +3,7 @@ import { getSortedPostsData } from "@ahoi-world/lib/posts";
 
 import { SmallBlogCardList } from "./SmallBlogCardList";
 import styles from "./page.module.scss";
-import { Selector, LargeBlogCard, SeedButton } from "@ahoi-world/atoms";
+import { Selector, LargeBlogCard, SeedButton, CurrentlyPlayingBanner } from "@ahoi-world/atoms";
 import { Page } from "@ahoi-world/templates";
 import { SeedOptions } from "@ahoi-world/types/Seed";
 import { redirect } from "next/navigation";

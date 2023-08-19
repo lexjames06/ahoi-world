@@ -1,16 +1,17 @@
 .container {
   height: 100%;
+  max-width: 4rem;
   width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
 
   .dot {
-    height: 0.75rem;
-    width: 0.75rem;
+    width: 20%;
+    aspect-ratio: 1 / 1;
     border-radius: 100%;
     background-color: var(--loading-spinner-dot);
-    margin-right: 0.75rem;
+    margin-right: 20%;
     animation-duration: 0.75s;
     animation-iteration-count: infinite;
 
@@ -21,7 +22,7 @@
     }
 
     &[data-order="2"] {
-      margin-left: -0.75rem;
+      margin-left: -20%;
       animation-name: slide;
     }
 

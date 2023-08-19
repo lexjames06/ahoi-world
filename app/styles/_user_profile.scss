@@ -3,6 +3,8 @@
 $user-profile-theme-light: (
 	"background": $grey-3,
 	"sidebar-background": $white,
+	"sidebar-border": $white,
+	"sidebar-content-background": $grey-3,
 	"sidebar-display-name": $black-1,
 	"sidebar-username": $grey-4,
 	"sidebar-label": $green-1,
@@ -20,7 +22,9 @@ $user-profile-theme-light: (
 
 $user-profile-theme-dark: (
 	"background": $black-1,
-	"sidebar-background": $black-1,
+	"sidebar-background": $black-2,
+	"sidebar-border": $black-1,
+	"sidebar-content-background": $black-1,
 	"sidebar-display-name": $black-1,
 	"sidebar-username": $grey-4,
 	"sidebar-label": $green-1,
@@ -31,7 +35,7 @@ $user-profile-theme-dark: (
 	"sidebar-email-button-background-hover": $green-1,
 	"sidebar-email-button-text": $white,
 	"sidebar-email-button-text-hover": $black-1,
-	"sidebar-footer-option-background": $white,
-	"sidebar-footer-option-text": $black-1,
+	"sidebar-footer-option-background": $black-2,
+	"sidebar-footer-option-text": $white,
 	"blog-card-background": $black-2,
 );

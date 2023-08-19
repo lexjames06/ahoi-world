@@ -44,6 +44,9 @@
 
 .tiles {
   width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .grid {
@@ -111,6 +114,7 @@
   color: var(--global-inactive-text);
   font-weight: 600;
   white-space: break-spaces;
+  margin-top: auto;
 }
 
 .name {

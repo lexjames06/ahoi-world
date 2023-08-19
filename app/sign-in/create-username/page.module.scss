@@ -52,6 +52,9 @@
     font-weight: bold;
     cursor: pointer;
     margin-top: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
     &:disabled {
       background-color: var(--button-disabled);

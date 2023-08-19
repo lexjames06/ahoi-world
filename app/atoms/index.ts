@@ -1,5 +1,6 @@
 export { Selector } from "./Selector";
-export { CurrentlyPlaying } from "./CurrentlyPlaying";
+export { CurrentlyPlayingSquare } from "./CurrentlyPlayingSquare";
+export { CurrentlyPlayingBanner } from "./CurrentlyPlayingBanner";
 export { FloatingBackButton } from "./FloatingBackButton";
 export { LargeBlogCard } from "./LargeBlogCard";
 export { LoadingSpinner } from "./LoadingSpinner";

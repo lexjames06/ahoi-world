@@ -11,19 +11,19 @@ import { usePathname } from "next/navigation";
 import { Video } from "@ahoi-world/types/Video";
 import { getUserPlaylistData } from "@ahoi-world/lib/playlists";
 import { SkeletonModule } from "@ahoi-world/templates/SkeletonPage";
+import { useCurrentPlaylistContext } from "@ahoi-world/providers/CurrentPlaylist";
 
 type Props = {
 	user: User;
 	owner: boolean;
 	playlist: string;
-	currentlyPlaying: string;
 	videos: Video[];
-	loading?: boolean;
-	selectVideo: (id: string) => void;
+	loading: boolean;
 };
 
-export function PlaylistGrid({ user, owner, playlist, currentlyPlaying, videos, loading = false, selectVideo }: Props) {
+export function PlaylistGrid({ user, owner, playlist, videos, loading }: Props) {
 	const pathname = usePathname();
+	const { currentVideoId, selectVideo } = useCurrentPlaylistContext();
 
 	if (!playlist) {
 		const playlistsUrl = pathname.split("&playlist")[0];
@@ -31,10 +31,14 @@ export function PlaylistGrid({ user, owner, playlist, currentlyPlaying, videos, 
 			<div className={styles.noData}>
 				<span className={styles.noPlaylists}>It looks like there`&apos;`s no playlist here</span>
 				{owner && (
-					<span className={styles.noPlaylists}>Why not go back to your other playlists and add one if you haven&apos;t yet?</span>
+					<span className={styles.noPlaylists}>
+						Why not go back to your other playlists and add one if you haven&apos;t yet?
+					</span>
 				)}
 				{!owner && (
-					<span className={styles.noPlaylists}>Why not see if <span className={styles.name}>@{user.username}</span> has any other playlists?</span>
+					<span className={styles.noPlaylists}>
+						Why not see if <span className={styles.name}>@{user.username}</span> has any other playlists?
+					</span>
 				)}
 				<Link href={playlistsUrl}>Go to Playlists</Link>
 			</div>
@@ -44,15 +48,15 @@ export function PlaylistGrid({ user, owner, playlist, currentlyPlaying, videos, 
 	if (loading) {
 		return (
 			<SkeletonModule>
-        <section className={styles.grid}>
-          {Array.from(Array(9)).map((_, index) => (
-            <span key={index} className={styles.card}>
-              <span className={styles.loadingTile} />
-            </span>
-          ))}
-        </section>
-      </SkeletonModule>
-		)
+				<section className={styles.grid}>
+					{Array.from(Array(9)).map((_, index) => (
+						<span key={index} className={styles.card}>
+							<span className={styles.loadingTile} />
+						</span>
+					))}
+				</section>
+			</SkeletonModule>
+		);
 	}
 
 	const name = user.playlists.find((list) => list.id === playlist)?.name;
@@ -67,16 +71,14 @@ export function PlaylistGrid({ user, owner, playlist, currentlyPlaying, videos, 
 							<span key={video.id} className={styles.card}>
 								<PlaylistTile
 									video={video}
-									playing={currentlyPlaying === video.id}
-									idle={!!currentlyPlaying && currentlyPlaying !== video.id}
+									selected={currentVideoId === video.id}
+									idle={!!currentVideoId && currentVideoId !== video.id}
 									selectVideo={selectVideo}
 								/>
 							</span>
 						))}
 				</div>
-				<span className={styles.listEnd}>
-					You&apos;ve reached the end of the playlist
-				</span>
+				<span className={styles.listEnd}>You&apos;ve reached the end of the playlist</span>
 			</div>
 		</div>
 	);
