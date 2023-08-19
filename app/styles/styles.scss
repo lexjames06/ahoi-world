@@ -1,6 +1,6 @@
 @import "./themes";
 
-:root {
+:root, ::backdrop {
 	@each $theme, $attributes in $active-theme {
 		@each $attribute, $value in $attributes {
 			--#{$theme}-#{$attribute}: #{$value};
@@ -32,16 +32,14 @@ body {
 	position: relative;
 	background-color: var(--global-background);
 	color: var(--global-text);
-	transition-property: color background-color;
+	transition-property: color background-color box-shadow;
 	transition-duration: 0.1s;
 	transition-timing-function: linear;
 }
 
 nav {
 	position: fixed;
-	width: 100vw;
 	width: 100%;
-	height: 4.5rem;
 	height: 3.125rem;
 	top: 0;
 	z-index: 10;
@@ -76,4 +74,10 @@ a {
 button {
 	background-color: transparent;
 	border: none;
+}
+
+p {
+	&.firebase-emulator-warning {
+		display: none;
+	}
 }

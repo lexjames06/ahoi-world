@@ -1,0 +1,147 @@
+.noData {
+	height: 100%;
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+
+	.noPlaylists {
+    // display: flex;
+    font-size: 1.25rem;
+		font-weight: 600;
+    white-space: break-spaces;
+    
+    &:last-of-type {
+      margin-bottom: 2rem;
+    }
+	}
+
+  a {
+    padding: 1rem;
+    background-color: var(--button-background);
+    color: var(--button-text);
+    font-weight: 600;
+    font-size: 1rem;
+    border-radius: 0.25rem;
+    cursor: pointer;
+    transition: 0.1s ease-in-out;
+
+    &:hover {
+      background-color: var(--button-background-hover);
+    }
+  }
+}
+
+.playlist {
+  width: 100%;
+
+  h2 {
+    text-transform: capitalize;
+    margin-bottom: 1rem;
+  }
+}
+
+.tiles {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  width: 100%;
+
+  // display: grid;
+  // grid-template-columns: 1fr 1fr 1fr;
+  // gap: 2rem;
+  // width: 100%;
+  // padding: 2rem;
+
+  .card {
+    display: block;
+    position: relative;
+    width: 100%;
+    border-radius: 0.5rem;
+    aspect-ratio: 1 / 1;
+    overflow: hidden;
+    transition: 0.2s ease-in-out;
+    cursor: pointer;
+    overflow: hidden;
+
+    .label {
+      position: absolute;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 3rem;
+      width: 100%;
+      top: 7.5rem;
+      left: 0;
+      font-size: 1.5rem;
+      background-color: var(--playlist-button-shadow);
+      color: var(--playlist-title);
+      transition: 0.1s ease-in-out;
+    }
+  
+    img {
+      object-fit: cover;
+      object-position: top;
+      object-position: center;
+    }
+  
+    &:hover {
+      .label {
+        height: 100%;
+        top: 0;
+        font-size: 2.5rem;
+        border-radius: 0.5rem;
+        text-transform: capitalize;
+      }
+    }
+  }
+}
+
+.listEnd {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 4rem 0 2rem;
+  color: var(--global-inactive-text);
+  font-weight: 600;
+  white-space: break-spaces;
+  margin-top: auto;
+}
+
+.name {
+  display: inline;
+  color: var(--global-accent);
+  text-align: inherit;
+}
+
+@media (min-width: 720px) {
+  .tiles {
+    max-height: 86.875vh;
+    overflow-y: scroll;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+
+  .grid {
+    display: flex;
+    flex-wrap: wrap;
+
+    .card {
+      max-width: 18rem;
+      width: 18rem;
+      height: 18rem;
+      border-radius: 0.5rem;
+    }
+  }
+}

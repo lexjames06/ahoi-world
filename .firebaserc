@@ -1,5 +1,7 @@
 {
   "projects": {
-    "default": "ahoi-world"
-  }
+    "default": "ahoi-world",
+    "staging": "ahoi-world-staging"
+  },
+  "targets": {}
 }

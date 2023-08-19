@@ -1,8 +1,8 @@
 import React from "react";
-import Page from "../components/Page";
-import { getSortedProjectsData } from "@/lib/projects";
 import Image from "next/image";
 import styles from "./page.module.scss";
+import { Page } from "@ahoi-world/templates/Page";
+import { getSortedProjectsData } from "@ahoi-world/lib/projects";
 
 export function generateMetadata() {
 	return {
@@ -11,12 +11,12 @@ export function generateMetadata() {
 }
 
 export default function About() {
-	const { projects, bio, name, job, image, } = getSortedProjectsData();
+	const { projects, bio, name, job, image } = getSortedProjectsData();
 
 	return (
 		<Page>
 			<span className={styles.image}>
-				<Image src={`data:image/png;base64,${image}`} fill={true} alt={name ?? ''} />
+				<Image src={`data:image/png;base64,${image}`} fill={true} alt={name ?? ""} />
 			</span>
 			<div className={styles.body}>
 				<h1 className={styles.name}>{name}</h1>

@@ -1,13 +1,18 @@
 import Link from "next/link";
-import { getSortedFirebasePostsData } from "@/lib/posts";
-import Page from "../components/Page";
-import CategoriesSlider from "../components/blog/CategoriesSlider";
-import LargeListItem from "../components/blog/LargeListItem";
-import SmallListItems from "./SmallListItems";
+import { getSortedPostsData } from "@ahoi-world/lib/posts";
+
+import { SmallBlogCardList } from "./SmallBlogCardList";
 import styles from "./page.module.scss";
+import { Selector, LargeBlogCard, SeedButton, CurrentlyPlayingBanner } from "@ahoi-world/atoms";
+import { Page } from "@ahoi-world/templates";
+import { SeedOptions } from "@ahoi-world/types/Seed";
+import { redirect } from "next/navigation";
+import { SelectorOption } from "@ahoi-world/atoms/Selector";
+import { CategoriesSelector } from "@ahoi-world/molecules";
+import { NoPosts } from "./NoPosts";
 
 interface Props {
-	searchParams?: Record<'category', string>;
+	searchParams?: Record<"category", string>;
 }
 
 export function generateMetadata({ searchParams }: Props) {
@@ -23,13 +28,11 @@ export function generateMetadata({ searchParams }: Props) {
 export default async function Posts(props: Props) {
 	const { searchParams } = props;
 	const category = searchParams?.category;
-	const { posts, categories } = await getSortedFirebasePostsData(category);
+	const { posts, categories } = await getSortedPostsData(category);
 
 	if (!posts.length) {
 		return (
-			<main className={styles.main}>
-				<span className={styles.noPosts}>There are no posts available at this time</span>
-			</main>
+			<NoPosts />
 		);
 	}
 
@@ -37,11 +40,11 @@ export default async function Posts(props: Props) {
 
 	return (
 		<Page>
-			<CategoriesSlider categories={categories} />
+			<CategoriesSelector categories={categories} category={category} />
 			<Link href={`/posts/${largeItemPost.path}`}>
-				<LargeListItem post={largeItemPost} />
+				<LargeBlogCard post={largeItemPost} />
 			</Link>
-			<SmallListItems posts={posts} />
+			<SmallBlogCardList posts={posts} />
 			<span className={styles.listEnd}>That&#39;s all the posts for now</span>
 		</Page>
 	);

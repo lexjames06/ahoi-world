@@ -1,27 +1,27 @@
-import { getSortedFirebasePostsData } from "@/lib/posts";
+import { getSortedPostsData } from "@ahoi-world/lib/posts";
 
 export default async function sitemap() {
-  const baseUrl = process.env.BASE_URL;
+	const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
 
-  const { posts } = await getSortedFirebasePostsData();
-  const postUrls = posts?.map((post) => ({
-    url: `${baseUrl}/posts/${post.path}`,
-    lastModified: new Date(),
-  }));
+	const { posts } = await getSortedPostsData();
+	const postUrls = posts?.map((post) => ({
+		url: `${BASE_URL}/posts/${post.path}`,
+		lastModified: new Date(),
+	}));
 
-  return [
-    {
-      url: baseUrl,
-      lastModified: new Date(),
-    },
-    {
-      url: `${baseUrl}/posts`,
-      lastModified: new Date(),
-    },
-    {
-      url: `${baseUrl}/about`,
-      lastModified: new Date(),
-    },
-    ...postUrls,
-  ];
+	return [
+		{
+			url: BASE_URL,
+			lastModified: new Date(),
+		},
+		{
+			url: `${BASE_URL}/posts`,
+			lastModified: new Date(),
+		},
+		{
+			url: `${BASE_URL}/about`,
+			lastModified: new Date(),
+		},
+		...postUrls,
+	];
 }

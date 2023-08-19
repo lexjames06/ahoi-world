@@ -1,25 +1,29 @@
-import { Inter } from 'next/font/google'
-import Ahoi from "./ahoi";
-import Navbar from "./components/Navbar";
+import { Inter } from "next/font/google";
+import Theme from "./theme";
+import { AuthContextProvider } from "@ahoi-world/providers/AuthContext";
+import { FeatureFlagContextProvider } from "@ahoi-world/providers/FeatureFlag";
+import { Navbar } from "@ahoi-world/molecules";
 import "./styles/styles.scss";
+import { CurrentPlaylistContextProvider } from "@ahoi-world/providers/CurrentPlaylist";
+import { CurrentlyPlayingBanner } from "./atoms";
 
-const { BASE_URL } = process.env as Record<string, string>;
+const { NEXT_PUBLIC_BASE_URL } = process.env as Record<string, string>;
 
 const inter = Inter({
-  subsets: ['latin'],
-  display: 'swap',
+	subsets: ["latin"],
+	display: "swap",
 });
 
 export const metadata = {
-	metadataBase: new URL(BASE_URL),
-  title: {
-    default: "AHOI",
-    template: `%s | AHOI`,
-  },
-  description: {
-    default: "A House Of Ideas",
-    template: `%s`,
-  },
+	metadataBase: new URL(NEXT_PUBLIC_BASE_URL),
+	title: {
+		default: "AHOI",
+		template: `%s | AHOI`,
+	},
+	description: {
+		default: "A House Of Ideas",
+		template: `%s`,
+	},
 };
 
 type MetadataParams = {
@@ -40,10 +44,17 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 	return (
 		<html lang="en" className={inter.className}>
 			<body>
-				<Ahoi>
-					<Navbar />
-					{children}
-				</Ahoi>
+				<Theme>
+					<AuthContextProvider>
+						<FeatureFlagContextProvider>
+							<CurrentPlaylistContextProvider>
+								<Navbar />
+								{children}
+								<CurrentlyPlayingBanner />
+							</CurrentPlaylistContextProvider>
+						</FeatureFlagContextProvider>
+					</AuthContextProvider>
+				</Theme>
 			</body>
 		</html>
 	);

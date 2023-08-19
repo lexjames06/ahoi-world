@@ -4,30 +4,48 @@
 // Component Themes
 @import "./button_theme";
 @import "./footer_theme";
+@import "./gallery_theme";
 @import "./global_theme";
+@import "./input_theme";
+@import "./loading_spinner";
 @import "./menu_theme";
 @import "./nav_theme";
+@import "./playlist_theme";
 @import "./skeleton_theme";
 @import "./toggle_theme";
+@import "./user_menu";
+@import "./user_profile";
 
 $light-theme: (
 	"button": $button-theme-light,
 	"footer": $footer-theme-light,
+	"gallery": $gallery-theme-light,
 	"global": $global-theme-light,
+	"input": $input-theme-light,
+	"loading-spinner": $loading-spinner-theme-light,
 	"menu": $menu-theme-light,
 	"nav": $nav-theme-light,
+	"playlist": $playlist-theme-light,
 	"skeleton": $skeleton-theme-light,
 	"toggle": $toggle-theme-light,
+	"user-menu": $user-menu-theme-light,
+	"user-profile": $user-profile-theme-light,
 );
 
 $dark-theme: (
 	"button": $button-theme-dark,
 	"footer": $footer-theme-dark,
+	"gallery": $gallery-theme-dark,
 	"global": $global-theme-dark,
+	"input": $input-theme-dark,
+	"loading-spinner": $loading-spinner-theme-dark,
 	"menu": $menu-theme-dark,
 	"nav": $nav-theme-dark,
+	"playlist": $playlist-theme-dark,
 	"skeleton": $skeleton-theme-dark,
 	"toggle": $toggle-theme-dark,
+	"user-menu": $user-menu-theme-dark,
+	"user-profile": $user-profile-theme-dark,
 );
 
 $active-theme: $light-theme;

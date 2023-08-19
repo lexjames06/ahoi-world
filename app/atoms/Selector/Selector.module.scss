@@ -1,0 +1,52 @@
+.container {
+	overflow-x: scroll;
+
+	&::-webkit-scrollbar {
+		display: none;
+	}
+}
+
+.overflowContainer {
+	display: flex;
+	gap: 2rem;
+	padding: 1rem;
+	width: max-content;
+	height: 3.5rem;
+}
+
+.skeleton_container {
+	@extend .overflowContainer;
+}
+
+.option {
+	font-size: 1rem;
+	font-weight: 700;
+	text-transform: capitalize;
+	width: fit-content;
+	cursor: pointer;
+	color: var(--global-inactive-text);
+
+	&[data-active="true"] {
+		text-decoration: underline;
+		text-decoration-style: solid;
+		text-underline-offset: 0.25rem;
+		text-decoration-thickness: 0.125rem;
+		text-decoration-color: var(--global-accent);
+		color: var(--global-text);
+	}
+}
+
+.skeleton_option {
+	@extend .option;
+
+	height: 1.5rem;
+	width: 5rem;
+	border-radius: 0.5rem;
+	background-color: var(--skeleton-background);
+}
+
+@media (min-width: 720px) {
+	.option {
+		font-size: 1rem;
+	}
+}

@@ -1,0 +1,22 @@
+.contentGrid {
+  display: flex;
+  padding: 1rem;
+  width: auto;
+  height: 100%;
+  // background-color: var(--user-profile-sidebar-background);
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+@media (min-width: 720px) {
+  $container-height: calc(86.875vh - 0.625rem * 2);
+
+  .contentGrid {
+    padding: 0 1rem;
+    overflow-y: scroll;
+    height: calc($container-height - 3.5rem);
+    background-color: transparent;
+  }
+}

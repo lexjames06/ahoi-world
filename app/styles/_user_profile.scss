@@ -1,0 +1,41 @@
+@import "./theme";
+
+$user-profile-theme-light: (
+	"background": $grey-3,
+	"sidebar-background": $white,
+	"sidebar-border": $white,
+	"sidebar-content-background": $grey-3,
+	"sidebar-display-name": $black-1,
+	"sidebar-username": $grey-4,
+	"sidebar-label": $green-1,
+	"sidebar-info": $black-1,
+	"sidebar-info-none": $grey-4,
+	"sidebar-divider": $grey-3,
+	"sidebar-email-button-background": $green-1,
+	"sidebar-email-button-background-hover": $black-1,
+	"sidebar-email-button-text": $white,
+	"sidebar-email-button-text-hover": $black-1,
+	"sidebar-footer-option-background": $black-1,
+	"sidebar-footer-option-text": $white,
+	"blog-card-background": $white,
+);
+
+$user-profile-theme-dark: (
+	"background": $black-1,
+	"sidebar-background": $black-2,
+	"sidebar-border": $black-1,
+	"sidebar-content-background": $black-1,
+	"sidebar-display-name": $black-1,
+	"sidebar-username": $grey-4,
+	"sidebar-label": $green-1,
+	"sidebar-info": $black-1,
+	"sidebar-info-none": $grey-4,
+	"sidebar-divider": $grey-3,
+	"sidebar-email-button-background": $white,
+	"sidebar-email-button-background-hover": $green-1,
+	"sidebar-email-button-text": $white,
+	"sidebar-email-button-text-hover": $black-1,
+	"sidebar-footer-option-background": $black-2,
+	"sidebar-footer-option-text": $white,
+	"blog-card-background": $black-2,
+);
